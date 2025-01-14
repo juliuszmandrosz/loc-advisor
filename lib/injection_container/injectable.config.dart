@@ -13,6 +13,10 @@ import 'package:cloud_functions/cloud_functions.dart' as _i809;
 import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:loc_advisor/auth/application/auth_bloc.dart' as _i446;
+import 'package:loc_advisor/auth/domain/auth_facade.dart' as _i421;
+import 'package:loc_advisor/auth/infrastructure/firebase_auth_facade.dart'
+    as _i210;
 import 'package:loc_advisor/generate_recommendations/domain/recommendation_facade.dart'
     as _i877;
 import 'package:loc_advisor/generate_recommendations/infrastructure/firebase_recommendation_facade.dart'
@@ -40,8 +44,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i809.FirebaseFunctions>(
         () => firebaseModule.firebaseFunctions);
     gh.lazySingleton<_i974.Logger>(() => loggerModule.logger);
-    gh.singleton<_i877.RecommendationFacade>(
+    gh.lazySingleton<_i877.RecommendationFacade>(
         () => _i318.FirebaseRecommendationFacade());
+    gh.lazySingleton<_i421.AuthFacade>(() => _i210.FirebaseAuthFacade(
+          firebaseAuth: gh<_i59.FirebaseAuth>(),
+          logger: gh<_i974.Logger>(),
+        ));
+    gh.factory<_i446.AuthBloc>(
+        () => _i446.AuthBloc(authFacade: gh<_i421.AuthFacade>()));
     return this;
   }
 }

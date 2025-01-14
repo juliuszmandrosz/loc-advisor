@@ -4,7 +4,7 @@ import 'package:loc_advisor/generate_recommendations/domain/recommendation_entit
 import 'package:loc_advisor/generate_recommendations/domain/recommendation_facade.dart';
 import 'package:loc_advisor/generate_recommendations/domain/recommendation_failure.dart';
 
-@Singleton(as: RecommendationFacade)
+@LazySingleton(as: RecommendationFacade)
 class FirebaseRecommendationFacade implements RecommendationFacade {
   @override
   Future<Either<RecommendationFailure, Recommendation>> generateRecommendation() {
