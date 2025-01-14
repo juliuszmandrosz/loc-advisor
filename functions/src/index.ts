@@ -3,11 +3,12 @@ import {HttpsError, onCall} from "firebase-functions/https";
 
 export const getLocalRecommendations =  onCall(
     {
-        region: "europe-central2"
+        region: "europe-central2",
+        secrets: ["OPEN_AI_KEY"],
     },
     async (request) => {
         const openai = new OpenAI({
-            apiKey: process.env.OPENAI_API_KEY,
+            apiKey: process.env.OPEN_AI_KEY,
         });
 
         const { location, preferences } = request.data;
@@ -36,7 +37,7 @@ export const getLocalRecommendations =  onCall(
                         ? `Preferencje użytkownika to: ${preferences}.`
                         : "brak"
                 }
-    
+
                Podaj rekomendacje:
                 - 2-3 osiedla lub dzielnice w ${location}, które są idealne na wynajem noclegów (Airbnb lub hotel),
                 - Czym charakteryzuje się każda z tych dzielnic (np. spokojna, artystyczna, pełna życia nocnego, blisko lokalnych restauracji itp.),
