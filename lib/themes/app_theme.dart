@@ -16,7 +16,7 @@ class AppTheme {
         backgroundColor: base.colorScheme.primary,
         foregroundColor: base.colorScheme.onPrimary,
         elevation: 0,
-        titleTextStyle: base.textTheme.titleLarge?.copyWith(
+        titleTextStyle: base.textTheme.titleLarge!.copyWith(
           color: base.colorScheme.onPrimary,
           fontWeight: FontWeight.bold,
         ),
@@ -39,16 +39,16 @@ class AppTheme {
         ),
       ),
       textTheme: base.textTheme.copyWith(
-        displayLarge: base.textTheme.displayLarge?.copyWith(
+        displayLarge: base.textTheme.displayLarge!.copyWith(
           color: base.colorScheme.primary,
         ),
-        displayMedium: base.textTheme.displayMedium?.copyWith(
+        displayMedium: base.textTheme.displayMedium!.copyWith(
           color: base.colorScheme.primary,
         ),
-        bodyLarge: base.textTheme.bodyLarge?.copyWith(
+        bodyLarge: base.textTheme.bodyLarge!.copyWith(
           color: base.colorScheme.onSurface,
         ),
-        bodyMedium: base.textTheme.bodyMedium?.copyWith(
+        bodyMedium: base.textTheme.bodyMedium!.copyWith(
           color: base.colorScheme.onSurface.withOpacity(0.8),
         ),
       ),
