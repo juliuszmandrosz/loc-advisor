@@ -14,8 +14,8 @@ class SplashPage extends StatelessWidget {
       listener: (ctx, state) {
         state.map(
           initial: (_) {},
-          authenticated: (state) => context.replaceRoute(const GenerateRecommendationsRoute()),
-          unauthenticated: (_) => context.replaceRoute(const GenerateRecommendationsRoute()),
+          authenticated: (state) => context.replaceRoute(const HomeRoute()),
+          unauthenticated: (_) => context.replaceRoute(const OnboardingRoute()),
         );
       },
       child: Scaffold(
