@@ -1,7 +1,9 @@
+import 'package:auto_route/annotations.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
+@RoutePage()
 class GenerateRecommendationsPage extends StatelessWidget {
   const GenerateRecommendationsPage({super.key});
 
