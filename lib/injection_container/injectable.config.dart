@@ -18,6 +18,8 @@ import 'package:loc_advisor/generate_recommendations/domain/recommendation_facad
 import 'package:loc_advisor/generate_recommendations/infrastructure/firebase_recommendation_facade.dart'
     as _i318;
 import 'package:loc_advisor/modules/firebase_module.dart' as _i686;
+import 'package:loc_advisor/modules/logger_module.dart' as _i656;
+import 'package:logger/logger.dart' as _i974;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -31,11 +33,13 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final firebaseModule = _$FirebaseModule();
+    final loggerModule = _$LoggerModule();
     gh.lazySingleton<_i59.FirebaseAuth>(() => firebaseModule.firebaseAuth);
     gh.lazySingleton<_i974.FirebaseFirestore>(
         () => firebaseModule.firebaseFirestore);
     gh.lazySingleton<_i809.FirebaseFunctions>(
         () => firebaseModule.firebaseFunctions);
+    gh.lazySingleton<_i974.Logger>(() => loggerModule.logger);
     gh.singleton<_i877.RecommendationFacade>(
         () => _i318.FirebaseRecommendationFacade());
     return this;
@@ -43,3 +47,5 @@ extension GetItInjectableX on _i174.GetIt {
 }
 
 class _$FirebaseModule extends _i686.FirebaseModule {}
+
+class _$LoggerModule extends _i656.LoggerModule {}
