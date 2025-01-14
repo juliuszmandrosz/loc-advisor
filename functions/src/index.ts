@@ -1,46 +1,53 @@
 import OpenAI from "openai";
-import * as functions from "firebase-functions";
+import {HttpsError, onCall} from "firebase-functions/https";
 
-export const getLocalRecommendations = functions.https.onRequest(async (req, res) => {
-    try {
+export const getLocalRecommendations =  onCall(
+    {
+        region: "europe-central2"
+    },
+    async (request) => {
         const openai = new OpenAI({
             apiKey: process.env.OPENAI_API_KEY,
         });
-        const {location, preferences} = req.body;
+
+        const { location, preferences } = request.data;
 
         if (!location) {
-            res.status(400).send({error: "Location is required in the request body."});
-            return;
+            throw new HttpsError(
+                "invalid-argument",
+                "Location is required in the request data."
+            );
         }
 
         const systemPrompt = `
-          Jesteś inteligentnym asystentem LocAdvisor, który pomaga użytkownikom odkrywać lokalne doświadczenia z perspektywy mieszkańców.
-          Twoje odpowiedzi powinny:
-          - Oferować rekomendacje unikalnych miejsc z dala od typowych turystycznych atrakcji,
-          - Uwzględniać osiedla lub dzielnice, które mieszkańcy poleciliby na wynajem noclegów (np. Airbnb lub hotel),
-          - Zawierać szczegóły dotyczące bezpieczeństwa, atmosfery dzielnicy i dostępności lokalnych atrakcji,
-          - Być spersonalizowane w zależności od preferencji użytkownika.
-        `;
+            Jesteś inteligentnym asystentem LocAdvisor, który pomaga użytkownikom odkrywać lokalne doświadczenia z perspektywy mieszkańców.
+            Twoje odpowiedzi powinny:
+            - Oferować rekomendacje unikalnych miejsc z dala od typowych turystycznych atrakcji,
+            - Uwzględniać osiedla lub dzielnice, które mieszkańcy poleciliby na wynajem noclegów (np. Airbnb lub hotel),
+            - Zawierać szczegóły dotyczące bezpieczeństwa, atmosfery dzielnicy i dostępności lokalnych atrakcji,
+            - Być spersonalizowane w zależności od preferencji użytkownika.
+       `;
 
         const generatePrompt = (location: string, preferences?: string) => {
             return `
-            Użytkownik planuje podróż do ${location} i chce wiedzieć, gdzie warto wynająć Airbnb lub hotel z perspektywy mieszkańca.
-            ${preferences ? `Preferencje użytkownika to: ${preferences}.` : "brak"}
-
-            Podaj rekomendacje:
-            - 2-3 osiedla lub dzielnice w ${location}, które są idealne na wynajem noclegów (Airbnb lub hotel),
-            - Czym charakteryzuje się każda z tych dzielnic (np. spokojna, artystyczna, pełna życia nocnego, blisko lokalnych restauracji itp.),
-            - Lokalne wskazówki dotyczące bezpieczeństwa, transportu i dostępności atrakcji w okolicy.
-          `;
+                Użytkownik planuje podróż do ${location} i chce wiedzieć, gdzie warto wynająć Airbnb lub hotel z perspektywy mieszkańca.
+                ${
+                    preferences
+                        ? `Preferencje użytkownika to: ${preferences}.`
+                        : "brak"
+                }
+    
+               Podaj rekomendacje:
+                - 2-3 osiedla lub dzielnice w ${location}, które są idealne na wynajem noclegów (Airbnb lub hotel),
+                - Czym charakteryzuje się każda z tych dzielnic (np. spokojna, artystyczna, pełna życia nocnego, blisko lokalnych restauracji itp.),
+                - Lokalne wskazówki dotyczące bezpieczeństwa, transportu i dostępności atrakcji w okolicy.
+            `;
         };
 
         const completion = await openai.chat.completions.create({
             model: "gpt-4o",
             messages: [
-                {
-                    role: "system",
-                    content: systemPrompt,
-                },
+                { role: "system", content: systemPrompt },
                 {
                     role: "user",
                     content: generatePrompt(location, preferences),
@@ -51,12 +58,8 @@ export const getLocalRecommendations = functions.https.onRequest(async (req, res
 
         const response = completion.choices[0].message;
 
-        res.status(200).send({
-            location: location,
+        return {
+            location,
             recommendations: response,
-        });
-    } catch (error) {
-        res.status(500).send({error: "Failed to generate prompt."});
-    }
+        };
 });
-
