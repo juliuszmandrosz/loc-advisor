@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loc_advisor/app/auth/application/auth_bloc.dart';
 import 'package:loc_advisor/injection_container/injectable.dart';
 import 'package:loc_advisor/router/app_router.dart';
+import 'package:loc_advisor/themes/app_theme.dart';
 
 
 class LocAdvisorApp extends StatelessWidget {
@@ -16,10 +17,7 @@ class LocAdvisorApp extends StatelessWidget {
       create: (context) => getIt<AuthBloc>()..add(AuthEvent.authInitialized()),
       child: MaterialApp.router(
         title: 'LocAdvisor',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+        theme: AppTheme.theme,
         debugShowCheckedModeBanner: false,
         routerConfig: _appRouter.config(),
       ),
