@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:loc_advisor/converters/firebase_timestamp_json_converter.dart';
-import 'package:loc_advisor/generate_recommendations/domain/recommendation_entity.dart';
+import 'package:loc_advisor/app/generate_recommendations/domain/recommendation_entity.dart';
 
 part 'recommendation_dto.freezed.dart';
 part 'recommendation_dto.g.dart';

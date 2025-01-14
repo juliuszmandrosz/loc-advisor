@@ -2,9 +2,9 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
-import 'package:loc_advisor/auth/domain/app_user_entity.dart';
-import 'package:loc_advisor/auth/domain/auth_facade.dart';
-import 'package:loc_advisor/auth/infrastructure/firebase_user_extensions.dart';
+import 'package:loc_advisor/app/auth/domain/app_user_entity.dart';
+import 'package:loc_advisor/app/auth/domain/auth_facade.dart';
+import 'package:loc_advisor/app/auth/infrastructure/firebase_user_extensions.dart';
 import 'package:logger/logger.dart';
 
 @LazySingleton(as: AuthFacade)

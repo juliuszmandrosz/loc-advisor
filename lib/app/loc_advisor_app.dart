@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loc_advisor/auth/application/auth_bloc.dart';
+import 'package:loc_advisor/app/auth/application/auth_bloc.dart';
 import 'package:loc_advisor/injection_container/injectable.dart';
 import 'package:loc_advisor/router/app_router.dart';
 

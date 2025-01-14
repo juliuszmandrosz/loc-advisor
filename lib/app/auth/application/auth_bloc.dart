@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:loc_advisor/auth/domain/app_user_entity.dart';
-import 'package:loc_advisor/auth/domain/auth_facade.dart';
+import 'package:loc_advisor/app/auth/domain/app_user_entity.dart';
+import 'package:loc_advisor/app/auth/domain/auth_facade.dart';
 
 part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
