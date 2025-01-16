@@ -66,10 +66,11 @@ class AppTheme {
         labelStyle: TextStyle(color: base.colorScheme.onSecondaryContainer),
         secondaryLabelStyle: TextStyle(color: base.colorScheme.onPrimary),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        showCheckmark: false,
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: base.colorScheme.surfaceVariant,
+        fillColor: base.colorScheme.surfaceContainerHighest,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 12,

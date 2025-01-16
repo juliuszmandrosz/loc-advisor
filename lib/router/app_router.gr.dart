@@ -9,12 +9,12 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i7;
+import 'package:loc_advisor/app/accommodations/accommodations_page.dart' as _i1;
+import 'package:loc_advisor/app/activities/activities_page.dart' as _i2;
 import 'package:loc_advisor/app/auth/splash_page.dart' as _i6;
 import 'package:loc_advisor/app/generate_recommendations/generate_recommendations_page.dart'
     as _i3;
 import 'package:loc_advisor/app/home/home_page.dart' as _i4;
-import 'package:loc_advisor/app/onboarding/accommodations_page.dart' as _i1;
-import 'package:loc_advisor/app/onboarding/activities_page.dart' as _i2;
 import 'package:loc_advisor/app/onboarding/onboarding_page.dart' as _i5;
 
 /// generated route for
