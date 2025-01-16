@@ -39,10 +39,10 @@ class LocAdvisorChoiceChips extends StatelessWidget {
         ),
         if (!isFormValid && errorText != null)
           Padding(
-            padding: const EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 8.0, left: 4.0),
             child: Text(
               errorText!,
-              style: TextStyle(color: context.error),
+              style: context.bodyMedium.copyWith(color: context.error),
             ),
           ),
       ],

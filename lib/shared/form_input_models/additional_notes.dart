@@ -6,7 +6,7 @@ enum AdditionalNotesError {
   String get message {
     switch (this) {
       case AdditionalNotesError.tooLong:
-        return 'Test nie może być dłuższy niż 100 znaków';
+        return 'Test nie może być dłuższy niż 200 znaków';
     }
   }
 }
@@ -22,7 +22,7 @@ class AdditionalNotesInput extends FormzInput<String, AdditionalNotesError> {
       return null;
     }
 
-    if (value.length > 30) {
+    if (value.length > 200) {
       return AdditionalNotesError.tooLong;
     }
 

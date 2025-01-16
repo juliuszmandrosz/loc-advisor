@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:loc_advisor/themes/theme_extensions.dart';
 
 class LocAdvisorTextArea extends HookWidget {
   final String value;
@@ -31,16 +32,28 @@ class LocAdvisorTextArea extends HookWidget {
       });
       return null;
     }, [focusNode]);
-    return TextField(
-      focusNode: focusNode,
-      controller: textController,
-      onChanged: onChanged,
-      keyboardType: TextInputType.multiline,
-      maxLines: null,
-      decoration: InputDecoration(
-        hintText: hintText,
-        errorText: isFormValid ? null : errorText,
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextField(
+          focusNode: focusNode,
+          controller: textController,
+          onChanged: onChanged,
+          keyboardType: TextInputType.multiline,
+          maxLines: null,
+          decoration: InputDecoration(
+            hintText: hintText,
+          ),
+        ),
+        if (!isFormValid && errorText != null)
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0, left: 8),
+            child: Text(
+              errorText!,
+              style: context.bodyMedium.copyWith(color: context.error),
+            ),
+          ),
+      ],
     );
   }
 }
