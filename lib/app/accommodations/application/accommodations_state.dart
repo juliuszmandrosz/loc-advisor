@@ -40,12 +40,12 @@ class AccommodationsState with _$AccommodationsState {
           PreferencesModel(
             label: 'Tanie',
             isSelected: false,
-            icon: FontAwesomeIcons.wallet,
+            icon: FontAwesomeIcons.solidMoneyBill1,
           ),
           PreferencesModel(
             label: 'Średnie',
             isSelected: false,
-            icon: FontAwesomeIcons.solidMoneyBill1,
+            icon: FontAwesomeIcons.wallet,
           ),
           PreferencesModel(
             label: 'Luksusowe',
