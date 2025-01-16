@@ -1,39 +1,62 @@
-part of 'accommodations_cubit.dart';
+part of 'activities_cubit.dart';
 
 @freezed
-class AccommodationsState with _$AccommodationsState {
-  const factory AccommodationsState({
+class ActivitiesState with _$ActivitiesState {
+  const factory ActivitiesState({
     required DestinationInput destination,
-    required PreferencesInput locationPreferences,
+    required PreferencesInput dateOption,
+    required PreferencesInput activityPreferences,
     required PreferencesInput budgetOption,
     required PreferencesInput atmosphereOption,
     required AdditionalNotesInput additionalNotes,
     required bool isFormValid,
     required StateStatus status,
-  }) = _AccommodationsState;
+  }) = _ActivitiesState;
 
-  factory AccommodationsState.initial() => AccommodationsState(
+  factory ActivitiesState.initial() => ActivitiesState(
         destination: DestinationInput.pure(),
-        locationPreferences: PreferencesInput.pure([
+        dateOption: PreferencesInput.pure([
           PreferencesModel(
-            label: 'Blisko plaży lub natury',
+            label: 'Na dzisiaj',
             isSelected: false,
-            icon: FontAwesomeIcons.umbrellaBeach,
+            icon: FontAwesomeIcons.calendarDay,
           ),
           PreferencesModel(
-            label: 'Blisko centrum',
+            label: 'Na później',
             isSelected: false,
-            icon: FontAwesomeIcons.city,
+            icon: FontAwesomeIcons.calendarDays,
+          ),
+        ]),
+        activityPreferences: PreferencesInput.pure([
+          PreferencesModel(
+            label: 'Jedzenie',
+            isSelected: false,
+            icon: FontAwesomeIcons.utensils,
           ),
           PreferencesModel(
-            label: 'Blisko knajpek i kawiarni',
+            label: 'Życie nocne',
             isSelected: false,
-            icon: FontAwesomeIcons.mugSaucer,
+            icon: FontAwesomeIcons.music,
           ),
           PreferencesModel(
-            label: 'Blisko transportu publicznego',
+            label: 'Relaks',
             isSelected: false,
-            icon: FontAwesomeIcons.bus,
+            icon: FontAwesomeIcons.spa,
+          ),
+          PreferencesModel(
+            label: 'Ukryte perełki',
+            isSelected: false,
+            icon: FontAwesomeIcons.gem,
+          ),
+          PreferencesModel(
+            label: 'Natura',
+            isSelected: false,
+            icon: FontAwesomeIcons.tree,
+          ),
+          PreferencesModel(
+            label: 'Sport',
+            isSelected: false,
+            icon: FontAwesomeIcons.dumbbell,
           ),
         ]),
         budgetOption: PreferencesInput.pure([

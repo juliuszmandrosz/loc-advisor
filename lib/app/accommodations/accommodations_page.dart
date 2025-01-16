@@ -81,20 +81,20 @@ class AccommodationsPage extends StatelessWidget {
                       const SizedBox(height: 24),
                       Text('Budżet:', style: context.bodyMedium),
                       LocAdvisorChoiceChips(
-                        options: state.budgetOptions.value,
+                        options: state.budgetOption.value,
                         onToggle:
                             context.read<AccommodationsCubit>().toggleBudget,
-                        errorText: state.budgetOptions.error?.message,
+                        errorText: state.budgetOption.error?.message,
                         isFormValid: state.isFormValid,
                       ),
                       const SizedBox(height: 24),
                       const Text('Atmosfera:'),
                       LocAdvisorChoiceChips(
-                        options: state.atmosphereOptions.value,
+                        options: state.atmosphereOption.value,
                         onToggle: context
                             .read<AccommodationsCubit>()
                             .toggleAtmosphere,
-                        errorText: state.atmosphereOptions.error?.message,
+                        errorText: state.atmosphereOption.error?.message,
                         isFormValid: state.isFormValid,
                       ),
                       const SizedBox(height: 40),

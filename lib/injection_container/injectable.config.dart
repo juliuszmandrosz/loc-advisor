@@ -19,6 +19,12 @@ import 'package:loc_advisor/app/accommodations/application/firebase_accommodatio
     as _i191;
 import 'package:loc_advisor/app/accommodations/domain/accommodations_facade.dart'
     as _i662;
+import 'package:loc_advisor/app/activities/application/activities_cubit.dart'
+    as _i1014;
+import 'package:loc_advisor/app/activities/domain/activities_facade.dart'
+    as _i311;
+import 'package:loc_advisor/app/activities/infrastructure/firebase_activities_facade.dart'
+    as _i379;
 import 'package:loc_advisor/app/auth/application/auth_bloc.dart' as _i185;
 import 'package:loc_advisor/app/auth/domain/auth_facade.dart' as _i433;
 import 'package:loc_advisor/app/auth/infrastructure/firebase_auth_facade.dart'
@@ -52,6 +58,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i974.Logger>(() => loggerModule.logger);
     gh.lazySingleton<_i529.RecommendationFacade>(
         () => _i162.FirebaseRecommendationFacade());
+    gh.lazySingleton<_i311.ActivitiesFacade>(
+        () => _i379.FirebaseActivitiesFacade());
+    gh.factory<_i1014.ActivitiesCubit>(
+        () => _i1014.ActivitiesCubit(gh<_i311.ActivitiesFacade>()));
     gh.lazySingleton<_i662.AccommodationsFacade>(
         () => _i191.FirebaseAccommodationsFacade());
     gh.lazySingleton<_i433.AuthFacade>(() => _i792.FirebaseAuthFacade(

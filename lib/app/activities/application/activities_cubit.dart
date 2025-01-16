@@ -3,22 +3,21 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:loc_advisor/app/accommodations/domain/accommodations_facade.dart';
+import 'package:loc_advisor/app/activities/domain/activities_facade.dart';
 import 'package:loc_advisor/enums/state_status.dart';
 import 'package:loc_advisor/shared/form_input_models/additional_notes.dart';
 import 'package:loc_advisor/shared/form_input_models/destination_input.dart';
 import 'package:loc_advisor/shared/form_input_models/preferences_input.dart';
 import 'package:loc_advisor/shared/models/preferences_model.dart';
 
-part 'accommodations_cubit.freezed.dart';
-part 'accommodations_state.dart';
+part 'activities_cubit.freezed.dart';
+part 'activities_state.dart';
 
 @injectable
-class AccommodationsCubit extends Cubit<AccommodationsState> {
-  final AccommodationsFacade _accommodationsFacade;
+class ActivitiesCubit extends Cubit<ActivitiesState> {
+  final ActivitiesFacade _activitiesFacade;
 
-  AccommodationsCubit(this._accommodationsFacade)
-      : super(AccommodationsState.initial());
+  ActivitiesCubit(this._activitiesFacade) : super(ActivitiesState.initial());
 
   void setDestination(String destination) {
     emit(state.copyWith(destination: DestinationInput.dirty(destination)));
@@ -35,9 +34,8 @@ class AccommodationsCubit extends Cubit<AccommodationsState> {
     );
   }
 
-  void toggleLocationPreference(String label) {
-    final updatedLocationPreferences =
-        state.locationPreferences.value.map((preference) {
+  void toggleDate(String label) {
+    final updatedDateOption = state.dateOption.value.map((preference) {
       return preference.label == label
           ? preference.copyWith(isSelected: !preference.isSelected)
           : preference;
@@ -45,7 +43,22 @@ class AccommodationsCubit extends Cubit<AccommodationsState> {
 
     emit(
       state.copyWith(
-        locationPreferences: PreferencesInput.dirty(updatedLocationPreferences),
+        dateOption: PreferencesInput.dirty(updatedDateOption),
+      ),
+    );
+  }
+
+  void toggleActivitiesPreference(String label) {
+    final updatedActivityPreferences =
+        state.activityPreferences.value.map((preference) {
+      return preference.label == label
+          ? preference.copyWith(isSelected: !preference.isSelected)
+          : preference;
+    }).toList();
+
+    emit(
+      state.copyWith(
+        activityPreferences: PreferencesInput.dirty(updatedActivityPreferences),
       ),
     );
   }
@@ -95,12 +108,13 @@ class AccommodationsCubit extends Cubit<AccommodationsState> {
     );
   }
 
-  Future<void> submitAccommodations() async {
+  Future<void> submitActivities() async {
     emit(
       state.copyWith(
         destination: DestinationInput.dirty(state.destination.value),
-        locationPreferences:
-            PreferencesInput.dirty(state.locationPreferences.value),
+        dateOption: PreferencesInput.dirty(state.dateOption.value),
+        activityPreferences:
+            PreferencesInput.dirty(state.activityPreferences.value),
         budgetOption: PreferencesInput.dirty(state.budgetOption.value),
         atmosphereOption: PreferencesInput.dirty(state.atmosphereOption.value),
         additionalNotes:
@@ -111,7 +125,8 @@ class AccommodationsCubit extends Cubit<AccommodationsState> {
     final isFormValid = Formz.validate(
       [
         state.destination,
-        state.locationPreferences,
+        state.dateOption,
+        state.activityPreferences,
         state.budgetOption,
         state.atmosphereOption,
         state.additionalNotes,

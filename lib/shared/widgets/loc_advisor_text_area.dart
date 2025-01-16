@@ -40,7 +40,7 @@ class LocAdvisorTextArea extends HookWidget {
           controller: textController,
           onChanged: onChanged,
           keyboardType: TextInputType.multiline,
-          maxLines: null,
+          maxLines: 4,
           decoration: InputDecoration(
             hintText: hintText,
           ),

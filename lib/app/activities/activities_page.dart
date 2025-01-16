@@ -1,6 +1,13 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loc_advisor/app/activities/application/activities_cubit.dart';
+import 'package:loc_advisor/extensions/build_context_extensions.dart';
+import 'package:loc_advisor/injection_container/injectable.dart';
+import 'package:loc_advisor/shared/widgets/loc_advisor_choice_chips.dart';
+import 'package:loc_advisor/shared/widgets/loc_advisor_filter_chips.dart';
+import 'package:loc_advisor/shared/widgets/loc_advisor_text_area.dart';
+import 'package:loc_advisor/shared/widgets/loc_advisor_text_input.dart';
 
 @RoutePage()
 class ActivitiesPage extends StatelessWidget {
@@ -8,214 +15,131 @@ class ActivitiesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Aktywności'),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const Text(
-                'Gdzie szukasz?',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+    return BlocProvider(
+      create: (context) => getIt<ActivitiesCubit>(),
+      child: BlocBuilder<ActivitiesCubit, ActivitiesState>(
+        builder: (context, state) {
+          return GestureDetector(
+            onTap: context.unfocus,
+            child: Scaffold(
+              appBar: AppBar(
+                title: const Text('Aktywności'),
+                centerTitle: true,
+              ),
+              body: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Text(
+                        'Gdzie szukasz?',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      LocAdvisorTextInput(
+                        value: state.destination.value,
+                        onChanged:
+                            context.read<ActivitiesCubit>().setDestination,
+                        onValidate:
+                            context.read<ActivitiesCubit>().validateDestination,
+                        errorText: state.destination.error?.message,
+                        hintText: 'Wpisz lokalizację (np. Madryt)',
+                        prefixIcon: Icons.location_on,
+                        isFormValid: state.isFormValid,
+                      ),
+                      const SizedBox(height: 40),
+                      const Text(
+                        'Na kiedy szukasz?',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      LocAdvisorChoiceChips(
+                        options: state.dateOption.value,
+                        onToggle: context.read<ActivitiesCubit>().toggleDate,
+                        errorText: state.dateOption.error?.message,
+                        isFormValid: state.isFormValid,
+                      ),
+                      const SizedBox(height: 40),
+                      const Text(
+                        'Co chcesz robić?',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      LocAdvisorFilterChips(
+                        options: state.activityPreferences.value,
+                        onToggle: context
+                            .read<ActivitiesCubit>()
+                            .toggleActivitiesPreference,
+                        errorText: state.activityPreferences.error?.message,
+                        isFormValid: state.isFormValid,
+                      ),
+                      const SizedBox(height: 40),
+                      const Text(
+                        'Preferencje',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      const Text('Budżet:'),
+                      LocAdvisorChoiceChips(
+                        options: state.budgetOption.value,
+                        onToggle: context.read<ActivitiesCubit>().toggleBudget,
+                        errorText: state.budgetOption.error?.message,
+                        isFormValid: state.isFormValid,
+                      ),
+                      const SizedBox(height: 24),
+                      const Text('Atmosfera:'),
+                      LocAdvisorChoiceChips(
+                        options: state.atmosphereOption.value,
+                        onToggle:
+                            context.read<ActivitiesCubit>().toggleAtmosphere,
+                        errorText: state.atmosphereOption.error?.message,
+                        isFormValid: state.isFormValid,
+                      ),
+                      const SizedBox(height: 40),
+                      const Text(
+                        'Masz dodatkowe uwagi?',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      LocAdvisorTextArea(
+                        value: state.additionalNotes.value,
+                        onChanged:
+                            context.read<ActivitiesCubit>().setAdditionalNotes,
+                        onValidate: context
+                            .read<ActivitiesCubit>()
+                            .validateAdditionalNotes,
+                        errorText: state.additionalNotes.error?.message,
+                        hintText: 'Dodaj coś od siebie (opcjonalne)',
+                        isFormValid: state.isFormValid,
+                      ),
+                      const SizedBox(height: 80),
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(height: 24),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Wpisz lokalizację (np. Madryt, Miami)',
-                  prefixIcon: const Icon(Icons.location_on),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                onChanged: (value) {
-                  // Wywołaj akcję Cubit do ustawienia lokalizacji
-                },
+              floatingActionButton: FloatingActionButton(
+                onPressed: context.read<ActivitiesCubit>().submitActivities,
+                child: const Icon(Icons.arrow_forward),
               ),
-              const SizedBox(height: 40),
-              const Text(
-                'Na kiedy szukasz?',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  ChoiceChip(
-                    label: Text('Na dzisiaj'),
-                    selected: false,
-                    onSelected: (selected) {},
-                  ),
-                  SizedBox(width: 8),
-                  ChoiceChip(
-                    label: Text('Na później'),
-                    selected: false,
-                    onSelected: (selected) {},
-                  ),
-                ],
-              ),
-              const SizedBox(height: 40),
-              const Text(
-                'Co chcesz robić?',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 24),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  FilterChip(
-                    label: const Text('Jedzenie'),
-                    avatar: const FaIcon(FontAwesomeIcons.utensils, size: 16),
-                    selected: false,
-                    onSelected: (isSelected) {
-                      // Wywołaj akcję Cubit
-                    },
-                  ),
-                  FilterChip(
-                    label: const Text('Życie nocne'),
-                    avatar: const FaIcon(FontAwesomeIcons.music, size: 16),
-                    selected: false,
-                    onSelected: (isSelected) {
-                      // Wywołaj akcję Cubit
-                    },
-                  ),
-                  FilterChip(
-                    label: const Text('Relaks'),
-                    avatar: const FaIcon(FontAwesomeIcons.spa, size: 16),
-                    selected: false,
-                    onSelected: (isSelected) {
-                      // Wywołaj akcję Cubit
-                    },
-                  ),
-                  FilterChip(
-                    label: const Text('Ukryte perełki'),
-                    avatar: const FaIcon(FontAwesomeIcons.gem, size: 16),
-                    selected: false,
-                    onSelected: (isSelected) {
-                      // Wywołaj akcję Cubit
-                    },
-                  ),
-                  FilterChip(
-                    label: const Text('Natura'),
-                    avatar: const FaIcon(FontAwesomeIcons.tree, size: 16),
-                    selected: false,
-                    onSelected: (isSelected) {
-                      // Wywołaj akcję Cubit
-                    },
-                  ),
-                  FilterChip(
-                    label: const Text('Sport'),
-                    avatar:
-                        const FaIcon(FontAwesomeIcons.personRunning, size: 16),
-                    selected: false,
-                    onSelected: (isSelected) {
-                      // Wywołaj akcję Cubit
-                    },
-                  ),
-                ],
-              ),
-              const SizedBox(height: 40),
-              const Text(
-                'Preferencje',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 24),
-              const Text('Budżet:'),
-              Wrap(
-                spacing: 12,
-                children: [
-                  ChoiceChip(
-                    label: const Text('Tanie'),
-                    selected: false, // State z Cubit
-                    onSelected: (isSelected) {
-                      // Wywołaj akcję Cubit
-                    },
-                  ),
-                  ChoiceChip(
-                    label: const Text('Średnie'),
-                    selected: false,
-                    onSelected: (isSelected) {
-                      // Wywołaj akcję Cubit
-                    },
-                  ),
-                  ChoiceChip(
-                    label: const Text('Luksusowe'),
-                    selected: false,
-                    onSelected: (isSelected) {
-                      // Wywołaj akcję Cubit
-                    },
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-              const Text('Atmosfera:'),
-              Wrap(
-                spacing: 12,
-                children: [
-                  ChoiceChip(
-                    label: const Text('Spokojne'),
-                    selected: false, // State z Cubit
-                    onSelected: (isSelected) {
-                      // Wywołaj akcję Cubit
-                    },
-                  ),
-                  ChoiceChip(
-                    label: const Text('Tętniące życiem'),
-                    selected: false,
-                    onSelected: (isSelected) {
-                      // Wywołaj akcję Cubit
-                    },
-                  ),
-                ],
-              ),
-              const SizedBox(height: 40),
-              const Text(
-                'Masz dodatkowe uwagi?',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 24),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Dodaj coś od siebie (opcjonalne)',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                maxLines: 3,
-                onChanged: (value) {
-                  // Wywołaj akcję Cubit
-                },
-              ),
-              const SizedBox(height: 80),
-            ],
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Wywołaj akcję Cubit do wysłania zapytania
+            ),
+          );
         },
-        child: const Icon(Icons.arrow_forward),
       ),
     );
   }
