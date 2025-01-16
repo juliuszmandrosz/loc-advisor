@@ -11,40 +11,42 @@ class OnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const Text(
-              'Witaj w LocAdvisor! Co chcesz zrobić?',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Text(
+                'Witaj w LocAdvisor! Co chcesz zrobić?',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 36),
-            ElevatedButton.icon(
-              onPressed: () => context.pushRoute(ActivitiesRoute()),
-              icon: FaIcon(
-                FontAwesomeIcons.locationDot,
-                color: context.onPrimary,
+              const SizedBox(height: 36),
+              ElevatedButton.icon(
+                onPressed: () => context.pushRoute(ActivitiesRoute()),
+                icon: FaIcon(
+                  FontAwesomeIcons.locationDot,
+                  color: context.onPrimary,
+                ),
+                label: const Text('Znajdź aktywności'),
               ),
-              label: const Text('Znajdź aktywności'),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton.icon(
-              onPressed: () => context.pushRoute(AccommodationsRoute()),
-              icon: FaIcon(
-                FontAwesomeIcons.house,
-                color: context.onPrimary,
+              const SizedBox(height: 16),
+              ElevatedButton.icon(
+                onPressed: () => context.pushRoute(AccommodationsRoute()),
+                icon: FaIcon(
+                  FontAwesomeIcons.house,
+                  color: context.onPrimary,
+                ),
+                label: const Text('Znajdź zakwaterowanie'),
               ),
-              label: const Text('Znajdź zakwaterowanie'),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

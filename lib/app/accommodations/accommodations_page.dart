@@ -27,99 +27,102 @@ class AccommodationsPage extends StatelessWidget {
                 title: const Text('Zakwaterowanie'),
                 centerTitle: true,
               ),
-              body: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const Text(
-                        'Dokąd jedziesz?',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+              body: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const Text(
+                          'Dokąd jedziesz?',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 24),
-                      LocAdvisorTextInput(
-                        value: state.destination.value,
-                        onChanged:
-                            context.read<AccommodationsCubit>().setDestination,
-                        onValidate: context
-                            .read<AccommodationsCubit>()
-                            .validateDestination,
-                        errorText: state.destination.error?.message,
-                        hintText: 'Wpisz lokalizację (np. Madryt)',
-                        prefixIcon: Icons.location_on,
-                        isFormValid: state.isFormValid,
-                      ),
-                      const SizedBox(height: 40),
-                      const Text(
-                        'Gdzie chciałbyś się zatrzymać?',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                        const SizedBox(height: 24),
+                        LocAdvisorTextInput(
+                          value: state.destination.value,
+                          onChanged: context
+                              .read<AccommodationsCubit>()
+                              .setDestination,
+                          onValidate: context
+                              .read<AccommodationsCubit>()
+                              .validateDestination,
+                          errorText: state.destination.error?.message,
+                          hintText: 'Wpisz lokalizację (np. Madryt)',
+                          prefixIcon: Icons.location_on,
+                          isFormValid: state.isFormValid,
                         ),
-                      ),
-                      const SizedBox(height: 24),
-                      LocAdvisorFilterChips(
-                        options: state.locationPreferences.value,
-                        onToggle: context
-                            .read<AccommodationsCubit>()
-                            .toggleLocationPreference,
-                        errorText: state.locationPreferences.error?.message,
-                        isFormValid: state.isFormValid,
-                      ),
-                      const SizedBox(height: 40),
-                      const Text(
-                        'Preferencje',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                        const SizedBox(height: 40),
+                        const Text(
+                          'Gdzie chciałbyś się zatrzymać?',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 24),
-                      Text('Budżet:', style: context.bodyMedium),
-                      LocAdvisorChoiceChips(
-                        options: state.budgetOption.value,
-                        onToggle:
-                            context.read<AccommodationsCubit>().toggleBudget,
-                        errorText: state.budgetOption.error?.message,
-                        isFormValid: state.isFormValid,
-                      ),
-                      const SizedBox(height: 24),
-                      const Text('Atmosfera:'),
-                      LocAdvisorChoiceChips(
-                        options: state.atmosphereOption.value,
-                        onToggle: context
-                            .read<AccommodationsCubit>()
-                            .toggleAtmosphere,
-                        errorText: state.atmosphereOption.error?.message,
-                        isFormValid: state.isFormValid,
-                      ),
-                      const SizedBox(height: 40),
-                      const Text(
-                        'Masz dodatkowe uwagi?',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                        const SizedBox(height: 24),
+                        LocAdvisorFilterChips(
+                          options: state.locationPreferences.value,
+                          onToggle: context
+                              .read<AccommodationsCubit>()
+                              .toggleLocationPreference,
+                          errorText: state.locationPreferences.error?.message,
+                          isFormValid: state.isFormValid,
                         ),
-                      ),
-                      const SizedBox(height: 24),
-                      LocAdvisorTextArea(
-                        value: state.additionalNotes.value,
-                        onChanged: context
-                            .read<AccommodationsCubit>()
-                            .setAdditionalNotes,
-                        onValidate: context
-                            .read<AccommodationsCubit>()
-                            .validateAdditionalNotes,
-                        errorText: state.additionalNotes.error?.message,
-                        hintText: 'Dodaj coś od siebie (opcjonalne)',
-                        isFormValid: state.isFormValid,
-                      ),
-                      const SizedBox(height: 80),
-                    ],
+                        const SizedBox(height: 40),
+                        const Text(
+                          'Preferencje',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        Text('Budżet:', style: context.bodyMedium),
+                        LocAdvisorChoiceChips(
+                          options: state.budgetOption.value,
+                          onToggle:
+                              context.read<AccommodationsCubit>().toggleBudget,
+                          errorText: state.budgetOption.error?.message,
+                          isFormValid: state.isFormValid,
+                        ),
+                        const SizedBox(height: 24),
+                        const Text('Atmosfera:'),
+                        LocAdvisorChoiceChips(
+                          options: state.atmosphereOption.value,
+                          onToggle: context
+                              .read<AccommodationsCubit>()
+                              .toggleAtmosphere,
+                          errorText: state.atmosphereOption.error?.message,
+                          isFormValid: state.isFormValid,
+                        ),
+                        const SizedBox(height: 40),
+                        const Text(
+                          'Masz dodatkowe uwagi?',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        LocAdvisorTextArea(
+                          value: state.additionalNotes.value,
+                          onChanged: context
+                              .read<AccommodationsCubit>()
+                              .setAdditionalNotes,
+                          onValidate: context
+                              .read<AccommodationsCubit>()
+                              .validateAdditionalNotes,
+                          errorText: state.additionalNotes.error?.message,
+                          hintText: 'Dodaj coś od siebie (opcjonalne)',
+                          isFormValid: state.isFormValid,
+                        ),
+                        const SizedBox(height: 80),
+                      ],
+                    ),
                   ),
                 ),
               ),
