@@ -7,7 +7,8 @@ import 'package:loc_advisor/app/generate_recommendations/domain/recommendation_f
 @LazySingleton(as: RecommendationFacade)
 class FirebaseRecommendationFacade implements RecommendationFacade {
   @override
-  Future<Either<RecommendationFailure, Recommendation>> generateRecommendation() {
+  Future<Either<RecommendationFailure, Recommendation>>
+      generateRecommendation() {
     throw UnimplementedError();
   }
 }

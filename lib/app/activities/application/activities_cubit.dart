@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:loc_advisor/app/activities/application/activities_mapper.dart';
 import 'package:loc_advisor/app/activities/domain/activities_facade.dart';
 import 'package:loc_advisor/enums/state_status.dart';
 import 'package:loc_advisor/shared/form_input_models/additional_notes.dart';
@@ -131,5 +132,20 @@ class ActivitiesCubit extends Cubit<ActivitiesState> {
       emit(state.copyWith(isFormValid: isFormValid));
       return;
     }
+
+    emit(
+      state.copyWith(
+        isFormValid: isFormValid,
+        status: StateStatus.loading,
+      ),
+    );
+
+    final request = ActivitiesMapper.mapToRequest(state);
+    final result = await _activitiesFacade.getActivityRecommendations(request);
+
+    result.fold(
+      (failure) => emit(state.copyWith(status: StateStatus.success)),
+      (success) => emit(state.copyWith(status: StateStatus.success)),
+    );
   }
 }
