@@ -15,10 +15,10 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:loc_advisor/app/accommodations/application/accommodations_cubit.dart'
     as _i95;
-import 'package:loc_advisor/app/accommodations/application/firebase_accommodations_facade.dart'
-    as _i191;
 import 'package:loc_advisor/app/accommodations/domain/accommodations_facade.dart'
     as _i662;
+import 'package:loc_advisor/app/accommodations/infrastructure/firebase_accommodations_facade.dart'
+    as _i191;
 import 'package:loc_advisor/app/activities/application/activities_cubit.dart'
     as _i1014;
 import 'package:loc_advisor/app/activities/domain/activities_facade.dart'

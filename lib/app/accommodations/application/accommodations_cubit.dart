@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:loc_advisor/app/accommodations/application/accommodations_mapper.dart';
 import 'package:loc_advisor/app/accommodations/domain/accommodations_facade.dart';
 import 'package:loc_advisor/enums/state_status.dart';
 import 'package:loc_advisor/shared/form_input_models/additional_notes.dart';
@@ -114,6 +115,24 @@ class AccommodationsCubit extends Cubit<AccommodationsState> {
       ],
     );
 
-    emit(state.copyWith(isFormValid: isFormValid));
+    if (!isFormValid) {
+      emit(state.copyWith(isFormValid: isFormValid));
+    }
+
+    emit(
+      state.copyWith(
+        isFormValid: isFormValid,
+        status: StateStatus.loading,
+      ),
+    );
+
+    final request = AccommodationsMapper.mapToRequest(state);
+    final result =
+        await _accommodationsFacade.getAccommodationRecommendations(request);
+
+    result.fold(
+      (failure) => emit(state.copyWith(status: StateStatus.success)),
+      (success) => emit(state.copyWith(status: StateStatus.success)),
+    );
   }
 }
