@@ -114,7 +114,7 @@ class AccommodationsPage extends StatelessWidget {
                         onValidate: context
                             .read<AccommodationsCubit>()
                             .validateAdditionalNotes,
-                        errorText: state.destination.error?.message,
+                        errorText: state.additionalNotes.error?.message,
                         hintText: 'Dodaj coś od siebie (opcjonalne)',
                         isFormValid: state.isFormValid,
                       ),
