@@ -36,9 +36,7 @@ class ActivitiesCubit extends Cubit<ActivitiesState> {
 
   void toggleDate(String label) {
     final updatedDateOption = state.dateOption.value.map((preference) {
-      return preference.label == label
-          ? preference.copyWith(isSelected: !preference.isSelected)
-          : preference;
+      return preference.copyWith(isSelected: preference.label == label);
     }).toList();
 
     emit(
@@ -65,9 +63,7 @@ class ActivitiesCubit extends Cubit<ActivitiesState> {
 
   void toggleBudget(String label) {
     final updatedBudgetOptions = state.budgetOption.value.map((budget) {
-      return budget.label == label
-          ? budget.copyWith(isSelected: !budget.isSelected)
-          : budget;
+      return budget.copyWith(isSelected: budget.label == label);
     }).toList();
 
     emit(
@@ -80,9 +76,7 @@ class ActivitiesCubit extends Cubit<ActivitiesState> {
   void toggleAtmosphere(String label) {
     final updatedAtmosphereOptions =
         state.atmosphereOption.value.map((atmosphere) {
-      return atmosphere.label == label
-          ? atmosphere.copyWith(isSelected: !atmosphere.isSelected)
-          : atmosphere;
+      return atmosphere.copyWith(isSelected: atmosphere.label == label);
     }).toList();
 
     emit(

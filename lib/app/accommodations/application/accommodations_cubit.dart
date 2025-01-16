@@ -52,9 +52,7 @@ class AccommodationsCubit extends Cubit<AccommodationsState> {
 
   void toggleBudget(String label) {
     final updatedBudgetOptions = state.budgetOption.value.map((budget) {
-      return budget.label == label
-          ? budget.copyWith(isSelected: !budget.isSelected)
-          : budget;
+      return budget.copyWith(isSelected: budget.label == label);
     }).toList();
 
     emit(
@@ -67,9 +65,7 @@ class AccommodationsCubit extends Cubit<AccommodationsState> {
   void toggleAtmosphere(String label) {
     final updatedAtmosphereOptions =
         state.atmosphereOption.value.map((atmosphere) {
-      return atmosphere.label == label
-          ? atmosphere.copyWith(isSelected: !atmosphere.isSelected)
-          : atmosphere;
+      return atmosphere.copyWith(isSelected: atmosphere.label == label);
     }).toList();
 
     emit(
