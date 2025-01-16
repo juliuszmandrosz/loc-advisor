@@ -25,8 +25,8 @@ class AppTheme {
         color: base.colorScheme.surface,
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: base.colorScheme.secondary,
-        foregroundColor: base.colorScheme.onSecondary,
+        backgroundColor: base.colorScheme.primary,
+        foregroundColor: base.colorScheme.onPrimary,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -61,13 +61,15 @@ class AppTheme {
         ),
       ),
       chipTheme: base.chipTheme.copyWith(
-        backgroundColor: base.colorScheme.secondary.withOpacity(0.1),
-        selectedColor: base.colorScheme.secondary,
-        labelStyle: TextStyle(color: base.colorScheme.onSecondary),
+        backgroundColor: base.colorScheme.secondaryContainer,
+        selectedColor: base.colorScheme.primary,
+        labelStyle: TextStyle(color: base.colorScheme.onSecondaryContainer),
+        secondaryLabelStyle: TextStyle(color: base.colorScheme.onPrimary),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: base.colorScheme.surfaceContainerHighest,
+        fillColor: base.colorScheme.surfaceVariant,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 12,
@@ -76,7 +78,8 @@ class AppTheme {
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,
         ),
-        hintStyle: TextStyle(color: base.colorScheme.onSurface.withOpacity(0.6)),
+        hintStyle:
+            TextStyle(color: base.colorScheme.onSurface.withOpacity(0.6)),
       ),
       popupMenuTheme: PopupMenuThemeData(
         color: base.colorScheme.surface,
