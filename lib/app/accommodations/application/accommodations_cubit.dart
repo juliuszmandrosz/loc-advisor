@@ -117,6 +117,7 @@ class AccommodationsCubit extends Cubit<AccommodationsState> {
 
     if (!isFormValid) {
       emit(state.copyWith(isFormValid: isFormValid));
+      return;
     }
 
     emit(

@@ -127,6 +127,9 @@ class ActivitiesCubit extends Cubit<ActivitiesState> {
       ],
     );
 
-    emit(state.copyWith(isFormValid: isFormValid));
+    if (!isFormValid) {
+      emit(state.copyWith(isFormValid: isFormValid));
+      return;
+    }
   }
 }

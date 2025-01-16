@@ -8,6 +8,11 @@ extension UnfocusExtension on BuildContext {
   showSnackbarMessage(String message) {
     ScaffoldMessenger.of(this)
       ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text(message)));
+      ..showSnackBar(
+        SnackBar(
+          content: Text(message),
+          behavior: SnackBarBehavior.fixed,
+        ),
+      );
   }
 }
