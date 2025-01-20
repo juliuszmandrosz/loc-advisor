@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:loc_advisor/extensions/build_context_extensions.dart';
 import 'package:loc_advisor/shared/models/preferences_model.dart';
 import 'package:loc_advisor/themes/theme_extensions.dart';
 
@@ -33,7 +34,10 @@ class LocAdvisorChoiceChips extends StatelessWidget {
               ),
               label: Text(option.label),
               selected: option.isSelected,
-              onSelected: (_) => onToggle(option.label),
+              onSelected: (_) {
+                context.unfocus();
+                onToggle(option.label);
+              },
             );
           }).toList(),
         ),

@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
@@ -5,21 +6,22 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:loc_advisor/app/accommodations/application/accommodations_mapper.dart';
 import 'package:loc_advisor/app/accommodations/domain/accommodations_facade.dart';
+import 'package:loc_advisor/app/accommodations/domain/entities/accommodation_recommendations_entity.dart';
 import 'package:loc_advisor/enums/state_status.dart';
 import 'package:loc_advisor/shared/form_input_models/additional_notes.dart';
 import 'package:loc_advisor/shared/form_input_models/destination_input.dart';
 import 'package:loc_advisor/shared/form_input_models/preferences_input.dart';
 import 'package:loc_advisor/shared/models/preferences_model.dart';
 
-part 'accommodations_cubit.freezed.dart';
-part 'accommodations_state.dart';
+part 'accommodations_search_cubit.freezed.dart';
+part 'accommodations_search_state.dart';
 
 @injectable
-class AccommodationsCubit extends Cubit<AccommodationsState> {
+class AccommodationsSearchCubit extends Cubit<AccommodationsSearchState> {
   final AccommodationsFacade _accommodationsFacade;
 
-  AccommodationsCubit(this._accommodationsFacade)
-      : super(AccommodationsState.initial());
+  AccommodationsSearchCubit(this._accommodationsFacade)
+      : super(AccommodationsSearchState.initial());
 
   void setDestination(String destination) {
     emit(state.copyWith(destination: DestinationInput.dirty(destination)));
@@ -132,8 +134,10 @@ class AccommodationsCubit extends Cubit<AccommodationsState> {
         await _accommodationsFacade.getAccommodationRecommendations(request);
 
     result.fold(
-      (failure) => emit(state.copyWith(status: StateStatus.success)),
-      (success) => emit(state.copyWith(status: StateStatus.success)),
+      (_) => emit(state.copyWith(status: StateStatus.failure)),
+      (result) => emit(
+        state.copyWith(status: StateStatus.success, result: some(result)),
+      ),
     );
   }
 }

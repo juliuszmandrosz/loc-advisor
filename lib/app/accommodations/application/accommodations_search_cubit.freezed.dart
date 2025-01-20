@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'accommodations_cubit.dart';
+part of 'accommodations_search_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$AccommodationsState {
+mixin _$AccommodationsSearchState {
   DestinationInput get destination => throw _privateConstructorUsedError;
   PreferencesInput get locationPreferences =>
       throw _privateConstructorUsedError;
@@ -25,19 +25,21 @@ mixin _$AccommodationsState {
       throw _privateConstructorUsedError;
   bool get isFormValid => throw _privateConstructorUsedError;
   StateStatus get status => throw _privateConstructorUsedError;
+  Option<AccommodationRecommendations> get result =>
+      throw _privateConstructorUsedError;
 
-  /// Create a copy of AccommodationsState
+  /// Create a copy of AccommodationsSearchState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AccommodationsStateCopyWith<AccommodationsState> get copyWith =>
+  $AccommodationsSearchStateCopyWith<AccommodationsSearchState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AccommodationsStateCopyWith<$Res> {
-  factory $AccommodationsStateCopyWith(
-          AccommodationsState value, $Res Function(AccommodationsState) then) =
-      _$AccommodationsStateCopyWithImpl<$Res, AccommodationsState>;
+abstract class $AccommodationsSearchStateCopyWith<$Res> {
+  factory $AccommodationsSearchStateCopyWith(AccommodationsSearchState value,
+          $Res Function(AccommodationsSearchState) then) =
+      _$AccommodationsSearchStateCopyWithImpl<$Res, AccommodationsSearchState>;
   @useResult
   $Res call(
       {DestinationInput destination,
@@ -46,20 +48,22 @@ abstract class $AccommodationsStateCopyWith<$Res> {
       PreferencesInput atmosphereOption,
       AdditionalNotesInput additionalNotes,
       bool isFormValid,
-      StateStatus status});
+      StateStatus status,
+      Option<AccommodationRecommendations> result});
 }
 
 /// @nodoc
-class _$AccommodationsStateCopyWithImpl<$Res, $Val extends AccommodationsState>
-    implements $AccommodationsStateCopyWith<$Res> {
-  _$AccommodationsStateCopyWithImpl(this._value, this._then);
+class _$AccommodationsSearchStateCopyWithImpl<$Res,
+        $Val extends AccommodationsSearchState>
+    implements $AccommodationsSearchStateCopyWith<$Res> {
+  _$AccommodationsSearchStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AccommodationsState
+  /// Create a copy of AccommodationsSearchState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -71,6 +75,7 @@ class _$AccommodationsStateCopyWithImpl<$Res, $Val extends AccommodationsState>
     Object? additionalNotes = null,
     Object? isFormValid = null,
     Object? status = null,
+    Object? result = null,
   }) {
     return _then(_value.copyWith(
       destination: null == destination
@@ -101,16 +106,21 @@ class _$AccommodationsStateCopyWithImpl<$Res, $Val extends AccommodationsState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as StateStatus,
+      result: null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as Option<AccommodationRecommendations>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$AccommodationsStateImplCopyWith<$Res>
-    implements $AccommodationsStateCopyWith<$Res> {
-  factory _$$AccommodationsStateImplCopyWith(_$AccommodationsStateImpl value,
-          $Res Function(_$AccommodationsStateImpl) then) =
-      __$$AccommodationsStateImplCopyWithImpl<$Res>;
+abstract class _$$AccommodationsSearchStateImplCopyWith<$Res>
+    implements $AccommodationsSearchStateCopyWith<$Res> {
+  factory _$$AccommodationsSearchStateImplCopyWith(
+          _$AccommodationsSearchStateImpl value,
+          $Res Function(_$AccommodationsSearchStateImpl) then) =
+      __$$AccommodationsSearchStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -120,18 +130,21 @@ abstract class _$$AccommodationsStateImplCopyWith<$Res>
       PreferencesInput atmosphereOption,
       AdditionalNotesInput additionalNotes,
       bool isFormValid,
-      StateStatus status});
+      StateStatus status,
+      Option<AccommodationRecommendations> result});
 }
 
 /// @nodoc
-class __$$AccommodationsStateImplCopyWithImpl<$Res>
-    extends _$AccommodationsStateCopyWithImpl<$Res, _$AccommodationsStateImpl>
-    implements _$$AccommodationsStateImplCopyWith<$Res> {
-  __$$AccommodationsStateImplCopyWithImpl(_$AccommodationsStateImpl _value,
-      $Res Function(_$AccommodationsStateImpl) _then)
+class __$$AccommodationsSearchStateImplCopyWithImpl<$Res>
+    extends _$AccommodationsSearchStateCopyWithImpl<$Res,
+        _$AccommodationsSearchStateImpl>
+    implements _$$AccommodationsSearchStateImplCopyWith<$Res> {
+  __$$AccommodationsSearchStateImplCopyWithImpl(
+      _$AccommodationsSearchStateImpl _value,
+      $Res Function(_$AccommodationsSearchStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AccommodationsState
+  /// Create a copy of AccommodationsSearchState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -143,8 +156,9 @@ class __$$AccommodationsStateImplCopyWithImpl<$Res>
     Object? additionalNotes = null,
     Object? isFormValid = null,
     Object? status = null,
+    Object? result = null,
   }) {
-    return _then(_$AccommodationsStateImpl(
+    return _then(_$AccommodationsSearchStateImpl(
       destination: null == destination
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
@@ -173,21 +187,26 @@ class __$$AccommodationsStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as StateStatus,
+      result: null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as Option<AccommodationRecommendations>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$AccommodationsStateImpl implements _AccommodationsState {
-  const _$AccommodationsStateImpl(
+class _$AccommodationsSearchStateImpl implements _AccommodationsSearchState {
+  const _$AccommodationsSearchStateImpl(
       {required this.destination,
       required this.locationPreferences,
       required this.budgetOption,
       required this.atmosphereOption,
       required this.additionalNotes,
       required this.isFormValid,
-      required this.status});
+      required this.status,
+      required this.result});
 
   @override
   final DestinationInput destination;
@@ -203,17 +222,19 @@ class _$AccommodationsStateImpl implements _AccommodationsState {
   final bool isFormValid;
   @override
   final StateStatus status;
+  @override
+  final Option<AccommodationRecommendations> result;
 
   @override
   String toString() {
-    return 'AccommodationsState(destination: $destination, locationPreferences: $locationPreferences, budgetOption: $budgetOption, atmosphereOption: $atmosphereOption, additionalNotes: $additionalNotes, isFormValid: $isFormValid, status: $status)';
+    return 'AccommodationsSearchState(destination: $destination, locationPreferences: $locationPreferences, budgetOption: $budgetOption, atmosphereOption: $atmosphereOption, additionalNotes: $additionalNotes, isFormValid: $isFormValid, status: $status, result: $result)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AccommodationsStateImpl &&
+            other is _$AccommodationsSearchStateImpl &&
             (identical(other.destination, destination) ||
                 other.destination == destination) &&
             (identical(other.locationPreferences, locationPreferences) ||
@@ -226,32 +247,43 @@ class _$AccommodationsStateImpl implements _AccommodationsState {
                 other.additionalNotes == additionalNotes) &&
             (identical(other.isFormValid, isFormValid) ||
                 other.isFormValid == isFormValid) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.result, result) || other.result == result));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, destination, locationPreferences,
-      budgetOption, atmosphereOption, additionalNotes, isFormValid, status);
+  int get hashCode => Object.hash(
+      runtimeType,
+      destination,
+      locationPreferences,
+      budgetOption,
+      atmosphereOption,
+      additionalNotes,
+      isFormValid,
+      status,
+      result);
 
-  /// Create a copy of AccommodationsState
+  /// Create a copy of AccommodationsSearchState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AccommodationsStateImplCopyWith<_$AccommodationsStateImpl> get copyWith =>
-      __$$AccommodationsStateImplCopyWithImpl<_$AccommodationsStateImpl>(
-          this, _$identity);
+  _$$AccommodationsSearchStateImplCopyWith<_$AccommodationsSearchStateImpl>
+      get copyWith => __$$AccommodationsSearchStateImplCopyWithImpl<
+          _$AccommodationsSearchStateImpl>(this, _$identity);
 }
 
-abstract class _AccommodationsState implements AccommodationsState {
-  const factory _AccommodationsState(
-      {required final DestinationInput destination,
-      required final PreferencesInput locationPreferences,
-      required final PreferencesInput budgetOption,
-      required final PreferencesInput atmosphereOption,
-      required final AdditionalNotesInput additionalNotes,
-      required final bool isFormValid,
-      required final StateStatus status}) = _$AccommodationsStateImpl;
+abstract class _AccommodationsSearchState implements AccommodationsSearchState {
+  const factory _AccommodationsSearchState(
+          {required final DestinationInput destination,
+          required final PreferencesInput locationPreferences,
+          required final PreferencesInput budgetOption,
+          required final PreferencesInput atmosphereOption,
+          required final AdditionalNotesInput additionalNotes,
+          required final bool isFormValid,
+          required final StateStatus status,
+          required final Option<AccommodationRecommendations> result}) =
+      _$AccommodationsSearchStateImpl;
 
   @override
   DestinationInput get destination;
@@ -267,11 +299,13 @@ abstract class _AccommodationsState implements AccommodationsState {
   bool get isFormValid;
   @override
   StateStatus get status;
+  @override
+  Option<AccommodationRecommendations> get result;
 
-  /// Create a copy of AccommodationsState
+  /// Create a copy of AccommodationsSearchState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AccommodationsStateImplCopyWith<_$AccommodationsStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$AccommodationsSearchStateImplCopyWith<_$AccommodationsSearchStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

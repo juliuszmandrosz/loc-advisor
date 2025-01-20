@@ -1,8 +1,8 @@
-part of 'accommodations_cubit.dart';
+part of 'accommodations_search_cubit.dart';
 
 @freezed
-class AccommodationsState with _$AccommodationsState {
-  const factory AccommodationsState({
+class AccommodationsSearchState with _$AccommodationsSearchState {
+  const factory AccommodationsSearchState({
     required DestinationInput destination,
     required PreferencesInput locationPreferences,
     required PreferencesInput budgetOption,
@@ -10,9 +10,10 @@ class AccommodationsState with _$AccommodationsState {
     required AdditionalNotesInput additionalNotes,
     required bool isFormValid,
     required StateStatus status,
-  }) = _AccommodationsState;
+    required Option<AccommodationRecommendations> result,
+  }) = _AccommodationsSearchState;
 
-  factory AccommodationsState.initial() => AccommodationsState(
+  factory AccommodationsSearchState.initial() => AccommodationsSearchState(
         destination: DestinationInput.pure(),
         locationPreferences: PreferencesInput.pure([
           PreferencesModel(
@@ -68,5 +69,6 @@ class AccommodationsState with _$AccommodationsState {
         additionalNotes: AdditionalNotesInput.pure(),
         isFormValid: true,
         status: StateStatus.initial,
+        result: none(),
       );
 }

@@ -38,7 +38,7 @@ class OnboardingPage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               ElevatedButton.icon(
-                onPressed: () => context.pushRoute(AccommodationsRoute()),
+                onPressed: () => context.pushRoute(AccommodationsSearchRoute()),
                 icon: FaIcon(
                   FontAwesomeIcons.house,
                   color: context.onPrimary,

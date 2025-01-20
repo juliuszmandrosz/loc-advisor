@@ -1,11 +1,12 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:loc_advisor/app/accommodations/application/accommodations_cubit.dart';
+import 'package:loc_advisor/app/accommodations/application/accommodations_search_cubit.dart';
 import 'package:loc_advisor/enums/state_status.dart';
 import 'package:loc_advisor/extensions/build_context_extensions.dart';
 import 'package:loc_advisor/injection_container/injectable.dart';
+import 'package:loc_advisor/router/app_router.gr.dart';
 import 'package:loc_advisor/shared/widgets/loc_advisor_choice_chips.dart';
 import 'package:loc_advisor/shared/widgets/loc_advisor_filter_chips.dart';
 import 'package:loc_advisor/shared/widgets/loc_advisor_text_area.dart';
@@ -13,15 +14,16 @@ import 'package:loc_advisor/shared/widgets/loc_advisor_text_input.dart';
 import 'package:loc_advisor/themes/theme_extensions.dart';
 
 @RoutePage()
-class AccommodationsPage extends StatelessWidget {
-  const AccommodationsPage({super.key});
+class AccommodationsSearchPage extends StatelessWidget {
+  const AccommodationsSearchPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<AccommodationsCubit>(),
+      create: (context) => getIt<AccommodationsSearchCubit>(),
       child: LoaderOverlay(
-        child: BlocConsumer<AccommodationsCubit, AccommodationsState>(
+        child:
+            BlocConsumer<AccommodationsSearchCubit, AccommodationsSearchState>(
           listenWhen: (previous, current) => previous.status != current.status,
           listener: (context, state) {
             switch (state.status) {
@@ -36,8 +38,15 @@ class AccommodationsPage extends StatelessWidget {
                 );
               case StateStatus.success:
                 context.loaderOverlay.hide();
-                context.showSnackbarMessage(
-                  'Sukces, generujemy!',
+                state.result.fold(
+                  () => context.showSnackbarMessage(
+                    'Wystąpił błąd, proszę spróbować ponownie',
+                  ),
+                  (result) => context.pushRoute(
+                    AccommodationRecommendationsRoute(
+                      recommendations: result,
+                    ),
+                  ),
                 );
             }
           },
@@ -67,10 +76,10 @@ class AccommodationsPage extends StatelessWidget {
                           LocAdvisorTextInput(
                             value: state.destination.value,
                             onChanged: context
-                                .read<AccommodationsCubit>()
+                                .read<AccommodationsSearchCubit>()
                                 .setDestination,
                             onValidate: context
-                                .read<AccommodationsCubit>()
+                                .read<AccommodationsSearchCubit>()
                                 .validateDestination,
                             errorText: state.destination.error?.message,
                             hintText: 'Wpisz lokalizację (np. Madryt)',
@@ -89,7 +98,7 @@ class AccommodationsPage extends StatelessWidget {
                           LocAdvisorFilterChips(
                             options: state.locationPreferences.value,
                             onToggle: context
-                                .read<AccommodationsCubit>()
+                                .read<AccommodationsSearchCubit>()
                                 .toggleLocationPreference,
                             errorText: state.locationPreferences.error?.message,
                             isFormValid: state.isFormValid,
@@ -107,7 +116,7 @@ class AccommodationsPage extends StatelessWidget {
                           LocAdvisorChoiceChips(
                             options: state.budgetOption.value,
                             onToggle: context
-                                .read<AccommodationsCubit>()
+                                .read<AccommodationsSearchCubit>()
                                 .toggleBudget,
                             errorText: state.budgetOption.error?.message,
                             isFormValid: state.isFormValid,
@@ -117,7 +126,7 @@ class AccommodationsPage extends StatelessWidget {
                           LocAdvisorChoiceChips(
                             options: state.atmosphereOption.value,
                             onToggle: context
-                                .read<AccommodationsCubit>()
+                                .read<AccommodationsSearchCubit>()
                                 .toggleAtmosphere,
                             errorText: state.atmosphereOption.error?.message,
                             isFormValid: state.isFormValid,
@@ -134,10 +143,10 @@ class AccommodationsPage extends StatelessWidget {
                           LocAdvisorTextArea(
                             value: state.additionalNotes.value,
                             onChanged: context
-                                .read<AccommodationsCubit>()
+                                .read<AccommodationsSearchCubit>()
                                 .setAdditionalNotes,
                             onValidate: context
-                                .read<AccommodationsCubit>()
+                                .read<AccommodationsSearchCubit>()
                                 .validateAdditionalNotes,
                             errorText: state.additionalNotes.error?.message,
                             hintText: 'Dodaj coś od siebie (opcjonalne)',
@@ -150,8 +159,9 @@ class AccommodationsPage extends StatelessWidget {
                   ),
                 ),
                 floatingActionButton: FloatingActionButton(
-                  onPressed:
-                      context.read<AccommodationsCubit>().submitAccommodations,
+                  onPressed: context
+                      .read<AccommodationsSearchCubit>()
+                      .submitAccommodations,
                   child: const Icon(Icons.arrow_forward),
                 ),
               ),
