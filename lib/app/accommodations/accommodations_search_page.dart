@@ -42,7 +42,7 @@ class AccommodationsSearchPage extends StatelessWidget {
                   () => context.showSnackbarMessage(
                     'Wystąpił błąd, proszę spróbować ponownie',
                   ),
-                  (result) => context.pushRoute(
+                  (result) async => await context.pushRoute(
                     AccommodationRecommendationsRoute(
                       recommendations: result,
                     ),

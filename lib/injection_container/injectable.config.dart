@@ -26,6 +26,10 @@ import 'package:loc_advisor/app/activities/domain/activities_facade.dart'
 import 'package:loc_advisor/app/activities/infrastructure/firebase_activities_facade.dart'
     as _i379;
 import 'package:loc_advisor/app/auth/application/auth_bloc.dart' as _i185;
+import 'package:loc_advisor/app/auth/application/forgot_password_cubit.dart'
+    as _i86;
+import 'package:loc_advisor/app/auth/application/sign_in_cubit.dart' as _i969;
+import 'package:loc_advisor/app/auth/application/sign_up_cubit.dart' as _i533;
 import 'package:loc_advisor/app/auth/domain/auth_facade.dart' as _i433;
 import 'package:loc_advisor/app/auth/infrastructure/firebase_auth_facade.dart'
     as _i792;
@@ -73,6 +77,12 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i727.AccommodationsSearchCubit>(() =>
         _i727.AccommodationsSearchCubit(gh<_i662.AccommodationsFacade>()));
+    gh.factory<_i969.SignInCubit>(
+        () => _i969.SignInCubit(gh<_i433.AuthFacade>()));
+    gh.factory<_i533.SignUpCubit>(
+        () => _i533.SignUpCubit(gh<_i433.AuthFacade>()));
+    gh.factory<_i86.ForgotPasswordCubit>(
+        () => _i86.ForgotPasswordCubit(gh<_i433.AuthFacade>()));
     gh.factory<_i185.AuthBloc>(
         () => _i185.AuthBloc(authFacade: gh<_i433.AuthFacade>()));
     return this;
