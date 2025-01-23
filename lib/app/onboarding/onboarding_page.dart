@@ -18,6 +18,7 @@ class OnboardingPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              const Spacer(),
               const Text(
                 'Witaj w LocAdvisor! Co chcesz zrobić?',
                 style: TextStyle(
@@ -45,6 +46,20 @@ class OnboardingPage extends StatelessWidget {
                 ),
                 label: const Text('Znajdź zakwaterowanie'),
               ),
+              const Spacer(),
+              TextButton(
+                onPressed: () async =>
+                    await context.replaceRoute(SignInRoute()),
+                child: const Text(
+                  'Masz już konto? Zaloguj się',
+                  style: TextStyle(
+                    color: Colors.teal,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
