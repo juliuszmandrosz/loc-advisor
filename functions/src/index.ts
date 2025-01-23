@@ -13,8 +13,8 @@ export const getAccommodationRecommendations = onCall(
         secrets: ["OPEN_AI_KEY"],
     },
     async (request) => {
-        const openai = new OpenAI({ apiKey: process.env.OPEN_AI_KEY });
-        const { destination, locationPreferences, budgetOption, atmosphereOption, additionalNotes } = request.data;
+        const openai = new OpenAI({apiKey: process.env.OPEN_AI_KEY});
+        const {destination, locationPreferences, budgetOption, atmosphereOption, additionalNotes} = request.data;
         if (!destination) {
             throw new HttpsError("invalid-argument", "Destination is required.");
         }
@@ -66,7 +66,7 @@ export const getAccommodationRecommendations = onCall(
                 },
                 {
                   "placeName": "Coconut Grove",
-                  "description": "Coconut Grove to zielona i spokojna dzielnica Miami, znana z licznych parków, butików i lokalnych restauracji. Idealna dla osób ceniących kontakt z naturą i relaksującą atmosferę.",
+                  "description": "Coconut Grove to zielona i spokojna dzielnica Miami, znana z licznych parków, butików i lokalnych restauracji. Idealna dla osób ceniących kontakt z naturą i relaksującą atmosferą.",
                   "localVibe": "Artystyczna atmosfera z domieszką historii. Często organizowane są lokalne festiwale i wydarzenia.",
                   "safetyTips": "Bezpieczna okolica, jednak warto unikać mniej oświetlonych ulic w nocy.",
                   "budgetTips": "Średni przedział cenowy, ale można znaleźć tańsze opcje zakwaterowania, jeśli zarezerwuje się z wyprzedzeniem. Lokalne restauracje oferują happy hours i promocje.",
@@ -118,8 +118,8 @@ export const getAccommodationRecommendations = onCall(
         const completion = await openai.chat.completions.create({
             model: "gpt-4",
             messages: [
-                { role: "system", content: systemPrompt },
-                { role: "user", content: userPrompt },
+                {role: "system", content: systemPrompt},
+                {role: "user", content: userPrompt},
             ],
             temperature: 0.7,
         });
@@ -146,8 +146,15 @@ export const getActivityRecommendations = onCall(
         secrets: ["OPEN_AI_KEY"],
     },
     async (request) => {
-        const openai = new OpenAI({ apiKey: process.env.OPEN_AI_KEY });
-        const { destination, dateOption, activityPreferences, budgetOption, atmosphereOption, additionalNotes } = request.data;
+        const openai = new OpenAI({apiKey: process.env.OPEN_AI_KEY});
+        const {
+            destination,
+            dateOption,
+            activityPreferences,
+            budgetOption,
+            atmosphereOption,
+            additionalNotes
+        } = request.data;
         if (!destination) {
             throw new HttpsError("invalid-argument", "Destination is required.");
         }
@@ -220,8 +227,8 @@ export const getActivityRecommendations = onCall(
         const completion = await openai.chat.completions.create({
             model: "gpt-4",
             messages: [
-                { role: "system", content: systemPrompt },
-                { role: "user", content: userPrompt },
+                {role: "system", content: systemPrompt},
+                {role: "user", content: userPrompt},
             ],
             temperature: 0.7,
         });
@@ -239,7 +246,7 @@ export const getActivityRecommendations = onCall(
         //     recommendation.imageUrl = await downloadAndUploadImage(recommendation.imageUrl, fileName);
         // }
 
-        return { recommendations: parsedResponse };
+        return {recommendations: parsedResponse};
     }
 );
 
