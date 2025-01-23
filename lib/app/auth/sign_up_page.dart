@@ -47,15 +47,16 @@ class SignUpPage extends StatelessWidget {
               onTap: () => context.unfocus(),
               child: Scaffold(
                 body: Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Color(0xFF80CBC4),
-                        Color(0xFF4DB6AC),
-                        Color(0xFF00897B),
+                        Colors.teal.shade400,
+                        Colors.teal.shade200,
+                        Colors.teal.shade100,
+                        Colors.white,
                       ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
                     ),
                   ),
                   child: Center(
