@@ -10,8 +10,20 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
+      animationDuration: const Duration(milliseconds: 0),
       appBarBuilder: (_, __) => AppBar(
-        title: Text('LocAdvisor'),
+        backgroundColor: Colors.teal.shade200,
+        toolbarHeight: kToolbarHeight + MediaQuery.of(context).padding.top,
+        title: Padding(
+          padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+          child: Text(
+            'LocAdvisor',
+            style: context.titleLarge.copyWith(
+              fontWeight: FontWeight.bold,
+              color: context.onPrimaryContainer,
+            ),
+          ),
+        ),
         centerTitle: true,
       ),
       routes: const [
@@ -21,7 +33,7 @@ class HomePage extends StatelessWidget {
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return NavigationBar(
-          backgroundColor: context.surface,
+          backgroundColor: context.background,
           selectedIndex: tabsRouter.activeIndex,
           onDestinationSelected: tabsRouter.setActiveIndex,
           destinations: [

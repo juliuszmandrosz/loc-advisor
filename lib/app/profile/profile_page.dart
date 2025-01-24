@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:loc_advisor/shared/widgets/loc_advisor_gradient_background_page.dart';
 
 @RoutePage()
 class ProfilePage extends StatelessWidget {
@@ -7,8 +8,11 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Profile Page'),
+    return LocAdvisorGradientBackgroundPage(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [],
+      ),
     );
   }
 }
