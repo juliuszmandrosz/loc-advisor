@@ -15,10 +15,8 @@ class LocAdvisorGradientBackgroundPage extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.teal.shade200,
             Colors.teal.shade100,
-            Colors.teal.shade50,
-            context.background,
+            context.background
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,

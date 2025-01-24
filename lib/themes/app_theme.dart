@@ -13,11 +13,11 @@ class AppTheme {
 
     return base.copyWith(
       appBarTheme: AppBarTheme(
-        backgroundColor: Colors.teal.shade200,
+        backgroundColor: Colors.teal.shade100,
         toolbarHeight: kToolbarHeight * 1.1,
         shape: RoundedRectangleBorder(
           side: BorderSide(
-            color: Colors.teal.shade200,
+            color: Colors.teal.shade100,
             width: 0,
           ),
         ),
@@ -72,7 +72,7 @@ class AppTheme {
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: base.colorScheme.surfaceContainerHighest,
+        fillColor: base.colorScheme.secondaryContainer,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 12,
@@ -81,8 +81,9 @@ class AppTheme {
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,
         ),
-        hintStyle:
-            TextStyle(color: base.colorScheme.onSurface.withOpacity(0.6)),
+        hintStyle: TextStyle(
+          color: base.colorScheme.onSecondaryContainer.withOpacity(0.6),
+        ),
       ),
       popupMenuTheme: PopupMenuThemeData(
         color: base.colorScheme.surface,

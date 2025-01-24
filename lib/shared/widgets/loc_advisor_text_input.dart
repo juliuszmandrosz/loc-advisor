@@ -51,7 +51,12 @@ class LocAdvisorTextInput extends HookWidget {
           keyboardType: keyboardType ?? TextInputType.text,
           decoration: InputDecoration(
             hintText: hintText,
-            prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
+            prefixIcon: prefixIcon != null
+                ? Icon(
+                    prefixIcon,
+                    color: context.primary,
+                  )
+                : null,
             suffixIcon: isPasswordField
                 ? IconButton(
                     icon: Icon(
