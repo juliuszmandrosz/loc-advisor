@@ -11,21 +11,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       animationDuration: const Duration(milliseconds: 0),
-      appBarBuilder: (_, __) => AppBar(
-        backgroundColor: Colors.teal.shade200,
-        toolbarHeight: kToolbarHeight + MediaQuery.of(context).padding.top,
-        title: Padding(
-          padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-          child: Text(
-            'LocAdvisor',
-            style: context.titleLarge.copyWith(
-              fontWeight: FontWeight.bold,
-              color: context.onPrimaryContainer,
-            ),
-          ),
-        ),
-        centerTitle: true,
-      ),
+      appBarBuilder: (_, __) => AppBar(title: Text('LocAdvisor')),
       routes: const [
         DiscoverRoute(),
         RecommendationsRoute(),

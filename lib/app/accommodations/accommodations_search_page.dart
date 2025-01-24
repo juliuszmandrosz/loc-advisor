@@ -56,7 +56,6 @@ class AccommodationsSearchPage extends StatelessWidget {
               child: Scaffold(
                 appBar: AppBar(
                   title: const Text('Zakwaterowanie'),
-                  centerTitle: true,
                 ),
                 body: SafeArea(
                   child: Padding(

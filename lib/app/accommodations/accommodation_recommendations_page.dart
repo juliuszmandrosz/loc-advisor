@@ -31,13 +31,7 @@ class AccommodationRecommendationsPage extends StatelessWidget {
           appBar: AppBar(
             title: Text(
               'Zakwaterowanie w ${_recommendations.destination}',
-              style: context.titleMedium.copyWith(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
             ),
-            centerTitle: true,
-            backgroundColor: context.primary,
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () async {

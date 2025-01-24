@@ -46,7 +46,6 @@ class ActivitiesPage extends StatelessWidget {
               child: Scaffold(
                 appBar: AppBar(
                   title: const Text('Aktywności'),
-                  centerTitle: true,
                 ),
                 body: SafeArea(
                   child: Padding(

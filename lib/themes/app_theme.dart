@@ -13,13 +13,15 @@ class AppTheme {
 
     return base.copyWith(
       appBarTheme: AppBarTheme(
-        backgroundColor: base.colorScheme.primary,
-        foregroundColor: base.colorScheme.onPrimary,
-        elevation: 0,
-        titleTextStyle: base.textTheme.titleLarge!.copyWith(
-          color: base.colorScheme.onPrimary,
-          fontWeight: FontWeight.bold,
+        backgroundColor: Colors.teal.shade200,
+        toolbarHeight: kToolbarHeight * 1.1,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: Colors.teal.shade200,
+            width: 0,
+          ),
         ),
+        centerTitle: true,
       ),
       bottomAppBarTheme: BottomAppBarTheme(
         color: base.colorScheme.surface,
