@@ -33,10 +33,6 @@ import 'package:loc_advisor/app/auth/application/sign_up_cubit.dart' as _i533;
 import 'package:loc_advisor/app/auth/domain/auth_facade.dart' as _i433;
 import 'package:loc_advisor/app/auth/infrastructure/firebase_auth_facade.dart'
     as _i792;
-import 'package:loc_advisor/app/generate_recommendations/domain/recommendation_facade.dart'
-    as _i529;
-import 'package:loc_advisor/app/generate_recommendations/infrastructure/firebase_recommendation_facade.dart'
-    as _i162;
 import 'package:loc_advisor/modules/firebase_module.dart' as _i686;
 import 'package:loc_advisor/modules/logger_module.dart' as _i656;
 import 'package:logger/logger.dart' as _i974;
@@ -60,8 +56,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i809.FirebaseFunctions>(
         () => firebaseModule.firebaseFunctions);
     gh.lazySingleton<_i974.Logger>(() => loggerModule.logger);
-    gh.lazySingleton<_i529.RecommendationFacade>(
-        () => _i162.FirebaseRecommendationFacade());
     gh.lazySingleton<_i662.AccommodationsFacade>(
         () => _i833.FirebaseAccommodationsFacade(
               gh<_i809.FirebaseFunctions>(),

@@ -28,6 +28,7 @@ mixin _$AccommodationRequestDto {
   String get budgetOption => throw _privateConstructorUsedError;
   String get atmosphereOption => throw _privateConstructorUsedError;
   String get additionalNotes => throw _privateConstructorUsedError;
+  String? get userId => throw _privateConstructorUsedError;
   @FirebaseTimestampJsonConverter()
   DateTime? get createdAt => throw _privateConstructorUsedError;
 
@@ -54,6 +55,7 @@ abstract class $AccommodationRequestDtoCopyWith<$Res> {
       String budgetOption,
       String atmosphereOption,
       String additionalNotes,
+      String? userId,
       @FirebaseTimestampJsonConverter() DateTime? createdAt});
 }
 
@@ -79,6 +81,7 @@ class _$AccommodationRequestDtoCopyWithImpl<$Res,
     Object? budgetOption = null,
     Object? atmosphereOption = null,
     Object? additionalNotes = null,
+    Object? userId = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -106,6 +109,10 @@ class _$AccommodationRequestDtoCopyWithImpl<$Res,
           ? _value.additionalNotes
           : additionalNotes // ignore: cast_nullable_to_non_nullable
               as String,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -130,6 +137,7 @@ abstract class _$$AccommodationRequestDtoImplCopyWith<$Res>
       String budgetOption,
       String atmosphereOption,
       String additionalNotes,
+      String? userId,
       @FirebaseTimestampJsonConverter() DateTime? createdAt});
 }
 
@@ -154,6 +162,7 @@ class __$$AccommodationRequestDtoImplCopyWithImpl<$Res>
     Object? budgetOption = null,
     Object? atmosphereOption = null,
     Object? additionalNotes = null,
+    Object? userId = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_$AccommodationRequestDtoImpl(
@@ -181,6 +190,10 @@ class __$$AccommodationRequestDtoImplCopyWithImpl<$Res>
           ? _value.additionalNotes
           : additionalNotes // ignore: cast_nullable_to_non_nullable
               as String,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -200,6 +213,7 @@ class _$AccommodationRequestDtoImpl extends _AccommodationRequestDto {
       required this.budgetOption,
       required this.atmosphereOption,
       required this.additionalNotes,
+      this.userId,
       @FirebaseTimestampJsonConverter() this.createdAt})
       : _locationPreferences = locationPreferences,
         super._();
@@ -228,12 +242,14 @@ class _$AccommodationRequestDtoImpl extends _AccommodationRequestDto {
   @override
   final String additionalNotes;
   @override
+  final String? userId;
+  @override
   @FirebaseTimestampJsonConverter()
   final DateTime? createdAt;
 
   @override
   String toString() {
-    return 'AccommodationRequestDto(id: $id, destination: $destination, locationPreferences: $locationPreferences, budgetOption: $budgetOption, atmosphereOption: $atmosphereOption, additionalNotes: $additionalNotes, createdAt: $createdAt)';
+    return 'AccommodationRequestDto(id: $id, destination: $destination, locationPreferences: $locationPreferences, budgetOption: $budgetOption, atmosphereOption: $atmosphereOption, additionalNotes: $additionalNotes, userId: $userId, createdAt: $createdAt)';
   }
 
   @override
@@ -252,6 +268,7 @@ class _$AccommodationRequestDtoImpl extends _AccommodationRequestDto {
                 other.atmosphereOption == atmosphereOption) &&
             (identical(other.additionalNotes, additionalNotes) ||
                 other.additionalNotes == additionalNotes) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
@@ -266,6 +283,7 @@ class _$AccommodationRequestDtoImpl extends _AccommodationRequestDto {
       budgetOption,
       atmosphereOption,
       additionalNotes,
+      userId,
       createdAt);
 
   /// Create a copy of AccommodationRequestDto
@@ -293,6 +311,7 @@ abstract class _AccommodationRequestDto extends AccommodationRequestDto {
       required final String budgetOption,
       required final String atmosphereOption,
       required final String additionalNotes,
+      final String? userId,
       @FirebaseTimestampJsonConverter()
       final DateTime? createdAt}) = _$AccommodationRequestDtoImpl;
   const _AccommodationRequestDto._() : super._();
@@ -313,6 +332,8 @@ abstract class _AccommodationRequestDto extends AccommodationRequestDto {
   String get atmosphereOption;
   @override
   String get additionalNotes;
+  @override
+  String? get userId;
   @override
   @FirebaseTimestampJsonConverter()
   DateTime? get createdAt;

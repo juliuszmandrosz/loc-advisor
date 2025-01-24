@@ -18,6 +18,7 @@ class AccommodationRequestDto with _$AccommodationRequestDto {
     required String budgetOption,
     required String atmosphereOption,
     required String additionalNotes,
+    String? userId,
     @FirebaseTimestampJsonConverter() DateTime? createdAt,
   }) = _AccommodationRequestDto;
 

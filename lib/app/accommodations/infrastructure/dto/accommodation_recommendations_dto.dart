@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:loc_advisor/app/accommodations/domain/entities/accommodation_recommendations_entity.dart';
 import 'package:loc_advisor/app/accommodations/infrastructure/dto/accommodation_dto.dart';
+import 'package:loc_advisor/converters/firebase_timestamp_json_converter.dart';
 import 'package:loc_advisor/utils/convert_dynamic_to_map_string_dynamic.dart';
 
 part 'accommodation_recommendations_dto.freezed.dart';
@@ -17,6 +18,9 @@ class AccommodationRecommendationsDto with _$AccommodationRecommendationsDto {
     required List<AccommodationDto> locations,
     required String destination,
     required String additionalNotes,
+    required String accommodationRequestId,
+    String? userId,
+    @FirebaseTimestampJsonConverter() required DateTime createdAt,
   }) = _AccommodationRecommendationsDto;
 
   factory AccommodationRecommendationsDto.fromJson(Map<String, dynamic> json) =>

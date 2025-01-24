@@ -1,11 +1,13 @@
 import OpenAI from "openai";
 import {HttpsError, onCall} from "firebase-functions/https";
-import {AccommodationRecommendationsResponse} from "./models/accommodation_recommendations.model";
+import {AccommodationRecommendationsResponse, AccommodationRequest} from "./models/accommodation_recommendations.model";
 import {ActivityRecommendationsResponse} from "./models/activity_recommendations.model";
-import {initializeApp} from "firebase-admin/app";
+import {getFirestore} from "firebase-admin/firestore";
+import * as admin from 'firebase-admin'
 
 
-initializeApp();
+admin.initializeApp();
+const db = getFirestore();
 
 export const getAccommodationRecommendations = onCall(
     {
@@ -14,8 +16,8 @@ export const getAccommodationRecommendations = onCall(
     },
     async (request) => {
         const openai = new OpenAI({apiKey: process.env.OPEN_AI_KEY});
-        const {destination, locationPreferences, budgetOption, atmosphereOption, additionalNotes} = request.data;
-        if (!destination) {
+        const accommodationRequest = request.data as AccommodationRequest;
+        if (!accommodationRequest.destination) {
             throw new HttpsError("invalid-argument", "Destination is required.");
         }
         const systemPrompt = `
@@ -80,15 +82,16 @@ export const getAccommodationRecommendations = onCall(
             autentyczne miejscówki i minimalizować ryzyko „przereklamowanych” atrakcji turystycznych.
         `;
         const userPrompt = `
-            Użytkownik planuje wyjazd do: ${destination}
+            Użytkownik planuje wyjazd do: ${accommodationRequest.destination}
             Preferencje użytkownika:
-                - Lokalizacja: ${locationPreferences.join(", ")}.
-                - Atmosfera: ${atmosphereOption}.
-                - Budżet: ${budgetOption}.
-                - Dodatkowe uwagi: ${additionalNotes}.
+                - Lokalizacja: ${accommodationRequest.locationPreferences.join(", ")}.
+                - Atmosfera: ${accommodationRequest.atmosphereOption}.
+                - Budżet: ${accommodationRequest.budgetOption}.
+                - Dodatkowe uwagi: ${accommodationRequest.additionalNotes}.
 
-            Wygeneruj proszę rekomendacje, gdzie najlepiej zatrzymać się w ${destination} zgodnie z powyższymi preferencjami. 
-            Podaj szczegółowe wskazówki dotyczące bezpieczeństwa, klimatu okolicy oraz ewentualnych porad, czego unikać, aby nie wpaść w pułapki turystyczne.
+            Wygeneruj proszę rekomendacje, gdzie najlepiej zatrzymać się w ${accommodationRequest.destination} zgodnie z powyższymi preferencjami. 
+            Podaj szczegółowe wskazówki dotyczące bezpieczeństwa, klimatu okolicy oraz ewentualnych porad, 
+            czego unikać, aby nie wpaść w pułapki turystyczne.
             Skup się na autentycznym klimacie lokalnym oraz na unikaniu pułapek turystycznych.
             
             Uwagi do generowania rekomendacji:
@@ -129,14 +132,28 @@ export const getAccommodationRecommendations = onCall(
             throw new HttpsError("internal", "Failed to generate response.");
         }
 
-        const parsedResponse: AccommodationRecommendationsResponse = JSON.parse(response.content);
+        const recommendations: AccommodationRecommendationsResponse = JSON.parse(response.content);
+        const userId = request.auth ? request.auth.uid : null;
+        const now = admin.firestore.Timestamp.now();
 
-        // for (const recommendation of parsedResponse.recommendations) {
-        //     const fileName = `${destination}_${recommendation.placeName.replace(/\s+/g, "_").toLowerCase()}.jpg`;
-        //     recommendation.imageUrl = await downloadAndUploadImage(recommendation.imageUrl, fileName);
-        // }
+        accommodationRequest.userId = userId;
+        accommodationRequest.createdAt = now;
 
-        return parsedResponse;
+        recommendations.userId = userId;
+        recommendations.createdAt = now;
+
+
+        const requestDoc = await db
+            .collection("accommodation_requests")
+            .add({accommodationRequest});
+
+        recommendations.accommodationRequestId = requestDoc.id;
+
+        await db
+            .collection("accommodation_recommendations")
+            .add({recommendations});
+
+        return recommendations;
     }
 );
 

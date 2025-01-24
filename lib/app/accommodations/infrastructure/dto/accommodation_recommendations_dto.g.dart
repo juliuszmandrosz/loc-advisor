@@ -14,6 +14,10 @@ _$AccommodationRecommendationsDtoImpl
               .toList(),
           destination: json['destination'] as String,
           additionalNotes: json['additionalNotes'] as String,
+          accommodationRequestId: json['accommodationRequestId'] as String,
+          userId: json['userId'] as String?,
+          createdAt: const FirebaseTimestampJsonConverter()
+              .fromJson(json['createdAt']),
         );
 
 Map<String, dynamic> _$$AccommodationRecommendationsDtoImplToJson(
@@ -22,4 +26,8 @@ Map<String, dynamic> _$$AccommodationRecommendationsDtoImplToJson(
       'locations': instance.locations.map((e) => e.toJson()).toList(),
       'destination': instance.destination,
       'additionalNotes': instance.additionalNotes,
+      'accommodationRequestId': instance.accommodationRequestId,
+      'userId': instance.userId,
+      'createdAt':
+          const FirebaseTimestampJsonConverter().toJson(instance.createdAt),
     };

@@ -26,6 +26,10 @@ mixin _$AccommodationRecommendationsDto {
   List<AccommodationDto> get locations => throw _privateConstructorUsedError;
   String get destination => throw _privateConstructorUsedError;
   String get additionalNotes => throw _privateConstructorUsedError;
+  String get accommodationRequestId => throw _privateConstructorUsedError;
+  String? get userId => throw _privateConstructorUsedError;
+  @FirebaseTimestampJsonConverter()
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   /// Serializes this AccommodationRecommendationsDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,7 +53,10 @@ abstract class $AccommodationRecommendationsDtoCopyWith<$Res> {
       {@JsonKey(includeFromJson: false, includeToJson: false) String? id,
       List<AccommodationDto> locations,
       String destination,
-      String additionalNotes});
+      String additionalNotes,
+      String accommodationRequestId,
+      String? userId,
+      @FirebaseTimestampJsonConverter() DateTime createdAt});
 }
 
 /// @nodoc
@@ -72,6 +79,9 @@ class _$AccommodationRecommendationsDtoCopyWithImpl<$Res,
     Object? locations = null,
     Object? destination = null,
     Object? additionalNotes = null,
+    Object? accommodationRequestId = null,
+    Object? userId = freezed,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -90,6 +100,18 @@ class _$AccommodationRecommendationsDtoCopyWithImpl<$Res,
           ? _value.additionalNotes
           : additionalNotes // ignore: cast_nullable_to_non_nullable
               as String,
+      accommodationRequestId: null == accommodationRequestId
+          ? _value.accommodationRequestId
+          : accommodationRequestId // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -107,7 +129,10 @@ abstract class _$$AccommodationRecommendationsDtoImplCopyWith<$Res>
       {@JsonKey(includeFromJson: false, includeToJson: false) String? id,
       List<AccommodationDto> locations,
       String destination,
-      String additionalNotes});
+      String additionalNotes,
+      String accommodationRequestId,
+      String? userId,
+      @FirebaseTimestampJsonConverter() DateTime createdAt});
 }
 
 /// @nodoc
@@ -129,6 +154,9 @@ class __$$AccommodationRecommendationsDtoImplCopyWithImpl<$Res>
     Object? locations = null,
     Object? destination = null,
     Object? additionalNotes = null,
+    Object? accommodationRequestId = null,
+    Object? userId = freezed,
+    Object? createdAt = null,
   }) {
     return _then(_$AccommodationRecommendationsDtoImpl(
       id: freezed == id
@@ -147,6 +175,18 @@ class __$$AccommodationRecommendationsDtoImplCopyWithImpl<$Res>
           ? _value.additionalNotes
           : additionalNotes // ignore: cast_nullable_to_non_nullable
               as String,
+      accommodationRequestId: null == accommodationRequestId
+          ? _value.accommodationRequestId
+          : accommodationRequestId // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -160,7 +200,10 @@ class _$AccommodationRecommendationsDtoImpl
       {@JsonKey(includeFromJson: false, includeToJson: false) this.id,
       required final List<AccommodationDto> locations,
       required this.destination,
-      required this.additionalNotes})
+      required this.additionalNotes,
+      required this.accommodationRequestId,
+      this.userId,
+      @FirebaseTimestampJsonConverter() required this.createdAt})
       : _locations = locations,
         super._();
 
@@ -183,10 +226,17 @@ class _$AccommodationRecommendationsDtoImpl
   final String destination;
   @override
   final String additionalNotes;
+  @override
+  final String accommodationRequestId;
+  @override
+  final String? userId;
+  @override
+  @FirebaseTimestampJsonConverter()
+  final DateTime createdAt;
 
   @override
   String toString() {
-    return 'AccommodationRecommendationsDto(id: $id, locations: $locations, destination: $destination, additionalNotes: $additionalNotes)';
+    return 'AccommodationRecommendationsDto(id: $id, locations: $locations, destination: $destination, additionalNotes: $additionalNotes, accommodationRequestId: $accommodationRequestId, userId: $userId, createdAt: $createdAt)';
   }
 
   @override
@@ -200,7 +250,12 @@ class _$AccommodationRecommendationsDtoImpl
             (identical(other.destination, destination) ||
                 other.destination == destination) &&
             (identical(other.additionalNotes, additionalNotes) ||
-                other.additionalNotes == additionalNotes));
+                other.additionalNotes == additionalNotes) &&
+            (identical(other.accommodationRequestId, accommodationRequestId) ||
+                other.accommodationRequestId == accommodationRequestId) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -210,7 +265,10 @@ class _$AccommodationRecommendationsDtoImpl
       id,
       const DeepCollectionEquality().hash(_locations),
       destination,
-      additionalNotes);
+      additionalNotes,
+      accommodationRequestId,
+      userId,
+      createdAt);
 
   /// Create a copy of AccommodationRecommendationsDto
   /// with the given fields replaced by the non-null parameter values.
@@ -236,8 +294,12 @@ abstract class _AccommodationRecommendationsDto
       {@JsonKey(includeFromJson: false, includeToJson: false) final String? id,
       required final List<AccommodationDto> locations,
       required final String destination,
-      required final String
-          additionalNotes}) = _$AccommodationRecommendationsDtoImpl;
+      required final String additionalNotes,
+      required final String accommodationRequestId,
+      final String? userId,
+      @FirebaseTimestampJsonConverter()
+      required final DateTime
+          createdAt}) = _$AccommodationRecommendationsDtoImpl;
   const _AccommodationRecommendationsDto._() : super._();
 
   factory _AccommodationRecommendationsDto.fromJson(Map<String, dynamic> json) =
@@ -252,6 +314,13 @@ abstract class _AccommodationRecommendationsDto
   String get destination;
   @override
   String get additionalNotes;
+  @override
+  String get accommodationRequestId;
+  @override
+  String? get userId;
+  @override
+  @FirebaseTimestampJsonConverter()
+  DateTime get createdAt;
 
   /// Create a copy of AccommodationRecommendationsDto
   /// with the given fields replaced by the non-null parameter values.

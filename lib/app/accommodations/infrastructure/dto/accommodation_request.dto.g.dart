@@ -16,8 +16,9 @@ _$AccommodationRequestDtoImpl _$$AccommodationRequestDtoImplFromJson(
       budgetOption: json['budgetOption'] as String,
       atmosphereOption: json['atmosphereOption'] as String,
       additionalNotes: json['additionalNotes'] as String,
-      createdAt: _$JsonConverterFromJson<Timestamp, DateTime>(
-          json['createdAt'], const FirebaseTimestampJsonConverter().fromJson),
+      userId: json['userId'] as String?,
+      createdAt:
+          const FirebaseTimestampJsonConverter().fromJson(json['createdAt']),
     );
 
 Map<String, dynamic> _$$AccommodationRequestDtoImplToJson(
@@ -28,15 +29,10 @@ Map<String, dynamic> _$$AccommodationRequestDtoImplToJson(
       'budgetOption': instance.budgetOption,
       'atmosphereOption': instance.atmosphereOption,
       'additionalNotes': instance.additionalNotes,
-      'createdAt': _$JsonConverterToJson<Timestamp, DateTime>(
+      'userId': instance.userId,
+      'createdAt': _$JsonConverterToJson<dynamic, DateTime>(
           instance.createdAt, const FirebaseTimestampJsonConverter().toJson),
     };
-
-Value? _$JsonConverterFromJson<Json, Value>(
-  Object? json,
-  Value? Function(Json json) fromJson,
-) =>
-    json == null ? null : fromJson(json as Json);
 
 Json? _$JsonConverterToJson<Json, Value>(
   Value? value,
