@@ -3,9 +3,11 @@ import 'package:loc_advisor/app/accommodations/domain/entities/accommodation_ent
 
 class AccommodationCard extends StatelessWidget {
   final Accommodation accommodation;
+  final bool isAuthenticated;
 
   const AccommodationCard({
     required this.accommodation,
+    required this.isAuthenticated,
     super.key,
   });
 
@@ -32,12 +34,13 @@ class AccommodationCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                IconButton(
-                  icon: const Icon(Icons.favorite_border),
-                  onPressed: () {
-                    // Dodaj do ulubionych - logika do dodania w StatefulWidget
-                  },
-                )
+                if (isAuthenticated)
+                  IconButton(
+                    icon: const Icon(Icons.favorite_border),
+                    onPressed: () {
+                      // Dodaj do ulubionych - logika do dodania w StatefulWidget
+                    },
+                  )
               ],
             ),
             const SizedBox(height: 16),
