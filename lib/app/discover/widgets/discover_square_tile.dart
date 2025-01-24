@@ -33,7 +33,7 @@ class DiscoverSquareTile extends StatelessWidget {
               FaIcon(
                 icon,
                 size: 48,
-                color: Colors.teal.shade700,
+                color: context.primary,
               ),
               const SizedBox(height: 16),
               Text(
@@ -41,7 +41,7 @@ class DiscoverSquareTile extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: context.titleMedium.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: Colors.teal.shade700,
+                  color: context.primary,
                 ),
               ),
             ],

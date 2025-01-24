@@ -24,7 +24,7 @@ class DiscoverPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  color: context.primary,
+                  color: context.onPrimaryContainer,
                 ),
               ),
               const SizedBox(height: 8),
@@ -32,7 +32,7 @@ class DiscoverPage extends StatelessWidget {
                 'Co chcesz zrobić?',
                 style: TextStyle(
                   fontSize: 18,
-                  color: context.primary,
+                  color: context.onPrimaryContainer,
                 ),
               ),
               const SizedBox(height: 36),
