@@ -24,6 +24,9 @@ mixin _$SignUpState {
   StateStatus get status => throw _privateConstructorUsedError;
   Option<AuthFailure> get authFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
+  Option<String> get recommendationId => throw _privateConstructorUsedError;
+  Option<RecommendationType> get recommendationType =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.
@@ -44,7 +47,9 @@ abstract class $SignUpStateCopyWith<$Res> {
       ConfirmPasswordInput confirmPassword,
       bool isFormValid,
       StateStatus status,
-      Option<AuthFailure> authFailureOrSuccessOption});
+      Option<AuthFailure> authFailureOrSuccessOption,
+      Option<String> recommendationId,
+      Option<RecommendationType> recommendationType});
 }
 
 /// @nodoc
@@ -68,6 +73,8 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
     Object? isFormValid = null,
     Object? status = null,
     Object? authFailureOrSuccessOption = null,
+    Object? recommendationId = null,
+    Object? recommendationType = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -94,6 +101,14 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
           ? _value.authFailureOrSuccessOption
           : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
               as Option<AuthFailure>,
+      recommendationId: null == recommendationId
+          ? _value.recommendationId
+          : recommendationId // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
+      recommendationType: null == recommendationType
+          ? _value.recommendationType
+          : recommendationType // ignore: cast_nullable_to_non_nullable
+              as Option<RecommendationType>,
     ) as $Val);
   }
 }
@@ -112,7 +127,9 @@ abstract class _$$SignUpStateImplCopyWith<$Res>
       ConfirmPasswordInput confirmPassword,
       bool isFormValid,
       StateStatus status,
-      Option<AuthFailure> authFailureOrSuccessOption});
+      Option<AuthFailure> authFailureOrSuccessOption,
+      Option<String> recommendationId,
+      Option<RecommendationType> recommendationType});
 }
 
 /// @nodoc
@@ -134,6 +151,8 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
     Object? isFormValid = null,
     Object? status = null,
     Object? authFailureOrSuccessOption = null,
+    Object? recommendationId = null,
+    Object? recommendationType = null,
   }) {
     return _then(_$SignUpStateImpl(
       email: null == email
@@ -160,6 +179,14 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
           ? _value.authFailureOrSuccessOption
           : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
               as Option<AuthFailure>,
+      recommendationId: null == recommendationId
+          ? _value.recommendationId
+          : recommendationId // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
+      recommendationType: null == recommendationType
+          ? _value.recommendationType
+          : recommendationType // ignore: cast_nullable_to_non_nullable
+              as Option<RecommendationType>,
     ));
   }
 }
@@ -173,7 +200,9 @@ class _$SignUpStateImpl implements _SignUpState {
       required this.confirmPassword,
       required this.isFormValid,
       required this.status,
-      required this.authFailureOrSuccessOption});
+      required this.authFailureOrSuccessOption,
+      required this.recommendationId,
+      required this.recommendationType});
 
   @override
   final EmailInput email;
@@ -187,10 +216,14 @@ class _$SignUpStateImpl implements _SignUpState {
   final StateStatus status;
   @override
   final Option<AuthFailure> authFailureOrSuccessOption;
+  @override
+  final Option<String> recommendationId;
+  @override
+  final Option<RecommendationType> recommendationType;
 
   @override
   String toString() {
-    return 'SignUpState(email: $email, password: $password, confirmPassword: $confirmPassword, isFormValid: $isFormValid, status: $status, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
+    return 'SignUpState(email: $email, password: $password, confirmPassword: $confirmPassword, isFormValid: $isFormValid, status: $status, authFailureOrSuccessOption: $authFailureOrSuccessOption, recommendationId: $recommendationId, recommendationType: $recommendationType)';
   }
 
   @override
@@ -209,12 +242,24 @@ class _$SignUpStateImpl implements _SignUpState {
             (identical(other.authFailureOrSuccessOption,
                     authFailureOrSuccessOption) ||
                 other.authFailureOrSuccessOption ==
-                    authFailureOrSuccessOption));
+                    authFailureOrSuccessOption) &&
+            (identical(other.recommendationId, recommendationId) ||
+                other.recommendationId == recommendationId) &&
+            (identical(other.recommendationType, recommendationType) ||
+                other.recommendationType == recommendationType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, confirmPassword,
-      isFormValid, status, authFailureOrSuccessOption);
+  int get hashCode => Object.hash(
+      runtimeType,
+      email,
+      password,
+      confirmPassword,
+      isFormValid,
+      status,
+      authFailureOrSuccessOption,
+      recommendationId,
+      recommendationType);
 
   /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.
@@ -232,7 +277,9 @@ abstract class _SignUpState implements SignUpState {
           required final ConfirmPasswordInput confirmPassword,
           required final bool isFormValid,
           required final StateStatus status,
-          required final Option<AuthFailure> authFailureOrSuccessOption}) =
+          required final Option<AuthFailure> authFailureOrSuccessOption,
+          required final Option<String> recommendationId,
+          required final Option<RecommendationType> recommendationType}) =
       _$SignUpStateImpl;
 
   @override
@@ -247,6 +294,10 @@ abstract class _SignUpState implements SignUpState {
   StateStatus get status;
   @override
   Option<AuthFailure> get authFailureOrSuccessOption;
+  @override
+  Option<String> get recommendationId;
+  @override
+  Option<RecommendationType> get recommendationType;
 
   /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.

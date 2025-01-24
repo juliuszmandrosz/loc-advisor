@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:loc_advisor/app/auth/application/sign_up_cubit.dart';
 import 'package:loc_advisor/app/auth/domain/auth_failure.dart';
+import 'package:loc_advisor/enums/recommendation_type.dart';
 import 'package:loc_advisor/enums/state_status.dart';
 import 'package:loc_advisor/extensions/build_context_extensions.dart';
 import 'package:loc_advisor/injection_container/injectable.dart';
@@ -12,12 +13,28 @@ import 'package:loc_advisor/shared/widgets/loc_advisor_text_input.dart';
 
 @RoutePage()
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+  final String? recommendationId;
+  final RecommendationType? recommendationType;
+
+  const SignUpPage({
+    this.recommendationId,
+    this.recommendationType,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<SignUpCubit>(),
+      create: (context) {
+        final cubit = getIt<SignUpCubit>();
+        if (recommendationId != null && recommendationType != null) {
+          cubit.setSelectedRecommendation(
+            recommendationId!,
+            recommendationType!,
+          );
+        }
+        return cubit;
+      },
       child: LoaderOverlay(
         child: BlocConsumer<SignUpCubit, SignUpState>(
           listenWhen: (previous, current) =>
@@ -147,20 +164,28 @@ class SignUpPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 24),
-                              TextButton(
-                                onPressed: () async {
-                                  context.unfocus();
-                                  await context.replaceRoute(SignInRoute());
-                                },
-                                child: const Text(
-                                  'Masz już konto? Zaloguj się',
-                                  style: TextStyle(
-                                    color: Colors.teal,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                              state.recommendationId.fold(
+                                () => Column(
+                                  children: [
+                                    const SizedBox(height: 24),
+                                    TextButton(
+                                      onPressed: () async {
+                                        context.unfocus();
+                                        await context
+                                            .replaceRoute(SignInRoute());
+                                      },
+                                      child: const Text(
+                                        'Masz już konto? Zaloguj się',
+                                        style: TextStyle(
+                                          color: Colors.teal,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
+                                (_) => const SizedBox(),
                               ),
                             ],
                           ),

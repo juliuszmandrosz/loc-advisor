@@ -26,7 +26,7 @@ mixin _$AccommodationRecommendationsDto {
   List<AccommodationDto> get locations => throw _privateConstructorUsedError;
   String get destination => throw _privateConstructorUsedError;
   String get additionalNotes => throw _privateConstructorUsedError;
-  String get accommodationRequestId => throw _privateConstructorUsedError;
+  String get requestId => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
   @FirebaseTimestampJsonConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ abstract class $AccommodationRecommendationsDtoCopyWith<$Res> {
       List<AccommodationDto> locations,
       String destination,
       String additionalNotes,
-      String accommodationRequestId,
+      String requestId,
       String? userId,
       @FirebaseTimestampJsonConverter() DateTime createdAt});
 }
@@ -79,7 +79,7 @@ class _$AccommodationRecommendationsDtoCopyWithImpl<$Res,
     Object? locations = null,
     Object? destination = null,
     Object? additionalNotes = null,
-    Object? accommodationRequestId = null,
+    Object? requestId = null,
     Object? userId = freezed,
     Object? createdAt = null,
   }) {
@@ -100,9 +100,9 @@ class _$AccommodationRecommendationsDtoCopyWithImpl<$Res,
           ? _value.additionalNotes
           : additionalNotes // ignore: cast_nullable_to_non_nullable
               as String,
-      accommodationRequestId: null == accommodationRequestId
-          ? _value.accommodationRequestId
-          : accommodationRequestId // ignore: cast_nullable_to_non_nullable
+      requestId: null == requestId
+          ? _value.requestId
+          : requestId // ignore: cast_nullable_to_non_nullable
               as String,
       userId: freezed == userId
           ? _value.userId
@@ -130,7 +130,7 @@ abstract class _$$AccommodationRecommendationsDtoImplCopyWith<$Res>
       List<AccommodationDto> locations,
       String destination,
       String additionalNotes,
-      String accommodationRequestId,
+      String requestId,
       String? userId,
       @FirebaseTimestampJsonConverter() DateTime createdAt});
 }
@@ -154,7 +154,7 @@ class __$$AccommodationRecommendationsDtoImplCopyWithImpl<$Res>
     Object? locations = null,
     Object? destination = null,
     Object? additionalNotes = null,
-    Object? accommodationRequestId = null,
+    Object? requestId = null,
     Object? userId = freezed,
     Object? createdAt = null,
   }) {
@@ -175,9 +175,9 @@ class __$$AccommodationRecommendationsDtoImplCopyWithImpl<$Res>
           ? _value.additionalNotes
           : additionalNotes // ignore: cast_nullable_to_non_nullable
               as String,
-      accommodationRequestId: null == accommodationRequestId
-          ? _value.accommodationRequestId
-          : accommodationRequestId // ignore: cast_nullable_to_non_nullable
+      requestId: null == requestId
+          ? _value.requestId
+          : requestId // ignore: cast_nullable_to_non_nullable
               as String,
       userId: freezed == userId
           ? _value.userId
@@ -201,7 +201,7 @@ class _$AccommodationRecommendationsDtoImpl
       required final List<AccommodationDto> locations,
       required this.destination,
       required this.additionalNotes,
-      required this.accommodationRequestId,
+      required this.requestId,
       this.userId,
       @FirebaseTimestampJsonConverter() required this.createdAt})
       : _locations = locations,
@@ -227,7 +227,7 @@ class _$AccommodationRecommendationsDtoImpl
   @override
   final String additionalNotes;
   @override
-  final String accommodationRequestId;
+  final String requestId;
   @override
   final String? userId;
   @override
@@ -236,7 +236,7 @@ class _$AccommodationRecommendationsDtoImpl
 
   @override
   String toString() {
-    return 'AccommodationRecommendationsDto(id: $id, locations: $locations, destination: $destination, additionalNotes: $additionalNotes, accommodationRequestId: $accommodationRequestId, userId: $userId, createdAt: $createdAt)';
+    return 'AccommodationRecommendationsDto(id: $id, locations: $locations, destination: $destination, additionalNotes: $additionalNotes, requestId: $requestId, userId: $userId, createdAt: $createdAt)';
   }
 
   @override
@@ -251,8 +251,8 @@ class _$AccommodationRecommendationsDtoImpl
                 other.destination == destination) &&
             (identical(other.additionalNotes, additionalNotes) ||
                 other.additionalNotes == additionalNotes) &&
-            (identical(other.accommodationRequestId, accommodationRequestId) ||
-                other.accommodationRequestId == accommodationRequestId) &&
+            (identical(other.requestId, requestId) ||
+                other.requestId == requestId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
@@ -266,7 +266,7 @@ class _$AccommodationRecommendationsDtoImpl
       const DeepCollectionEquality().hash(_locations),
       destination,
       additionalNotes,
-      accommodationRequestId,
+      requestId,
       userId,
       createdAt);
 
@@ -295,7 +295,7 @@ abstract class _AccommodationRecommendationsDto
       required final List<AccommodationDto> locations,
       required final String destination,
       required final String additionalNotes,
-      required final String accommodationRequestId,
+      required final String requestId,
       final String? userId,
       @FirebaseTimestampJsonConverter()
       required final DateTime
@@ -315,7 +315,7 @@ abstract class _AccommodationRecommendationsDto
   @override
   String get additionalNotes;
   @override
-  String get accommodationRequestId;
+  String get requestId;
   @override
   String? get userId;
   @override

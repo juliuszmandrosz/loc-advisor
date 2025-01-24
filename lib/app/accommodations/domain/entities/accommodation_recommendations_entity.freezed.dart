@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AccommodationRecommendations {
+  String get id => throw _privateConstructorUsedError;
   String get destination => throw _privateConstructorUsedError;
   List<Accommodation> get locations => throw _privateConstructorUsedError;
   String get additionalNotes => throw _privateConstructorUsedError;
@@ -36,7 +37,8 @@ abstract class $AccommodationRecommendationsCopyWith<$Res> {
           AccommodationRecommendations>;
   @useResult
   $Res call(
-      {String destination,
+      {String id,
+      String destination,
       List<Accommodation> locations,
       String additionalNotes});
 }
@@ -57,11 +59,16 @@ class _$AccommodationRecommendationsCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? destination = null,
     Object? locations = null,
     Object? additionalNotes = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       destination: null == destination
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
@@ -88,7 +95,8 @@ abstract class _$$AccommodationRecommendationsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String destination,
+      {String id,
+      String destination,
       List<Accommodation> locations,
       String additionalNotes});
 }
@@ -108,11 +116,16 @@ class __$$AccommodationRecommendationsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? destination = null,
     Object? locations = null,
     Object? additionalNotes = null,
   }) {
     return _then(_$AccommodationRecommendationsImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       destination: null == destination
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
@@ -134,11 +147,14 @@ class __$$AccommodationRecommendationsImplCopyWithImpl<$Res>
 class _$AccommodationRecommendationsImpl
     implements _AccommodationRecommendations {
   const _$AccommodationRecommendationsImpl(
-      {required this.destination,
+      {required this.id,
+      required this.destination,
       required final List<Accommodation> locations,
       required this.additionalNotes})
       : _locations = locations;
 
+  @override
+  final String id;
   @override
   final String destination;
   final List<Accommodation> _locations;
@@ -154,7 +170,7 @@ class _$AccommodationRecommendationsImpl
 
   @override
   String toString() {
-    return 'AccommodationRecommendations(destination: $destination, locations: $locations, additionalNotes: $additionalNotes)';
+    return 'AccommodationRecommendations(id: $id, destination: $destination, locations: $locations, additionalNotes: $additionalNotes)';
   }
 
   @override
@@ -162,6 +178,7 @@ class _$AccommodationRecommendationsImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AccommodationRecommendationsImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.destination, destination) ||
                 other.destination == destination) &&
             const DeepCollectionEquality()
@@ -171,7 +188,7 @@ class _$AccommodationRecommendationsImpl
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, destination,
+  int get hashCode => Object.hash(runtimeType, id, destination,
       const DeepCollectionEquality().hash(_locations), additionalNotes);
 
   /// Create a copy of AccommodationRecommendations
@@ -188,11 +205,14 @@ class _$AccommodationRecommendationsImpl
 abstract class _AccommodationRecommendations
     implements AccommodationRecommendations {
   const factory _AccommodationRecommendations(
-          {required final String destination,
+          {required final String id,
+          required final String destination,
           required final List<Accommodation> locations,
           required final String additionalNotes}) =
       _$AccommodationRecommendationsImpl;
 
+  @override
+  String get id;
   @override
   String get destination;
   @override

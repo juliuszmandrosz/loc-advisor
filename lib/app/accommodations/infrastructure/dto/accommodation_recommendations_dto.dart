@@ -18,7 +18,7 @@ class AccommodationRecommendationsDto with _$AccommodationRecommendationsDto {
     required List<AccommodationDto> locations,
     required String destination,
     required String additionalNotes,
-    required String accommodationRequestId,
+    required String requestId,
     String? userId,
     @FirebaseTimestampJsonConverter() required DateTime createdAt,
   }) = _AccommodationRecommendationsDto;
@@ -37,11 +37,12 @@ class AccommodationRecommendationsDto with _$AccommodationRecommendationsDto {
   factory AccommodationRecommendationsDto.fromApi(dynamic data) {
     return AccommodationRecommendationsDto.fromJson(
       convertDynamicToMapStringDynamic(data),
-    );
+    ).copyWith(id: data['id']);
   }
 
   AccommodationRecommendations toDomain() {
     return AccommodationRecommendations(
+      id: id!,
       destination: destination,
       additionalNotes: additionalNotes,
       locations: locations.map((r) => r.toDomain()).toList(),

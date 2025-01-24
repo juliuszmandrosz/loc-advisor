@@ -1,0 +1,4 @@
+enum RecommendationType {
+  activity,
+  accommodation,
+}

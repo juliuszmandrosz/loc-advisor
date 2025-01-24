@@ -1,10 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:loc_advisor/enums/recommendation_type.dart';
 import 'package:loc_advisor/router/app_router.gr.dart';
 import 'package:loc_advisor/themes/theme_extensions.dart';
 
-class SignInDialog extends StatelessWidget {
-  const SignInDialog({super.key});
+class SignUpDialog extends StatelessWidget {
+  final String recommendationId;
+  final RecommendationType recommendationType;
+
+  const SignUpDialog({
+    required this.recommendationId,
+    required this.recommendationType,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +21,7 @@ class SignInDialog extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       title: const Text(
-        'Zaloguj się',
+        'Zarejestruj się',
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
       content: Column(
@@ -21,7 +29,7 @@ class SignInDialog extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Zaloguj się, aby odkryć wszystkie funkcje aplikacji i uzyskaj dostęp do:',
+            'Zarejestruj się, aby odkryć wszystkie funkcje aplikacji i uzyskaj dostęp do:',
             style: TextStyle(fontSize: 16),
           ),
           const SizedBox(height: 16),
@@ -59,8 +67,13 @@ class SignInDialog extends StatelessWidget {
           child: const Text('Anuluj'),
         ),
         TextButton(
-          onPressed: () async => await context.pushRoute(SignInRoute()),
-          child: const Text('Zaloguj się'),
+          onPressed: () async => await context.replaceRoute(
+            SignUpRoute(
+              recommendationId: recommendationId,
+              recommendationType: recommendationType,
+            ),
+          ),
+          child: const Text('Zarejestruj się'),
         ),
       ],
     );

@@ -23,6 +23,7 @@ import 'package:loc_advisor/app/auth/sign_up_page.dart' as _i8;
 import 'package:loc_advisor/app/auth/splash_page.dart' as _i9;
 import 'package:loc_advisor/app/home/home_page.dart' as _i5;
 import 'package:loc_advisor/app/onboarding/onboarding_page.dart' as _i6;
+import 'package:loc_advisor/enums/recommendation_type.dart' as _i13;
 
 /// generated route for
 /// [_i1.AccommodationRecommendationsPage]
@@ -242,10 +243,19 @@ class SignInRouteArgs {
 
 /// generated route for
 /// [_i8.SignUpPage]
-class SignUpRoute extends _i10.PageRouteInfo<void> {
-  const SignUpRoute({List<_i10.PageRouteInfo>? children})
-      : super(
+class SignUpRoute extends _i10.PageRouteInfo<SignUpRouteArgs> {
+  SignUpRoute({
+    String? recommendationId,
+    _i13.RecommendationType? recommendationType,
+    _i12.Key? key,
+    List<_i10.PageRouteInfo>? children,
+  }) : super(
           SignUpRoute.name,
+          args: SignUpRouteArgs(
+            recommendationId: recommendationId,
+            recommendationType: recommendationType,
+            key: key,
+          ),
           initialChildren: children,
         );
 
@@ -254,9 +264,34 @@ class SignUpRoute extends _i10.PageRouteInfo<void> {
   static _i10.PageInfo page = _i10.PageInfo(
     name,
     builder: (data) {
-      return const _i8.SignUpPage();
+      final args =
+          data.argsAs<SignUpRouteArgs>(orElse: () => const SignUpRouteArgs());
+      return _i8.SignUpPage(
+        recommendationId: args.recommendationId,
+        recommendationType: args.recommendationType,
+        key: args.key,
+      );
     },
   );
+}
+
+class SignUpRouteArgs {
+  const SignUpRouteArgs({
+    this.recommendationId,
+    this.recommendationType,
+    this.key,
+  });
+
+  final String? recommendationId;
+
+  final _i13.RecommendationType? recommendationType;
+
+  final _i12.Key? key;
+
+  @override
+  String toString() {
+    return 'SignUpRouteArgs{recommendationId: $recommendationId, recommendationType: $recommendationType, key: $key}';
+  }
 }
 
 /// generated route for

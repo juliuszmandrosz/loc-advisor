@@ -145,13 +145,15 @@ export const getAccommodationRecommendations = onCall(
 
         const requestDoc = await db
             .collection("accommodation_requests")
-            .add({accommodationRequest});
+            .add({...accommodationRequest});
 
-        recommendations.accommodationRequestId = requestDoc.id;
+        recommendations.requestId = requestDoc.id;
 
-        await db
+        const recommendationDoc = await db
             .collection("accommodation_recommendations")
-            .add({recommendations});
+            .add({...recommendations});
+
+        recommendations.id = recommendationDoc.id;
 
         return recommendations;
     }

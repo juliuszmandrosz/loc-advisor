@@ -6,6 +6,7 @@ part 'accommodation_recommendations_entity.freezed.dart';
 @freezed
 class AccommodationRecommendations with _$AccommodationRecommendations {
   const factory AccommodationRecommendations({
+    required String id,
     required String destination,
     required List<Accommodation> locations,
     required String additionalNotes,

@@ -29,8 +29,6 @@ class FirebaseAccommodationsFacade implements AccommodationsFacade {
       final result =
           AccommodationRecommendationsDto.fromApi(response.data).toDomain();
 
-      Logger().i(result);
-
       return right(result);
     } on Exception catch (e) {
       _logger.e(e);

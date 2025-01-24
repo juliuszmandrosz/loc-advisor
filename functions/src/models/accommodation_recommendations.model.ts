@@ -12,8 +12,9 @@ export interface AccommodationRequest {
 }
 
 export interface AccommodationRecommendationsResponse {
+    id: string;
     userId?: string | null;
-    accommodationRequestId: string;
+    requestId: string;
     destination: string;
     locations: AccommodationRecommendation[];
     additionalNotes: string;

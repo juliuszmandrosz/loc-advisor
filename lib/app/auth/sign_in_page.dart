@@ -174,8 +174,7 @@ class SignInPage extends StatelessWidget {
                               TextButton(
                                 onPressed: () async {
                                   context.unfocus();
-                                  await context
-                                      .replaceRoute(const SignUpRoute());
+                                  await context.replaceRoute(SignUpRoute());
                                 },
                                 child: const Text(
                                   'Nie masz konta? Zarejestruj się',

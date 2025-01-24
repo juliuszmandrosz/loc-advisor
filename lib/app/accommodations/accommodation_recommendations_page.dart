@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:loc_advisor/app/accommodations/domain/entities/accommodation_recommendations_entity.dart';
 import 'package:loc_advisor/app/accommodations/widgets/accommodation_card.dart';
 import 'package:loc_advisor/app/auth/application/auth_bloc.dart';
+import 'package:loc_advisor/enums/recommendation_type.dart';
 import 'package:loc_advisor/router/app_router.gr.dart';
-import 'package:loc_advisor/shared/widgets/sign_in_dialog.dart';
+import 'package:loc_advisor/shared/widgets/sign_up_dialog.dart';
 import 'package:loc_advisor/themes/theme_extensions.dart';
 
 @RoutePage()
@@ -25,7 +25,7 @@ class AccommodationRecommendationsPage extends StatelessWidget {
         final isAuthenticated = state.when(
           initial: () => false,
           unauthenticated: () => false,
-          authenticated: (user) => user != null,
+          authenticated: (_) => true,
         );
         return Scaffold(
           appBar: AppBar(
@@ -46,11 +46,14 @@ class AccommodationRecommendationsPage extends StatelessWidget {
               } else {
                 await showDialog(
                   context: context,
-                  builder: (_) => SignInDialog(),
+                  builder: (_) => SignUpDialog(
+                    recommendationId: _recommendations.id,
+                    recommendationType: RecommendationType.accommodation,
+                  ),
                 );
               }
             },
-            child: const FaIcon(FontAwesomeIcons.arrowRight),
+            child: const Icon(Icons.arrow_forward),
           ),
           body: SafeArea(
             child: Padding(

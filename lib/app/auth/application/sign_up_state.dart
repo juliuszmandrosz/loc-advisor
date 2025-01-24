@@ -9,6 +9,8 @@ class SignUpState with _$SignUpState {
     required bool isFormValid,
     required StateStatus status,
     required Option<AuthFailure> authFailureOrSuccessOption,
+    required Option<String> recommendationId,
+    required Option<RecommendationType> recommendationType,
   }) = _SignUpState;
 
   factory SignUpState.initial() => SignUpState(
@@ -18,5 +20,7 @@ class SignUpState with _$SignUpState {
         isFormValid: true,
         status: StateStatus.initial,
         authFailureOrSuccessOption: none(),
+        recommendationId: none(),
+        recommendationType: none(),
       );
 }

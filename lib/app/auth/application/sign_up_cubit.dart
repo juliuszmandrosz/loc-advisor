@@ -8,6 +8,7 @@ import 'package:loc_advisor/app/auth/application/form_inputs/email_input.dart';
 import 'package:loc_advisor/app/auth/application/form_inputs/password_input.dart';
 import 'package:loc_advisor/app/auth/domain/auth_facade.dart';
 import 'package:loc_advisor/app/auth/domain/auth_failure.dart';
+import 'package:loc_advisor/enums/recommendation_type.dart';
 import 'package:loc_advisor/enums/state_status.dart';
 
 part 'sign_up_cubit.freezed.dart';
@@ -84,6 +85,18 @@ class SignUpCubit extends Cubit<SignUpState> {
     );
   }
 
+  void setSelectedRecommendation(
+    String recommendationId,
+    RecommendationType recommendationType,
+  ) {
+    emit(
+      state.copyWith(
+        recommendationId: some(recommendationId),
+        recommendationType: some(recommendationType),
+      ),
+    );
+  }
+
   Future<void> signUp() async {
     emit(
       state.copyWith(
@@ -122,6 +135,8 @@ class SignUpCubit extends Cubit<SignUpState> {
     final result = await _authFacade.signUp(
       email: state.email.value,
       password: state.password.value,
+      recommendationId: state.recommendationId,
+      recommendationType: state.recommendationType,
     );
 
     result.fold(
