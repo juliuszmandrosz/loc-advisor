@@ -6,6 +6,6 @@ part 'app_user_entity.freezed.dart';
 class AppUser with _$AppUser {
   const factory AppUser({
     required String id,
-    @Default(false) bool isAnonymous,
+    required String email,
   }) = _AppUser;
 }

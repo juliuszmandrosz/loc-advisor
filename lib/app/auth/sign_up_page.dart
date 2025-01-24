@@ -55,7 +55,6 @@ class SignUpPage extends StatelessWidget {
                 );
               case StateStatus.success:
                 context.loaderOverlay.hide();
-                context.showSnackbarMessage('Zarejestrowano pomyślnie');
                 await context.replaceRoute(const HomeRoute());
             }
           },

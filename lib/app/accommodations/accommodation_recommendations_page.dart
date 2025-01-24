@@ -22,10 +22,9 @@ class AccommodationRecommendationsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
-        final isAuthenticated = state.when(
-          initial: () => false,
-          unauthenticated: () => false,
-          authenticated: (_) => true,
+        final isAuthenticated = state.user.fold(
+          () => false,
+          (_) => true,
         );
         return Scaffold(
           appBar: AppBar(

@@ -5,7 +5,7 @@ extension FirebaseUserX on User {
   AppUser toDomain() {
     return AppUser(
       id: uid,
-      isAnonymous: isAnonymous,
+      email: email!,
     );
   }
 }

@@ -2,9 +2,13 @@ part of 'auth_bloc.dart';
 
 @freezed
 class AuthState with _$AuthState {
-  const factory AuthState.initial() = _Initial;
+  const factory AuthState({
+    required Option<AppUser> user,
+    required StateStatus status,
+  }) = _AuthState;
 
-  const factory AuthState.authenticated(AppUser user) = _Authenticated;
-
-  const factory AuthState.unauthenticated() = _Unauthenticated;
+  factory AuthState.initial() => AuthState(
+        user: none(),
+        status: StateStatus.initial,
+      );
 }

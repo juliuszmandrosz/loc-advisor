@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AppUser {
   String get id => throw _privateConstructorUsedError;
-  bool get isAnonymous => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
 
   /// Create a copy of AppUser
   /// with the given fields replaced by the non-null parameter values.
@@ -30,7 +30,7 @@ abstract class $AppUserCopyWith<$Res> {
   factory $AppUserCopyWith(AppUser value, $Res Function(AppUser) then) =
       _$AppUserCopyWithImpl<$Res, AppUser>;
   @useResult
-  $Res call({String id, bool isAnonymous});
+  $Res call({String id, String email});
 }
 
 /// @nodoc
@@ -49,17 +49,17 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
   @override
   $Res call({
     Object? id = null,
-    Object? isAnonymous = null,
+    Object? email = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      isAnonymous: null == isAnonymous
-          ? _value.isAnonymous
-          : isAnonymous // ignore: cast_nullable_to_non_nullable
-              as bool,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -71,7 +71,7 @@ abstract class _$$AppUserImplCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       __$$AppUserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, bool isAnonymous});
+  $Res call({String id, String email});
 }
 
 /// @nodoc
@@ -88,17 +88,17 @@ class __$$AppUserImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? isAnonymous = null,
+    Object? email = null,
   }) {
     return _then(_$AppUserImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      isAnonymous: null == isAnonymous
-          ? _value.isAnonymous
-          : isAnonymous // ignore: cast_nullable_to_non_nullable
-              as bool,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -106,17 +106,16 @@ class __$$AppUserImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AppUserImpl implements _AppUser {
-  const _$AppUserImpl({required this.id, this.isAnonymous = false});
+  const _$AppUserImpl({required this.id, required this.email});
 
   @override
   final String id;
   @override
-  @JsonKey()
-  final bool isAnonymous;
+  final String email;
 
   @override
   String toString() {
-    return 'AppUser(id: $id, isAnonymous: $isAnonymous)';
+    return 'AppUser(id: $id, email: $email)';
   }
 
   @override
@@ -125,12 +124,11 @@ class _$AppUserImpl implements _AppUser {
         (other.runtimeType == runtimeType &&
             other is _$AppUserImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.isAnonymous, isAnonymous) ||
-                other.isAnonymous == isAnonymous));
+            (identical(other.email, email) || other.email == email));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, isAnonymous);
+  int get hashCode => Object.hash(runtimeType, id, email);
 
   /// Create a copy of AppUser
   /// with the given fields replaced by the non-null parameter values.
@@ -142,13 +140,13 @@ class _$AppUserImpl implements _AppUser {
 }
 
 abstract class _AppUser implements AppUser {
-  const factory _AppUser({required final String id, final bool isAnonymous}) =
-      _$AppUserImpl;
+  const factory _AppUser(
+      {required final String id, required final String email}) = _$AppUserImpl;
 
   @override
   String get id;
   @override
-  bool get isAnonymous;
+  String get email;
 
   /// Create a copy of AppUser
   /// with the given fields replaced by the non-null parameter values.

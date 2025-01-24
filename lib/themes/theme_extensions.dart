@@ -14,6 +14,8 @@ extension TextStyleExtensions on BuildContext {
   TextStyle get titleLarge => Theme.of(this).textTheme.titleLarge!;
 
   TextStyle get titleSmall => Theme.of(this).textTheme.titleSmall!;
+
+  TextStyle get labelLarge => Theme.of(this).textTheme.labelLarge!;
 }
 
 extension ColorSchemeExtensions on BuildContext {

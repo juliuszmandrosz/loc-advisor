@@ -46,7 +46,6 @@ class SignInPage extends StatelessWidget {
                 );
               case StateStatus.success:
                 context.loaderOverlay.hide();
-                context.showSnackbarMessage('Zalogowano pomyślnie');
                 await context.replaceRoute(const HomeRoute());
             }
           },
