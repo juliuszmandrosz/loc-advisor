@@ -1,7 +1,7 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:loc_advisor/app/auth/domain/auth_facade.dart';
-import 'package:loc_advisor/injection_container/injectable.dart';
+import 'package:loc_advisor/router/app_router.gr.dart';
+import 'package:loc_advisor/themes/theme_extensions.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
@@ -9,18 +9,37 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(child: Text("Cześć jak się masz?")),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () => getIt<AuthFacade>().signOut(),
-            child: Text('Wyloguj się'),
-          ),
-        ],
+    return AutoTabsScaffold(
+      appBarBuilder: (_, __) => AppBar(
+        title: Text('LocAdvisor'),
+        centerTitle: true,
       ),
+      routes: const [
+        DiscoverRoute(),
+        RecommendationsRoute(),
+        ProfileRoute(),
+      ],
+      bottomNavigationBuilder: (_, tabsRouter) {
+        return NavigationBar(
+          backgroundColor: context.surface,
+          selectedIndex: tabsRouter.activeIndex,
+          onDestinationSelected: tabsRouter.setActiveIndex,
+          destinations: [
+            NavigationDestination(
+              icon: const Icon(Icons.explore_outlined),
+              label: 'Odkrywaj',
+            ),
+            NavigationDestination(
+              icon: const Icon(Icons.bookmark_outline),
+              label: 'Rekomendacje',
+            ),
+            NavigationDestination(
+              icon: const Icon(Icons.person_outline),
+              label: 'Profil',
+            ),
+          ],
+        );
+      },
     );
   }
 }

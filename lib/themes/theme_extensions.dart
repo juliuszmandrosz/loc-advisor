@@ -41,4 +41,6 @@ extension ColorSchemeExtensions on BuildContext {
   Color get onSurface => Theme.of(this).colorScheme.onSurface;
 
   Color get error => Theme.of(this).colorScheme.error;
+
+  Color get dividerColor => Theme.of(this).dividerColor;
 }
