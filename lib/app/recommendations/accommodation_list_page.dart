@@ -19,7 +19,7 @@ class AccommodationListPage extends HookWidget {
           context.read<RecommendationsCubit>().state.destination;
       context
           .read<AccommodationListBloc>()
-          .add(AccommodationListEvent.fetched(destination));
+          .add(AccommodationListEvent.fetched(destination: destination));
       return null;
     }, const []);
 

@@ -109,7 +109,7 @@ class __$$FetchedImplCopyWithImpl<$Res>
     Object? destination = null,
   }) {
     return _then(_$FetchedImpl(
-      null == destination
+      destination: null == destination
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
               as String,
@@ -120,9 +120,10 @@ class __$$FetchedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FetchedImpl implements _Fetched {
-  const _$FetchedImpl(this.destination);
+  const _$FetchedImpl({this.destination = ''});
 
   @override
+  @JsonKey()
   final String destination;
 
   @override
@@ -220,7 +221,7 @@ class _$FetchedImpl implements _Fetched {
 }
 
 abstract class _Fetched implements AccommodationListEvent {
-  const factory _Fetched(final String destination) = _$FetchedImpl;
+  const factory _Fetched({final String destination}) = _$FetchedImpl;
 
   String get destination;
 

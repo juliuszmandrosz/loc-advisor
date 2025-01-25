@@ -36,12 +36,14 @@ class AccommodationListBloc
     emit(
       state.copyWith(
         getAccommodationsStatus: StateStatus.loading,
-        destination: event.destination,
+        destination: event.destination.isNotEmpty
+            ? event.destination
+            : state.destination,
       ),
     );
 
     final result = await _accommodationsFacade.fetchAccommodations(
-      event.destination,
+      state.destination,
       pageSize: _pageSize,
     );
 
