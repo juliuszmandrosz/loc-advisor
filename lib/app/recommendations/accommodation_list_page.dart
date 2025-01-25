@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:loc_advisor/app/accommodations/widgets/accommodation_card.dart';
 import 'package:loc_advisor/app/recommendations/application/accommodation_list_bloc.dart';
 import 'package:loc_advisor/app/recommendations/application/recommendations_cubit.dart';
+import 'package:loc_advisor/app/recommendations/widgets/accommodation_list_item.dart';
 import 'package:loc_advisor/app/recommendations/widgets/infinite_list.dart';
 import 'package:loc_advisor/app/recommendations/widgets/no_recommendations_info.dart';
 import 'package:loc_advisor/app/recommendations/widgets/recommendations_failure_info.dart';
@@ -66,9 +66,8 @@ class AccommodationListPage extends HookWidget {
                                     .nextPageFetched()),
                             separatorBuilder: (_, __) =>
                                 const SizedBox(height: 12),
-                            itemBuilder: (_, i) => AccommodationCard(
-                              accommodation:
-                                  state.recommendations[i].locations[0],
+                            itemBuilder: (_, i) => AccommodationListItem(
+                              recommendation: state.recommendations[i],
                             ),
                           ),
                         ),

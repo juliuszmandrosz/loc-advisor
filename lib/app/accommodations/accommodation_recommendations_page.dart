@@ -61,7 +61,7 @@ class AccommodationRecommendationsPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.all(20),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

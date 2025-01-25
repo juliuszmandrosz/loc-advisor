@@ -7,6 +7,7 @@ import 'package:loc_advisor/app/recommendations/application/accommodation_list_b
 import 'package:loc_advisor/app/recommendations/application/recommendations_cubit.dart';
 import 'package:loc_advisor/app/recommendations/widgets/recommendations_sliver_app_bar.dart';
 import 'package:loc_advisor/injection_container/injectable.dart';
+import 'package:loc_advisor/themes/theme_extensions.dart';
 
 @RoutePage()
 class RecommendationsPage extends StatelessWidget {
@@ -34,14 +35,27 @@ class RecommendationsPage extends StatelessWidget {
                   innerBoxIsScrolled: innerBoxIsScrolled,
                 ),
               ],
-              body: const Padding(
-                padding: EdgeInsets.only(left: 8, right: 8, bottom: 8),
-                child: TabBarView(
-                  physics: NeverScrollableScrollPhysics(),
-                  children: [
-                    ActivityListPage(),
-                    AccommodationListPage(),
-                  ],
+              body: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      context.background,
+                      Colors.teal.shade100,
+                      context.background,
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(16),
+                  child: TabBarView(
+                    physics: NeverScrollableScrollPhysics(),
+                    children: [
+                      ActivityListPage(),
+                      AccommodationListPage(),
+                    ],
+                  ),
                 ),
               ),
             ),
