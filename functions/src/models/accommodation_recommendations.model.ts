@@ -16,6 +16,7 @@ export interface AccommodationRecommendationsResponse {
     userId?: string | null;
     requestId: string;
     destination: string;
+    destinationLowerCase: string;
     locations: AccommodationRecommendation[];
     additionalNotes: string;
     createdAt: Timestamp;
