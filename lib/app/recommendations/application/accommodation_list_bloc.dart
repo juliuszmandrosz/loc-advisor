@@ -33,10 +33,15 @@ class AccommodationListBloc
     _Fetched event,
     Emitter<AccommodationListState> emit,
   ) async {
-    emit(state.copyWith(getAccommodationsStatus: StateStatus.loading));
+    emit(
+      state.copyWith(
+        getAccommodationsStatus: StateStatus.loading,
+        destination: event.destination,
+      ),
+    );
 
     final result = await _accommodationsFacade.fetchAccommodations(
-      state.destination,
+      event.destination,
       pageSize: _pageSize,
     );
 

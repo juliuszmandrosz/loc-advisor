@@ -18,21 +18,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AccommodationListEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetched,
+    required TResult Function(String destination) fetched,
     required TResult Function(String destination) destinationChanged,
     required TResult Function() nextPageFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetched,
+    TResult? Function(String destination)? fetched,
     TResult? Function(String destination)? destinationChanged,
     TResult? Function()? nextPageFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetched,
+    TResult Function(String destination)? fetched,
     TResult Function(String destination)? destinationChanged,
     TResult Function()? nextPageFetched,
     required TResult orElse(),
@@ -89,6 +89,8 @@ abstract class _$$FetchedImplCopyWith<$Res> {
   factory _$$FetchedImplCopyWith(
           _$FetchedImpl value, $Res Function(_$FetchedImpl) then) =
       __$$FetchedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String destination});
 }
 
 /// @nodoc
@@ -101,57 +103,83 @@ class __$$FetchedImplCopyWithImpl<$Res>
 
   /// Create a copy of AccommodationListEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? destination = null,
+  }) {
+    return _then(_$FetchedImpl(
+      null == destination
+          ? _value.destination
+          : destination // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$FetchedImpl implements _Fetched {
-  const _$FetchedImpl();
+  const _$FetchedImpl(this.destination);
+
+  @override
+  final String destination;
 
   @override
   String toString() {
-    return 'AccommodationListEvent.fetched()';
+    return 'AccommodationListEvent.fetched(destination: $destination)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$FetchedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$FetchedImpl &&
+            (identical(other.destination, destination) ||
+                other.destination == destination));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, destination);
+
+  /// Create a copy of AccommodationListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchedImplCopyWith<_$FetchedImpl> get copyWith =>
+      __$$FetchedImplCopyWithImpl<_$FetchedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetched,
+    required TResult Function(String destination) fetched,
     required TResult Function(String destination) destinationChanged,
     required TResult Function() nextPageFetched,
   }) {
-    return fetched();
+    return fetched(destination);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetched,
+    TResult? Function(String destination)? fetched,
     TResult? Function(String destination)? destinationChanged,
     TResult? Function()? nextPageFetched,
   }) {
-    return fetched?.call();
+    return fetched?.call(destination);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetched,
+    TResult Function(String destination)? fetched,
     TResult Function(String destination)? destinationChanged,
     TResult Function()? nextPageFetched,
     required TResult orElse(),
   }) {
     if (fetched != null) {
-      return fetched();
+      return fetched(destination);
     }
     return orElse();
   }
@@ -192,7 +220,15 @@ class _$FetchedImpl implements _Fetched {
 }
 
 abstract class _Fetched implements AccommodationListEvent {
-  const factory _Fetched() = _$FetchedImpl;
+  const factory _Fetched(final String destination) = _$FetchedImpl;
+
+  String get destination;
+
+  /// Create a copy of AccommodationListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$FetchedImplCopyWith<_$FetchedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -265,7 +301,7 @@ class _$DestinationChangedImpl implements _DestinationChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetched,
+    required TResult Function(String destination) fetched,
     required TResult Function(String destination) destinationChanged,
     required TResult Function() nextPageFetched,
   }) {
@@ -275,7 +311,7 @@ class _$DestinationChangedImpl implements _DestinationChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetched,
+    TResult? Function(String destination)? fetched,
     TResult? Function(String destination)? destinationChanged,
     TResult? Function()? nextPageFetched,
   }) {
@@ -285,7 +321,7 @@ class _$DestinationChangedImpl implements _DestinationChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetched,
+    TResult Function(String destination)? fetched,
     TResult Function(String destination)? destinationChanged,
     TResult Function()? nextPageFetched,
     required TResult orElse(),
@@ -385,7 +421,7 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetched,
+    required TResult Function(String destination) fetched,
     required TResult Function(String destination) destinationChanged,
     required TResult Function() nextPageFetched,
   }) {
@@ -395,7 +431,7 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetched,
+    TResult? Function(String destination)? fetched,
     TResult? Function(String destination)? destinationChanged,
     TResult? Function()? nextPageFetched,
   }) {
@@ -405,7 +441,7 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetched,
+    TResult Function(String destination)? fetched,
     TResult Function(String destination)? destinationChanged,
     TResult Function()? nextPageFetched,
     required TResult orElse(),

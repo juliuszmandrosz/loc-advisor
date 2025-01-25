@@ -39,8 +39,8 @@ class RecommendationsPage extends StatelessWidget {
                 child: TabBarView(
                   physics: NeverScrollableScrollPhysics(),
                   children: [
-                    AccommodationListPage(),
                     ActivityListPage(),
+                    AccommodationListPage(),
                   ],
                 ),
               ),

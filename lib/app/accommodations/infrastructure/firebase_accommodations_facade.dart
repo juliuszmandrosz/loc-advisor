@@ -57,10 +57,16 @@ class FirebaseAccommodationsFacade implements AccommodationsFacade {
 
       var query = _firestore
           .collection('accommodation_recommendations')
-          .where('userId', isEqualTo: userId)
-          .where('destination', isEqualTo: destination)
-          .orderBy('createdAt', descending: true)
-          .limit(pageSize);
+          .where('userId', isEqualTo: userId);
+
+      if (destination.isNotEmpty) {
+        query = query.where(
+          'destinationLowerCase',
+          isEqualTo: destination.toLowerCase(),
+        );
+      }
+
+      query = query.orderBy('createdAt', descending: true).limit(pageSize);
 
       if (lastRecommendation != null) {
         final lastDoc = await _firestore
