@@ -141,6 +141,7 @@ export const getAccommodationRecommendations = onCall(
 
         recommendations.userId = userId;
         recommendations.createdAt = now;
+        recommendations.destinationLowerCase = accommodationRequest.destination.toLowerCase();
 
 
         const requestDoc = await db
