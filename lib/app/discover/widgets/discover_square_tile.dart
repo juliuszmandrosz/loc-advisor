@@ -17,7 +17,7 @@ class DiscoverSquareTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.teal.shade50,
+      color: Colors.teal,
       elevation: 8,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
@@ -33,7 +33,7 @@ class DiscoverSquareTile extends StatelessWidget {
               FaIcon(
                 icon,
                 size: 48,
-                color: context.primary,
+                color: context.onPrimary,
               ),
               const SizedBox(height: 16),
               Text(
@@ -41,7 +41,7 @@ class DiscoverSquareTile extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: context.titleMedium.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: context.primary,
+                  color: context.onPrimary,
                 ),
               ),
             ],

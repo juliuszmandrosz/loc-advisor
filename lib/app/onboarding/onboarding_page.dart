@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:loc_advisor/app/discover/widgets/discover_square_tile.dart';
 import 'package:loc_advisor/router/app_router.gr.dart';
-import 'package:loc_advisor/themes/theme_extensions.dart';
 
 @RoutePage()
 class OnboardingPage extends StatelessWidget {
@@ -43,37 +43,27 @@ class OnboardingPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 36),
-                ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal,
-                    minimumSize: const Size(double.infinity, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                GridView(
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 24,
+                    crossAxisSpacing: 24,
+                    childAspectRatio: 1,
+                  ),
+                  children: [
+                    DiscoverSquareTile(
+                      icon: FontAwesomeIcons.locationDot,
+                      label: 'Znajdź aktywności',
+                      onTap: () => context.pushRoute(ActivitiesRoute()),
                     ),
-                  ),
-                  onPressed: () => context.pushRoute(ActivitiesRoute()),
-                  icon: FaIcon(
-                    FontAwesomeIcons.locationDot,
-                    color: context.onPrimary,
-                  ),
-                  label: const Text('Znajdź aktywności'),
-                ),
-                const SizedBox(height: 16),
-                ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal,
-                    minimumSize: const Size(double.infinity, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                    DiscoverSquareTile(
+                      icon: FontAwesomeIcons.house,
+                      label: 'Znajdź zakwaterowanie',
+                      onTap: () =>
+                          context.pushRoute(AccommodationsSearchRoute()),
                     ),
-                  ),
-                  onPressed: () =>
-                      context.pushRoute(AccommodationsSearchRoute()),
-                  icon: FaIcon(
-                    FontAwesomeIcons.house,
-                    color: context.onPrimary,
-                  ),
-                  label: const Text('Znajdź zakwaterowanie'),
+                  ],
                 ),
                 const Spacer(),
                 TextButton(
