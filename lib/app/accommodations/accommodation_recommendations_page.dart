@@ -28,9 +28,7 @@ class AccommodationRecommendationsPage extends StatelessWidget {
         );
         return Scaffold(
           appBar: AppBar(
-            title: Text(
-              'Zakwaterowanie w ${_recommendations.destination}',
-            ),
+            title: Text(_recommendations.destination),
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () async {
@@ -55,38 +53,35 @@ class AccommodationRecommendationsPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
+                    Card(
+                      color: Colors.teal.shade50,
+                      elevation: 8,
+                      margin: const EdgeInsets.only(bottom: 16),
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
-                        gradient: LinearGradient(
-                          colors: [
-                            context.primaryContainer.withOpacity(0.6),
-                            context.primaryContainer,
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
                       ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.info_outline,
-                            color: context.onPrimaryContainer,
-                            size: 28,
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: Text(
-                              _recommendations.additionalNotes,
-                              style: context.bodyMedium.copyWith(
-                                color: context.onPrimaryContainer,
-                                fontSize: 16,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.info_outline,
+                              color: context.onPrimaryContainer,
+                              size: 28,
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Text(
+                                _recommendations.additionalNotes,
+                                style: context.bodyMedium.copyWith(
+                                  color: context.onPrimaryContainer,
+                                  fontSize: 16,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: 24),
@@ -105,7 +100,6 @@ class AccommodationRecommendationsPage extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: 12.0),
                         child: AccommodationCard(
                           accommodation: _recommendations.locations[index],
-                          isAuthenticated: isAuthenticated,
                         ),
                       ),
                     ),

@@ -1,0 +1,4 @@
+enum RecommendationTab {
+  activities,
+  accommodations,
+}

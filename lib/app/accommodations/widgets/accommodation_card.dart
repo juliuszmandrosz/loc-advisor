@@ -3,18 +3,16 @@ import 'package:loc_advisor/app/accommodations/domain/entities/accommodation_ent
 
 class AccommodationCard extends StatelessWidget {
   final Accommodation accommodation;
-  final bool isAuthenticated;
 
   const AccommodationCard({
     required this.accommodation,
-    required this.isAuthenticated,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 4,
+      elevation: 8,
       margin: const EdgeInsets.only(bottom: 16),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
@@ -34,13 +32,6 @@ class AccommodationCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                if (isAuthenticated)
-                  IconButton(
-                    icon: const Icon(Icons.favorite_border),
-                    onPressed: () {
-                      // Dodaj do ulubionych - logika do dodania w StatefulWidget
-                    },
-                  )
               ],
             ),
             const SizedBox(height: 16),

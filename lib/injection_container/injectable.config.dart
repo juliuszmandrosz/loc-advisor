@@ -33,6 +33,10 @@ import 'package:loc_advisor/app/auth/application/sign_up_cubit.dart' as _i533;
 import 'package:loc_advisor/app/auth/domain/auth_facade.dart' as _i433;
 import 'package:loc_advisor/app/auth/infrastructure/firebase_auth_facade.dart'
     as _i792;
+import 'package:loc_advisor/app/recommendations/application/accommodation_list_bloc.dart'
+    as _i789;
+import 'package:loc_advisor/app/recommendations/application/recommendations_cubit.dart'
+    as _i760;
 import 'package:loc_advisor/modules/firebase_module.dart' as _i686;
 import 'package:loc_advisor/modules/logger_module.dart' as _i656;
 import 'package:logger/logger.dart' as _i974;
@@ -50,6 +54,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final firebaseModule = _$FirebaseModule();
     final loggerModule = _$LoggerModule();
+    gh.factory<_i760.RecommendationsCubit>(() => _i760.RecommendationsCubit());
     gh.lazySingleton<_i59.FirebaseAuth>(() => firebaseModule.firebaseAuth);
     gh.lazySingleton<_i974.FirebaseFirestore>(
         () => firebaseModule.firebaseFirestore);
@@ -67,19 +72,23 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i533.SignUpCubit(gh<_i433.AuthFacade>()));
     gh.factory<_i86.ForgotPasswordCubit>(
         () => _i86.ForgotPasswordCubit(gh<_i433.AuthFacade>()));
-    gh.lazySingleton<_i662.AccommodationsFacade>(
-        () => _i833.FirebaseAccommodationsFacade(
-              gh<_i809.FirebaseFunctions>(),
-              gh<_i974.Logger>(),
-            ));
     gh.lazySingleton<_i311.ActivitiesFacade>(
         () => _i379.FirebaseActivitiesFacade());
     gh.factory<_i1014.ActivitiesCubit>(
         () => _i1014.ActivitiesCubit(gh<_i311.ActivitiesFacade>()));
     gh.factory<_i185.AuthBloc>(
         () => _i185.AuthBloc(authFacade: gh<_i433.AuthFacade>()));
+    gh.lazySingleton<_i662.AccommodationsFacade>(
+        () => _i833.FirebaseAccommodationsFacade(
+              gh<_i809.FirebaseFunctions>(),
+              gh<_i974.Logger>(),
+              gh<_i59.FirebaseAuth>(),
+              gh<_i974.FirebaseFirestore>(),
+            ));
     gh.factory<_i727.AccommodationsSearchCubit>(() =>
         _i727.AccommodationsSearchCubit(gh<_i662.AccommodationsFacade>()));
+    gh.factory<_i789.AccommodationListBloc>(
+        () => _i789.AccommodationListBloc(gh<_i662.AccommodationsFacade>()));
     return this;
   }
 }

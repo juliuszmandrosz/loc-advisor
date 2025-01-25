@@ -45,4 +45,8 @@ extension ColorSchemeExtensions on BuildContext {
   Color get error => Theme.of(this).colorScheme.error;
 
   Color get dividerColor => Theme.of(this).dividerColor;
+
+  Color get shadowColor => Theme.of(this).shadowColor;
+
+  Color get hintColor => Theme.of(this).hintColor;
 }

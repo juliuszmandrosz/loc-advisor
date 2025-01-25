@@ -5,7 +5,7 @@ extension UnfocusExtension on BuildContext {
     FocusManager.instance.primaryFocus?.unfocus();
   }
 
-  showSnackbarMessage(String message) {
+  void showSnackbarMessage(String message) {
     ScaffoldMessenger.of(this)
       ..hideCurrentSnackBar()
       ..showSnackBar(
@@ -15,4 +15,14 @@ extension UnfocusExtension on BuildContext {
         ),
       );
   }
+
+  double get height => MediaQuery.of(this).size.height;
+
+  double get width => MediaQuery.of(this).size.width;
+
+  EdgeInsets get padding => MediaQuery.of(this).padding;
+
+  EdgeInsets get viewInsets => MediaQuery.of(this).viewInsets;
+
+  bool get isKeyboardOpen => viewInsets.bottom > 0;
 }

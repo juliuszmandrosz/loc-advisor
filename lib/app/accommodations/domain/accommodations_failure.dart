@@ -8,5 +8,6 @@ class AccommodationsFailure with _$AccommodationsFailure {
 }
 
 extension AccommodationFailureX on AccommodationsFailure {
-  String get message => when(unexpected: () => 'Server error');
+  String get message =>
+      when(unexpected: () => 'Wystąpił błąd, proszę spróbować ponownie');
 }

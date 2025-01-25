@@ -49,6 +49,7 @@ class ForgotPasswordPage extends StatelessWidget {
                 context.showSnackbarMessage(
                   'Link do resetowania hasła wysłany',
                 );
+
                 await context.replaceRoute(
                   SignInRoute(email: state.email.value),
                 );
