@@ -314,26 +314,3 @@ export const getActivityRecommendations = onCall(
         return recommendations;
     }
 );
-
-
-// async function downloadAndUploadImage(imageUrl: string, fileName: string): Promise<string> {
-//     const response = await axios.get(imageUrl, { responseType: "stream" });
-//     const contentType = response.headers["content-type"];
-//
-//     if (!contentType) {
-//         throw new HttpsError("internal", "Content-Type is missing in the response headers.");
-//     }
-//
-//     const bucket = getStorage().bucket();
-//     const file = bucket.file(fileName);
-//
-//     const writeStream = file.createWriteStream({
-//         metadata: { contentType },
-//     });
-//
-//     response.data.pipe(writeStream);
-//     await finished(writeStream);
-//
-//     await file.makePublic();
-//     return file.publicUrl();
-// }
