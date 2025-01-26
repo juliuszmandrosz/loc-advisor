@@ -35,6 +35,8 @@ import 'package:loc_advisor/app/auth/infrastructure/firebase_auth_facade.dart'
     as _i792;
 import 'package:loc_advisor/app/recommendations/application/accommodation_list_bloc.dart'
     as _i789;
+import 'package:loc_advisor/app/recommendations/application/activity_list_bloc.dart'
+    as _i938;
 import 'package:loc_advisor/app/recommendations/application/recommendations_cubit.dart'
     as _i760;
 import 'package:loc_advisor/app/recommendations/domain/recommendations_facade.dart'
@@ -98,6 +100,8 @@ extension GetItInjectableX on _i174.GetIt {
             gh<_i203.AccommodationsSearchFacade>()));
     gh.factory<_i789.AccommodationListBloc>(
         () => _i789.AccommodationListBloc(gh<_i529.RecommendationsFacade>()));
+    gh.factory<_i938.ActivityListBloc>(
+        () => _i938.ActivityListBloc(gh<_i529.RecommendationsFacade>()));
     return this;
   }
 }

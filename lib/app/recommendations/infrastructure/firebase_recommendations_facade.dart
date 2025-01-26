@@ -4,8 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:loc_advisor/app/accommodations_core/domain/accommodation_recommendations_entity.dart';
 import 'package:loc_advisor/app/accommodations_core/infrastructure/accommodation_recommendations_dto.dart';
-import 'package:loc_advisor/app/accommodations_search/domain/accommodations_search_failure.dart';
+import 'package:loc_advisor/app/activities_core/domain/activity_recommendations_entity.dart';
 import 'package:loc_advisor/app/recommendations/domain/recommendations_facade.dart';
+import 'package:loc_advisor/app/recommendations/domain/recommendations_failure.dart';
 import 'package:logger/logger.dart';
 
 @LazySingleton(as: RecommendationsFacade)
@@ -21,9 +22,8 @@ class FirebaseRecommendationsFacade implements RecommendationsFacade {
   );
 
   @override
-  Future<
-      Either<AccommodationsSearchFailure,
-          List<AccommodationRecommendations>>> fetchAccommodations(
+  Future<Either<RecommendationsFailure, List<AccommodationRecommendations>>>
+      fetchAccommodations(
     String destination, {
     int pageSize = 20,
     AccommodationRecommendations? lastRecommendation,
@@ -62,7 +62,17 @@ class FirebaseRecommendationsFacade implements RecommendationsFacade {
       return right(result.toList());
     } on Exception catch (e) {
       _logger.e(e);
-      return left(AccommodationsSearchFailure.unexpected());
+      return left(RecommendationsFailure.unexpected());
     }
+  }
+
+  @override
+  Future<Either<RecommendationsFailure, List<ActivityRecommendations>>>
+      fetchActivities(
+    String destination, {
+    int pageSize = 20,
+    ActivityRecommendations? lastRecommendation,
+  }) {
+    throw UnimplementedError();
   }
 }
