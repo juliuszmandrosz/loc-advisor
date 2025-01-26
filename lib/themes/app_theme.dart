@@ -14,7 +14,6 @@ class AppTheme {
     return base.copyWith(
       appBarTheme: AppBarTheme(
         backgroundColor: Colors.teal.shade100,
-        toolbarHeight: kToolbarHeight * 1.1,
         shape: RoundedRectangleBorder(
           side: BorderSide(
             color: Colors.teal.shade100,
