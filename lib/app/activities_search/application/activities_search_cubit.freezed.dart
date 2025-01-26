@@ -26,6 +26,8 @@ mixin _$ActivitiesSearchState {
       throw _privateConstructorUsedError;
   bool get isFormValid => throw _privateConstructorUsedError;
   StateStatus get status => throw _privateConstructorUsedError;
+  Option<ActivityRecommendations> get result =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of ActivitiesSearchState
   /// with the given fields replaced by the non-null parameter values.
@@ -48,7 +50,8 @@ abstract class $ActivitiesSearchStateCopyWith<$Res> {
       PreferencesInput atmosphereOption,
       AdditionalNotesInput additionalNotes,
       bool isFormValid,
-      StateStatus status});
+      StateStatus status,
+      Option<ActivityRecommendations> result});
 }
 
 /// @nodoc
@@ -75,6 +78,7 @@ class _$ActivitiesSearchStateCopyWithImpl<$Res,
     Object? additionalNotes = null,
     Object? isFormValid = null,
     Object? status = null,
+    Object? result = null,
   }) {
     return _then(_value.copyWith(
       destination: null == destination
@@ -109,6 +113,10 @@ class _$ActivitiesSearchStateCopyWithImpl<$Res,
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as StateStatus,
+      result: null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as Option<ActivityRecommendations>,
     ) as $Val);
   }
 }
@@ -130,7 +138,8 @@ abstract class _$$ActivitiesSearchStateImplCopyWith<$Res>
       PreferencesInput atmosphereOption,
       AdditionalNotesInput additionalNotes,
       bool isFormValid,
-      StateStatus status});
+      StateStatus status,
+      Option<ActivityRecommendations> result});
 }
 
 /// @nodoc
@@ -155,6 +164,7 @@ class __$$ActivitiesSearchStateImplCopyWithImpl<$Res>
     Object? additionalNotes = null,
     Object? isFormValid = null,
     Object? status = null,
+    Object? result = null,
   }) {
     return _then(_$ActivitiesSearchStateImpl(
       destination: null == destination
@@ -189,6 +199,10 @@ class __$$ActivitiesSearchStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as StateStatus,
+      result: null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as Option<ActivityRecommendations>,
     ));
   }
 }
@@ -204,7 +218,8 @@ class _$ActivitiesSearchStateImpl implements _ActivitiesSearchState {
       required this.atmosphereOption,
       required this.additionalNotes,
       required this.isFormValid,
-      required this.status});
+      required this.status,
+      required this.result});
 
   @override
   final DestinationInput destination;
@@ -222,10 +237,12 @@ class _$ActivitiesSearchStateImpl implements _ActivitiesSearchState {
   final bool isFormValid;
   @override
   final StateStatus status;
+  @override
+  final Option<ActivityRecommendations> result;
 
   @override
   String toString() {
-    return 'ActivitiesSearchState(destination: $destination, dateOption: $dateOption, activityPreferences: $activityPreferences, budgetOption: $budgetOption, atmosphereOption: $atmosphereOption, additionalNotes: $additionalNotes, isFormValid: $isFormValid, status: $status)';
+    return 'ActivitiesSearchState(destination: $destination, dateOption: $dateOption, activityPreferences: $activityPreferences, budgetOption: $budgetOption, atmosphereOption: $atmosphereOption, additionalNotes: $additionalNotes, isFormValid: $isFormValid, status: $status, result: $result)';
   }
 
   @override
@@ -247,7 +264,8 @@ class _$ActivitiesSearchStateImpl implements _ActivitiesSearchState {
                 other.additionalNotes == additionalNotes) &&
             (identical(other.isFormValid, isFormValid) ||
                 other.isFormValid == isFormValid) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.result, result) || other.result == result));
   }
 
   @override
@@ -260,7 +278,8 @@ class _$ActivitiesSearchStateImpl implements _ActivitiesSearchState {
       atmosphereOption,
       additionalNotes,
       isFormValid,
-      status);
+      status,
+      result);
 
   /// Create a copy of ActivitiesSearchState
   /// with the given fields replaced by the non-null parameter values.
@@ -274,14 +293,16 @@ class _$ActivitiesSearchStateImpl implements _ActivitiesSearchState {
 
 abstract class _ActivitiesSearchState implements ActivitiesSearchState {
   const factory _ActivitiesSearchState(
-      {required final DestinationInput destination,
-      required final PreferencesInput dateOption,
-      required final PreferencesInput activityPreferences,
-      required final PreferencesInput budgetOption,
-      required final PreferencesInput atmosphereOption,
-      required final AdditionalNotesInput additionalNotes,
-      required final bool isFormValid,
-      required final StateStatus status}) = _$ActivitiesSearchStateImpl;
+          {required final DestinationInput destination,
+          required final PreferencesInput dateOption,
+          required final PreferencesInput activityPreferences,
+          required final PreferencesInput budgetOption,
+          required final PreferencesInput atmosphereOption,
+          required final AdditionalNotesInput additionalNotes,
+          required final bool isFormValid,
+          required final StateStatus status,
+          required final Option<ActivityRecommendations> result}) =
+      _$ActivitiesSearchStateImpl;
 
   @override
   DestinationInput get destination;
@@ -299,6 +320,8 @@ abstract class _ActivitiesSearchState implements ActivitiesSearchState {
   bool get isFormValid;
   @override
   StateStatus get status;
+  @override
+  Option<ActivityRecommendations> get result;
 
   /// Create a copy of ActivitiesSearchState
   /// with the given fields replaced by the non-null parameter values.

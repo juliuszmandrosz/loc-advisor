@@ -1,8 +1,10 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:loc_advisor/app/activities_core/domain/activity_recommendations_entity.dart';
 import 'package:loc_advisor/app/activities_search/application/activities_request_mapper.dart';
 import 'package:loc_advisor/app/activities_search/domain/activities_search_facade.dart';
 import 'package:loc_advisor/enums/state_status.dart';
@@ -145,8 +147,10 @@ class ActivitiesSearchCubit extends Cubit<ActivitiesSearchState> {
     final result = await _activitiesFacade.getActivityRecommendations(request);
 
     result.fold(
-      (failure) => emit(state.copyWith(status: StateStatus.success)),
-      (success) => emit(state.copyWith(status: StateStatus.success)),
+      (_) => emit(state.copyWith(status: StateStatus.failure)),
+      (result) => emit(
+        state.copyWith(status: StateStatus.success, result: some(result)),
+      ),
     );
   }
 }

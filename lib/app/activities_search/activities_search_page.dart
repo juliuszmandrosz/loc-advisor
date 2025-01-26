@@ -1,4 +1,4 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -6,6 +6,7 @@ import 'package:loc_advisor/app/activities_search/application/activities_search_
 import 'package:loc_advisor/enums/state_status.dart';
 import 'package:loc_advisor/extensions/build_context_extensions.dart';
 import 'package:loc_advisor/injection_container/injectable.dart';
+import 'package:loc_advisor/router/app_router.gr.dart';
 import 'package:loc_advisor/shared/widgets/loc_advisor_choice_chips.dart';
 import 'package:loc_advisor/shared/widgets/loc_advisor_filter_chips.dart';
 import 'package:loc_advisor/shared/widgets/loc_advisor_text_area.dart';
@@ -35,8 +36,13 @@ class ActivitiesSearchPage extends StatelessWidget {
                 );
               case StateStatus.success:
                 context.loaderOverlay.hide();
-                context.showSnackbarMessage(
-                  'Sukces, generujemy!',
+                state.result.fold(
+                  () => context.showSnackbarMessage(
+                    'Wystąpił błąd, proszę spróbować ponownie',
+                  ),
+                  (result) async => await context.pushRoute(
+                    ActivityRecommendationsRoute(recommendations: result),
+                  ),
                 );
             }
           },

@@ -11,6 +11,7 @@ class ActivitiesSearchState with _$ActivitiesSearchState {
     required AdditionalNotesInput additionalNotes,
     required bool isFormValid,
     required StateStatus status,
+    required Option<ActivityRecommendations> result,
   }) = _ActivitiesSearchState;
 
   factory ActivitiesSearchState.initial() => ActivitiesSearchState(
@@ -91,5 +92,6 @@ class ActivitiesSearchState with _$ActivitiesSearchState {
         additionalNotes: AdditionalNotesInput.pure(),
         isFormValid: true,
         status: StateStatus.initial,
+        result: none(),
       );
 }
