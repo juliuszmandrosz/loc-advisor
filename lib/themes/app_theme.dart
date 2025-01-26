@@ -76,12 +76,20 @@ class AppTheme {
           horizontal: 16,
           vertical: 12,
         ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(color: Colors.grey, width: 0.5),
+        ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide.none,
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(color: Colors.grey, width: 0.5),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(color: Colors.grey, width: 0.5),
         ),
         hintStyle: TextStyle(
-          color: base.colorScheme.onSecondaryContainer.withOpacity(0.6),
+          color: base.hintColor.withOpacity(0.6),
         ),
       ),
       popupMenuTheme: PopupMenuThemeData(

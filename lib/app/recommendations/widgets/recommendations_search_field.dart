@@ -27,14 +27,6 @@ class RecommendationsSearchField extends HookWidget {
       controller: textController,
       onSubmitted: (phrase) async => onSubmit(phrase),
       decoration: InputDecoration(
-        disabledBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          borderSide: BorderSide(color: context.shadowColor, width: .5),
-        ),
-        border: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          borderSide: BorderSide(color: context.shadowColor, width: .5),
-        ),
         hintMaxLines: 1,
         hintText: hintText,
         hintStyle: context.titleSmall.copyWith(color: context.hintColor),
