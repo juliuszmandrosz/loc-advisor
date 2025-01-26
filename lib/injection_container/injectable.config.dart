@@ -37,6 +37,10 @@ import 'package:loc_advisor/app/recommendations/application/accommodation_list_b
     as _i789;
 import 'package:loc_advisor/app/recommendations/application/recommendations_cubit.dart'
     as _i760;
+import 'package:loc_advisor/app/recommendations/domain/recommendations_facade.dart'
+    as _i529;
+import 'package:loc_advisor/app/recommendations/infrastructure/firebase_recommendations_facade.dart'
+    as _i598;
 import 'package:loc_advisor/modules/firebase_module.dart' as _i686;
 import 'package:loc_advisor/modules/logger_module.dart' as _i656;
 import 'package:logger/logger.dart' as _i974;
@@ -76,20 +80,24 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i403.FirebaseActivitiesSearchFacade());
     gh.factory<_i185.AuthBloc>(
         () => _i185.AuthBloc(authFacade: gh<_i433.AuthFacade>()));
-    gh.factory<_i927.ActivitiesSearchCubit>(
-        () => _i927.ActivitiesSearchCubit(gh<_i279.ActivitiesSearchFacade>()));
     gh.lazySingleton<_i203.AccommodationsSearchFacade>(
         () => _i835.FirebaseAccommodationsSearchFacade(
               gh<_i809.FirebaseFunctions>(),
               gh<_i974.Logger>(),
-              gh<_i59.FirebaseAuth>(),
-              gh<_i974.FirebaseFirestore>(),
             ));
-    gh.factory<_i789.AccommodationListBloc>(() =>
-        _i789.AccommodationListBloc(gh<_i203.AccommodationsSearchFacade>()));
+    gh.factory<_i927.ActivitiesSearchCubit>(
+        () => _i927.ActivitiesSearchCubit(gh<_i279.ActivitiesSearchFacade>()));
+    gh.lazySingleton<_i529.RecommendationsFacade>(
+        () => _i598.FirebaseRecommendationsFacade(
+              gh<_i974.FirebaseFirestore>(),
+              gh<_i59.FirebaseAuth>(),
+              gh<_i974.Logger>(),
+            ));
     gh.factory<_i494.AccommodationsSearchCubit>(() =>
         _i494.AccommodationsSearchCubit(
             gh<_i203.AccommodationsSearchFacade>()));
+    gh.factory<_i789.AccommodationListBloc>(
+        () => _i789.AccommodationListBloc(gh<_i529.RecommendationsFacade>()));
     return this;
   }
 }

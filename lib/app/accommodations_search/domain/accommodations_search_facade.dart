@@ -6,12 +6,4 @@ import 'package:loc_advisor/app/accommodations_search/domain/entities/accommodat
 abstract class AccommodationsSearchFacade {
   Future<Either<AccommodationsSearchFailure, AccommodationRecommendations>>
       getAccommodationRecommendations(AccommodationRequest request);
-
-  Future<
-      Either<AccommodationsSearchFailure,
-          List<AccommodationRecommendations>>> fetchAccommodations(
-    String destination, {
-    int pageSize = 20,
-    AccommodationRecommendations? lastRecommendation,
-  });
 }

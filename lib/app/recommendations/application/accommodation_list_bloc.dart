@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:loc_advisor/app/accommodations_core/domain/accommodation_recommendations_entity.dart';
-import 'package:loc_advisor/app/accommodations_search/domain/accommodations_search_facade.dart';
+import 'package:loc_advisor/app/recommendations/domain/recommendations_facade.dart';
 import 'package:loc_advisor/app/transformers/throttle_droppable.dart';
 import 'package:loc_advisor/enums/state_status.dart';
 
@@ -17,9 +17,9 @@ const _pageSize = 15;
 @injectable
 class AccommodationListBloc
     extends Bloc<AccommodationListEvent, AccommodationListState> {
-  final AccommodationsSearchFacade _accommodationsFacade;
+  final RecommendationsFacade _recommendationsFacade;
 
-  AccommodationListBloc(this._accommodationsFacade)
+  AccommodationListBloc(this._recommendationsFacade)
       : super(AccommodationListState.initial()) {
     on<_Fetched>(_onFetched);
     on<_DestinationChanged>(_onDestinationChanged);
@@ -42,7 +42,7 @@ class AccommodationListBloc
       ),
     );
 
-    final result = await _accommodationsFacade.fetchAccommodations(
+    final result = await _recommendationsFacade.fetchAccommodations(
       state.destination,
       pageSize: _pageSize,
     );
@@ -72,7 +72,7 @@ class AccommodationListBloc
       ),
     );
 
-    final result = await _accommodationsFacade.fetchAccommodations(
+    final result = await _recommendationsFacade.fetchAccommodations(
       event.destination,
       pageSize: _pageSize,
     );
@@ -99,7 +99,7 @@ class AccommodationListBloc
 
     emit(state.copyWith(nextPageStatus: StateStatus.loading));
 
-    final result = await _accommodationsFacade.fetchAccommodations(
+    final result = await _recommendationsFacade.fetchAccommodations(
       state.destination,
       pageSize: _pageSize,
       lastRecommendation: state.recommendations.last,
