@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:loc_advisor/extensions/build_context_extensions.dart';
-import 'package:loc_advisor/themes/theme_extensions.dart';
 
 class RecommendationsSearchField extends HookWidget {
   final Future<void> Function(String destination) onSubmit;
@@ -29,7 +28,6 @@ class RecommendationsSearchField extends HookWidget {
       decoration: InputDecoration(
         hintMaxLines: 1,
         hintText: hintText,
-        hintStyle: context.titleSmall.copyWith(color: context.hintColor),
         prefixIcon: const Icon(Icons.search),
         suffixIcon: destination.isEmpty
             ? null

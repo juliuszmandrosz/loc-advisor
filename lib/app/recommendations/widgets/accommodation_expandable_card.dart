@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:loc_advisor/app/accommodations_core/domain/accommodation_entity.dart';
+import 'package:loc_advisor/shared/widgets/loc_advisor_recommendation_list_tile.dart';
 
 class AccommodationExpandableCard extends StatelessWidget {
   final Accommodation accommodation;
@@ -25,46 +27,34 @@ class AccommodationExpandableCard extends StatelessWidget {
           ),
         ),
         children: [
-          _buildInfoRow(
-            icon: Icons.info,
-            color: Colors.blueAccent,
+          LocAdvisorRecommendationListTile(
+            icon: FontAwesomeIcons.circleInfo,
+            color: Colors.blueGrey.shade700,
             text: accommodation.description,
           ),
-          _buildInfoRow(
-            icon: Icons.location_on,
-            color: Colors.teal,
+          LocAdvisorRecommendationListTile(
+            icon: FontAwesomeIcons.locationDot,
+            color: Colors.teal.shade700,
             text: accommodation.localVibe,
           ),
-          _buildInfoRow(
-            icon: Icons.security,
-            color: Colors.orange,
+          LocAdvisorRecommendationListTile(
+            icon: FontAwesomeIcons.shieldHalved,
+            color: Colors.orange.shade700,
             text: accommodation.safetyTips,
           ),
-          _buildInfoRow(
-            icon: Icons.directions_bus,
-            color: Colors.blue,
+          LocAdvisorRecommendationListTile(
+            icon: FontAwesomeIcons.bus,
+            color: Colors.blue.shade700,
             text: accommodation.transportTips,
           ),
-          _buildInfoRow(
-            icon: Icons.attach_money,
-            color: Colors.green,
+          LocAdvisorRecommendationListTile(
+            icon: FontAwesomeIcons.wallet,
+            color: Colors.green.shade700,
             text: accommodation.budgetTips,
           ),
           const SizedBox(height: 8),
         ],
       ),
-    );
-  }
-
-  Widget _buildInfoRow({
-    required IconData icon,
-    required Color color,
-    required String text,
-  }) {
-    return ListTile(
-      dense: true,
-      leading: Icon(icon, color: color),
-      title: Text(text),
     );
   }
 }

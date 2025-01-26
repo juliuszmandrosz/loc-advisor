@@ -88,9 +88,6 @@ class AppTheme {
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(color: Colors.grey, width: 0.5),
         ),
-        hintStyle: TextStyle(
-          color: base.hintColor.withOpacity(0.6),
-        ),
       ),
       popupMenuTheme: PopupMenuThemeData(
         color: base.colorScheme.surface,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:loc_advisor/app/activities_core/domain/activity_entity.dart';
+import 'package:loc_advisor/shared/widgets/loc_advisor_recommendation_list_tile.dart';
 
 class ActivityExpandableCard extends StatelessWidget {
   final Activity activity;
@@ -25,46 +27,34 @@ class ActivityExpandableCard extends StatelessWidget {
           ),
         ),
         children: [
-          _buildInfoRow(
-            icon: Icons.info,
-            color: Colors.blueAccent,
+          LocAdvisorRecommendationListTile(
+            icon: FontAwesomeIcons.circleInfo,
+            color: Colors.blueGrey.shade700,
             text: activity.description,
           ),
-          _buildInfoRow(
-            icon: Icons.timelapse,
-            color: Colors.teal,
+          LocAdvisorRecommendationListTile(
+            icon: FontAwesomeIcons.clock,
+            color: Colors.teal.shade700,
             text: activity.bestTimeToVisit,
           ),
-          _buildInfoRow(
-            icon: Icons.security,
-            color: Colors.orange,
+          LocAdvisorRecommendationListTile(
+            icon: FontAwesomeIcons.shieldHalved,
+            color: Colors.orange.shade700,
             text: activity.safetyTips,
           ),
-          _buildInfoRow(
-            icon: Icons.map,
-            color: Colors.blue,
+          LocAdvisorRecommendationListTile(
+            icon: FontAwesomeIcons.mapLocationDot,
+            color: Colors.blue.shade700,
             text: activity.combinationTips,
           ),
-          _buildInfoRow(
-            icon: Icons.attach_money,
-            color: Colors.green,
+          LocAdvisorRecommendationListTile(
+            icon: FontAwesomeIcons.wallet,
+            color: Colors.green.shade700,
             text: activity.budgetTips,
           ),
           const SizedBox(height: 8),
         ],
       ),
-    );
-  }
-
-  Widget _buildInfoRow({
-    required IconData icon,
-    required Color color,
-    required String text,
-  }) {
-    return ListTile(
-      dense: true,
-      leading: Icon(icon, color: color),
-      title: Text(text),
     );
   }
 }

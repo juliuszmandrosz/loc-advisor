@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:loc_advisor/app/activities_core/domain/activity_entity.dart';
 
 class ActivityCard extends StatelessWidget {
@@ -42,53 +43,49 @@ class ActivityCard extends StatelessWidget {
             const SizedBox(height: 20),
             Row(
               children: [
-                const Icon(Icons.timelapse, color: Colors.teal),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    activity.bestTimeToVisit,
-                    style: const TextStyle(fontSize: 14),
-                  ),
+                FaIcon(
+                  FontAwesomeIcons.clock,
+                  color: Colors.teal.shade700,
+                  size: 20,
                 ),
+                const SizedBox(width: 16),
+                Expanded(child: Text(activity.bestTimeToVisit)),
               ],
             ),
             const SizedBox(height: 16),
             Row(
               children: [
-                const Icon(Icons.security, color: Colors.orange),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    activity.safetyTips,
-                    style: const TextStyle(fontSize: 14),
-                  ),
+                FaIcon(
+                  FontAwesomeIcons.shieldHalved,
+                  color: Colors.orange.shade700,
+                  size: 20,
                 ),
+                const SizedBox(width: 16),
+                Expanded(child: Text(activity.safetyTips)),
               ],
             ),
             const SizedBox(height: 16),
             Row(
               children: [
-                const Icon(Icons.map, color: Colors.blue),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    activity.combinationTips,
-                    style: const TextStyle(fontSize: 14),
-                  ),
+                FaIcon(
+                  FontAwesomeIcons.mapLocationDot,
+                  color: Colors.blue.shade700,
+                  size: 20,
                 ),
+                const SizedBox(width: 16),
+                Expanded(child: Text(activity.combinationTips)),
               ],
             ),
             const SizedBox(height: 16),
             Row(
               children: [
-                const Icon(Icons.attach_money, color: Colors.green),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    activity.budgetTips,
-                    style: const TextStyle(fontSize: 14),
-                  ),
+                FaIcon(
+                  FontAwesomeIcons.wallet,
+                  color: Colors.green.shade700,
+                  size: 20,
                 ),
+                const SizedBox(width: 16),
+                Expanded(child: Text(activity.budgetTips)),
               ],
             ),
           ],
