@@ -8,6 +8,7 @@ class AccommodationListState with _$AccommodationListState {
     required List<AccommodationRecommendations> recommendations,
     required bool hasReachedMax,
     required String destination,
+    required StateStatus deleteStatus,
   }) = _AccommodationListState;
 
   factory AccommodationListState.initial() => AccommodationListState(
@@ -16,5 +17,6 @@ class AccommodationListState with _$AccommodationListState {
         hasReachedMax: false,
         recommendations: [],
         destination: '',
+        deleteStatus: StateStatus.initial,
       );
 }

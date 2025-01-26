@@ -10,4 +10,7 @@ class AccommodationListEvent with _$AccommodationListEvent {
       _DestinationChanged;
 
   const factory AccommodationListEvent.nextPageFetched() = _NextPageFetched;
+
+  const factory AccommodationListEvent.deleted(
+      AccommodationRecommendations accommodation) = _Deleted;
 }

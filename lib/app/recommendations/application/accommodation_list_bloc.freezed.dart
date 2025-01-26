@@ -21,6 +21,8 @@ mixin _$AccommodationListEvent {
     required TResult Function(String destination) fetched,
     required TResult Function(String destination) destinationChanged,
     required TResult Function() nextPageFetched,
+    required TResult Function(AccommodationRecommendations accommodation)
+        deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +30,7 @@ mixin _$AccommodationListEvent {
     TResult? Function(String destination)? fetched,
     TResult? Function(String destination)? destinationChanged,
     TResult? Function()? nextPageFetched,
+    TResult? Function(AccommodationRecommendations accommodation)? deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +38,7 @@ mixin _$AccommodationListEvent {
     TResult Function(String destination)? fetched,
     TResult Function(String destination)? destinationChanged,
     TResult Function()? nextPageFetched,
+    TResult Function(AccommodationRecommendations accommodation)? deleted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +47,7 @@ mixin _$AccommodationListEvent {
     required TResult Function(_Fetched value) fetched,
     required TResult Function(_DestinationChanged value) destinationChanged,
     required TResult Function(_NextPageFetched value) nextPageFetched,
+    required TResult Function(_Deleted value) deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +55,7 @@ mixin _$AccommodationListEvent {
     TResult? Function(_Fetched value)? fetched,
     TResult? Function(_DestinationChanged value)? destinationChanged,
     TResult? Function(_NextPageFetched value)? nextPageFetched,
+    TResult? Function(_Deleted value)? deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +63,7 @@ mixin _$AccommodationListEvent {
     TResult Function(_Fetched value)? fetched,
     TResult Function(_DestinationChanged value)? destinationChanged,
     TResult Function(_NextPageFetched value)? nextPageFetched,
+    TResult Function(_Deleted value)? deleted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -157,6 +164,8 @@ class _$FetchedImpl implements _Fetched {
     required TResult Function(String destination) fetched,
     required TResult Function(String destination) destinationChanged,
     required TResult Function() nextPageFetched,
+    required TResult Function(AccommodationRecommendations accommodation)
+        deleted,
   }) {
     return fetched(destination);
   }
@@ -167,6 +176,7 @@ class _$FetchedImpl implements _Fetched {
     TResult? Function(String destination)? fetched,
     TResult? Function(String destination)? destinationChanged,
     TResult? Function()? nextPageFetched,
+    TResult? Function(AccommodationRecommendations accommodation)? deleted,
   }) {
     return fetched?.call(destination);
   }
@@ -177,6 +187,7 @@ class _$FetchedImpl implements _Fetched {
     TResult Function(String destination)? fetched,
     TResult Function(String destination)? destinationChanged,
     TResult Function()? nextPageFetched,
+    TResult Function(AccommodationRecommendations accommodation)? deleted,
     required TResult orElse(),
   }) {
     if (fetched != null) {
@@ -191,6 +202,7 @@ class _$FetchedImpl implements _Fetched {
     required TResult Function(_Fetched value) fetched,
     required TResult Function(_DestinationChanged value) destinationChanged,
     required TResult Function(_NextPageFetched value) nextPageFetched,
+    required TResult Function(_Deleted value) deleted,
   }) {
     return fetched(this);
   }
@@ -201,6 +213,7 @@ class _$FetchedImpl implements _Fetched {
     TResult? Function(_Fetched value)? fetched,
     TResult? Function(_DestinationChanged value)? destinationChanged,
     TResult? Function(_NextPageFetched value)? nextPageFetched,
+    TResult? Function(_Deleted value)? deleted,
   }) {
     return fetched?.call(this);
   }
@@ -211,6 +224,7 @@ class _$FetchedImpl implements _Fetched {
     TResult Function(_Fetched value)? fetched,
     TResult Function(_DestinationChanged value)? destinationChanged,
     TResult Function(_NextPageFetched value)? nextPageFetched,
+    TResult Function(_Deleted value)? deleted,
     required TResult orElse(),
   }) {
     if (fetched != null) {
@@ -305,6 +319,8 @@ class _$DestinationChangedImpl implements _DestinationChanged {
     required TResult Function(String destination) fetched,
     required TResult Function(String destination) destinationChanged,
     required TResult Function() nextPageFetched,
+    required TResult Function(AccommodationRecommendations accommodation)
+        deleted,
   }) {
     return destinationChanged(destination);
   }
@@ -315,6 +331,7 @@ class _$DestinationChangedImpl implements _DestinationChanged {
     TResult? Function(String destination)? fetched,
     TResult? Function(String destination)? destinationChanged,
     TResult? Function()? nextPageFetched,
+    TResult? Function(AccommodationRecommendations accommodation)? deleted,
   }) {
     return destinationChanged?.call(destination);
   }
@@ -325,6 +342,7 @@ class _$DestinationChangedImpl implements _DestinationChanged {
     TResult Function(String destination)? fetched,
     TResult Function(String destination)? destinationChanged,
     TResult Function()? nextPageFetched,
+    TResult Function(AccommodationRecommendations accommodation)? deleted,
     required TResult orElse(),
   }) {
     if (destinationChanged != null) {
@@ -339,6 +357,7 @@ class _$DestinationChangedImpl implements _DestinationChanged {
     required TResult Function(_Fetched value) fetched,
     required TResult Function(_DestinationChanged value) destinationChanged,
     required TResult Function(_NextPageFetched value) nextPageFetched,
+    required TResult Function(_Deleted value) deleted,
   }) {
     return destinationChanged(this);
   }
@@ -349,6 +368,7 @@ class _$DestinationChangedImpl implements _DestinationChanged {
     TResult? Function(_Fetched value)? fetched,
     TResult? Function(_DestinationChanged value)? destinationChanged,
     TResult? Function(_NextPageFetched value)? nextPageFetched,
+    TResult? Function(_Deleted value)? deleted,
   }) {
     return destinationChanged?.call(this);
   }
@@ -359,6 +379,7 @@ class _$DestinationChangedImpl implements _DestinationChanged {
     TResult Function(_Fetched value)? fetched,
     TResult Function(_DestinationChanged value)? destinationChanged,
     TResult Function(_NextPageFetched value)? nextPageFetched,
+    TResult Function(_Deleted value)? deleted,
     required TResult orElse(),
   }) {
     if (destinationChanged != null) {
@@ -425,6 +446,8 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
     required TResult Function(String destination) fetched,
     required TResult Function(String destination) destinationChanged,
     required TResult Function() nextPageFetched,
+    required TResult Function(AccommodationRecommendations accommodation)
+        deleted,
   }) {
     return nextPageFetched();
   }
@@ -435,6 +458,7 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
     TResult? Function(String destination)? fetched,
     TResult? Function(String destination)? destinationChanged,
     TResult? Function()? nextPageFetched,
+    TResult? Function(AccommodationRecommendations accommodation)? deleted,
   }) {
     return nextPageFetched?.call();
   }
@@ -445,6 +469,7 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
     TResult Function(String destination)? fetched,
     TResult Function(String destination)? destinationChanged,
     TResult Function()? nextPageFetched,
+    TResult Function(AccommodationRecommendations accommodation)? deleted,
     required TResult orElse(),
   }) {
     if (nextPageFetched != null) {
@@ -459,6 +484,7 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
     required TResult Function(_Fetched value) fetched,
     required TResult Function(_DestinationChanged value) destinationChanged,
     required TResult Function(_NextPageFetched value) nextPageFetched,
+    required TResult Function(_Deleted value) deleted,
   }) {
     return nextPageFetched(this);
   }
@@ -469,6 +495,7 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
     TResult? Function(_Fetched value)? fetched,
     TResult? Function(_DestinationChanged value)? destinationChanged,
     TResult? Function(_NextPageFetched value)? nextPageFetched,
+    TResult? Function(_Deleted value)? deleted,
   }) {
     return nextPageFetched?.call(this);
   }
@@ -479,6 +506,7 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
     TResult Function(_Fetched value)? fetched,
     TResult Function(_DestinationChanged value)? destinationChanged,
     TResult Function(_NextPageFetched value)? nextPageFetched,
+    TResult Function(_Deleted value)? deleted,
     required TResult orElse(),
   }) {
     if (nextPageFetched != null) {
@@ -493,6 +521,174 @@ abstract class _NextPageFetched implements AccommodationListEvent {
 }
 
 /// @nodoc
+abstract class _$$DeletedImplCopyWith<$Res> {
+  factory _$$DeletedImplCopyWith(
+          _$DeletedImpl value, $Res Function(_$DeletedImpl) then) =
+      __$$DeletedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AccommodationRecommendations accommodation});
+
+  $AccommodationRecommendationsCopyWith<$Res> get accommodation;
+}
+
+/// @nodoc
+class __$$DeletedImplCopyWithImpl<$Res>
+    extends _$AccommodationListEventCopyWithImpl<$Res, _$DeletedImpl>
+    implements _$$DeletedImplCopyWith<$Res> {
+  __$$DeletedImplCopyWithImpl(
+      _$DeletedImpl _value, $Res Function(_$DeletedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AccommodationListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accommodation = null,
+  }) {
+    return _then(_$DeletedImpl(
+      null == accommodation
+          ? _value.accommodation
+          : accommodation // ignore: cast_nullable_to_non_nullable
+              as AccommodationRecommendations,
+    ));
+  }
+
+  /// Create a copy of AccommodationListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AccommodationRecommendationsCopyWith<$Res> get accommodation {
+    return $AccommodationRecommendationsCopyWith<$Res>(_value.accommodation,
+        (value) {
+      return _then(_value.copyWith(accommodation: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$DeletedImpl implements _Deleted {
+  const _$DeletedImpl(this.accommodation);
+
+  @override
+  final AccommodationRecommendations accommodation;
+
+  @override
+  String toString() {
+    return 'AccommodationListEvent.deleted(accommodation: $accommodation)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeletedImpl &&
+            (identical(other.accommodation, accommodation) ||
+                other.accommodation == accommodation));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, accommodation);
+
+  /// Create a copy of AccommodationListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeletedImplCopyWith<_$DeletedImpl> get copyWith =>
+      __$$DeletedImplCopyWithImpl<_$DeletedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String destination) fetched,
+    required TResult Function(String destination) destinationChanged,
+    required TResult Function() nextPageFetched,
+    required TResult Function(AccommodationRecommendations accommodation)
+        deleted,
+  }) {
+    return deleted(accommodation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String destination)? fetched,
+    TResult? Function(String destination)? destinationChanged,
+    TResult? Function()? nextPageFetched,
+    TResult? Function(AccommodationRecommendations accommodation)? deleted,
+  }) {
+    return deleted?.call(accommodation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String destination)? fetched,
+    TResult Function(String destination)? destinationChanged,
+    TResult Function()? nextPageFetched,
+    TResult Function(AccommodationRecommendations accommodation)? deleted,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted(accommodation);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetched value) fetched,
+    required TResult Function(_DestinationChanged value) destinationChanged,
+    required TResult Function(_NextPageFetched value) nextPageFetched,
+    required TResult Function(_Deleted value) deleted,
+  }) {
+    return deleted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetched value)? fetched,
+    TResult? Function(_DestinationChanged value)? destinationChanged,
+    TResult? Function(_NextPageFetched value)? nextPageFetched,
+    TResult? Function(_Deleted value)? deleted,
+  }) {
+    return deleted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetched value)? fetched,
+    TResult Function(_DestinationChanged value)? destinationChanged,
+    TResult Function(_NextPageFetched value)? nextPageFetched,
+    TResult Function(_Deleted value)? deleted,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Deleted implements AccommodationListEvent {
+  const factory _Deleted(final AccommodationRecommendations accommodation) =
+      _$DeletedImpl;
+
+  AccommodationRecommendations get accommodation;
+
+  /// Create a copy of AccommodationListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DeletedImplCopyWith<_$DeletedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$AccommodationListState {
   StateStatus get getAccommodationsStatus => throw _privateConstructorUsedError;
   StateStatus get nextPageStatus => throw _privateConstructorUsedError;
@@ -500,6 +696,7 @@ mixin _$AccommodationListState {
       throw _privateConstructorUsedError;
   bool get hasReachedMax => throw _privateConstructorUsedError;
   String get destination => throw _privateConstructorUsedError;
+  StateStatus get deleteStatus => throw _privateConstructorUsedError;
 
   /// Create a copy of AccommodationListState
   /// with the given fields replaced by the non-null parameter values.
@@ -519,7 +716,8 @@ abstract class $AccommodationListStateCopyWith<$Res> {
       StateStatus nextPageStatus,
       List<AccommodationRecommendations> recommendations,
       bool hasReachedMax,
-      String destination});
+      String destination,
+      StateStatus deleteStatus});
 }
 
 /// @nodoc
@@ -543,6 +741,7 @@ class _$AccommodationListStateCopyWithImpl<$Res,
     Object? recommendations = null,
     Object? hasReachedMax = null,
     Object? destination = null,
+    Object? deleteStatus = null,
   }) {
     return _then(_value.copyWith(
       getAccommodationsStatus: null == getAccommodationsStatus
@@ -565,6 +764,10 @@ class _$AccommodationListStateCopyWithImpl<$Res,
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
               as String,
+      deleteStatus: null == deleteStatus
+          ? _value.deleteStatus
+          : deleteStatus // ignore: cast_nullable_to_non_nullable
+              as StateStatus,
     ) as $Val);
   }
 }
@@ -583,7 +786,8 @@ abstract class _$$AccommodationListStateImplCopyWith<$Res>
       StateStatus nextPageStatus,
       List<AccommodationRecommendations> recommendations,
       bool hasReachedMax,
-      String destination});
+      String destination,
+      StateStatus deleteStatus});
 }
 
 /// @nodoc
@@ -606,6 +810,7 @@ class __$$AccommodationListStateImplCopyWithImpl<$Res>
     Object? recommendations = null,
     Object? hasReachedMax = null,
     Object? destination = null,
+    Object? deleteStatus = null,
   }) {
     return _then(_$AccommodationListStateImpl(
       getAccommodationsStatus: null == getAccommodationsStatus
@@ -628,6 +833,10 @@ class __$$AccommodationListStateImplCopyWithImpl<$Res>
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
               as String,
+      deleteStatus: null == deleteStatus
+          ? _value.deleteStatus
+          : deleteStatus // ignore: cast_nullable_to_non_nullable
+              as StateStatus,
     ));
   }
 }
@@ -640,7 +849,8 @@ class _$AccommodationListStateImpl implements _AccommodationListState {
       required this.nextPageStatus,
       required final List<AccommodationRecommendations> recommendations,
       required this.hasReachedMax,
-      required this.destination})
+      required this.destination,
+      required this.deleteStatus})
       : _recommendations = recommendations;
 
   @override
@@ -659,10 +869,12 @@ class _$AccommodationListStateImpl implements _AccommodationListState {
   final bool hasReachedMax;
   @override
   final String destination;
+  @override
+  final StateStatus deleteStatus;
 
   @override
   String toString() {
-    return 'AccommodationListState(getAccommodationsStatus: $getAccommodationsStatus, nextPageStatus: $nextPageStatus, recommendations: $recommendations, hasReachedMax: $hasReachedMax, destination: $destination)';
+    return 'AccommodationListState(getAccommodationsStatus: $getAccommodationsStatus, nextPageStatus: $nextPageStatus, recommendations: $recommendations, hasReachedMax: $hasReachedMax, destination: $destination, deleteStatus: $deleteStatus)';
   }
 
   @override
@@ -680,7 +892,9 @@ class _$AccommodationListStateImpl implements _AccommodationListState {
             (identical(other.hasReachedMax, hasReachedMax) ||
                 other.hasReachedMax == hasReachedMax) &&
             (identical(other.destination, destination) ||
-                other.destination == destination));
+                other.destination == destination) &&
+            (identical(other.deleteStatus, deleteStatus) ||
+                other.deleteStatus == deleteStatus));
   }
 
   @override
@@ -690,7 +904,8 @@ class _$AccommodationListStateImpl implements _AccommodationListState {
       nextPageStatus,
       const DeepCollectionEquality().hash(_recommendations),
       hasReachedMax,
-      destination);
+      destination,
+      deleteStatus);
 
   /// Create a copy of AccommodationListState
   /// with the given fields replaced by the non-null parameter values.
@@ -708,7 +923,8 @@ abstract class _AccommodationListState implements AccommodationListState {
       required final StateStatus nextPageStatus,
       required final List<AccommodationRecommendations> recommendations,
       required final bool hasReachedMax,
-      required final String destination}) = _$AccommodationListStateImpl;
+      required final String destination,
+      required final StateStatus deleteStatus}) = _$AccommodationListStateImpl;
 
   @override
   StateStatus get getAccommodationsStatus;
@@ -720,6 +936,8 @@ abstract class _AccommodationListState implements AccommodationListState {
   bool get hasReachedMax;
   @override
   String get destination;
+  @override
+  StateStatus get deleteStatus;
 
   /// Create a copy of AccommodationListState
   /// with the given fields replaced by the non-null parameter values.

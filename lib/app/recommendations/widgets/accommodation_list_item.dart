@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:loc_advisor/app/accommodations_core/domain/accommodation_recommendations_entity.dart';
+import 'package:loc_advisor/app/recommendations/application/accommodation_list_bloc.dart';
 import 'package:loc_advisor/app/recommendations/widgets/accommodation_expandable_card.dart';
+import 'package:loc_advisor/extensions/build_context_extensions.dart';
 import 'package:loc_advisor/themes/theme_extensions.dart';
 
 class AccommodationListItem extends StatelessWidget {
@@ -34,7 +37,15 @@ class AccommodationListItem extends StatelessWidget {
                 ),
                 IconButton(
                   iconSize: 18,
-                  onPressed: () {},
+                  onPressed: () async {
+                    final confirm =
+                        await context.showDeleteConfirmationDialog();
+                    if (confirm == true && context.mounted) {
+                      context
+                          .read<AccommodationListBloc>()
+                          .add(AccommodationListEvent.deleted(recommendation));
+                    }
+                  },
                   icon: FaIcon(FontAwesomeIcons.trashCan),
                 ),
               ],

@@ -8,6 +8,7 @@ class ActivityListState with _$ActivityListState {
     required List<ActivityRecommendations> activities,
     required bool hasReachedMax,
     required String destination,
+    required StateStatus deleteStatus,
   }) = _ActivityListState;
 
   factory ActivityListState.initial() => ActivityListState(
@@ -16,5 +17,6 @@ class ActivityListState with _$ActivityListState {
         hasReachedMax: false,
         activities: [],
         destination: '',
+        deleteStatus: StateStatus.initial,
       );
 }

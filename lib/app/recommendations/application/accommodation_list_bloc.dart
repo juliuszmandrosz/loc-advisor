@@ -27,6 +27,7 @@ class AccommodationListBloc
       _onNextPageFetched,
       transformer: throttleDroppable(),
     );
+    on<_Deleted>(_onDeleted);
   }
 
   FutureOr<void> _onFetched(
@@ -114,6 +115,29 @@ class AccommodationListBloc
           hasReachedMax: result.length != _pageSize,
         ),
       ),
+    );
+  }
+
+  FutureOr<void> _onDeleted(
+    _Deleted event,
+    Emitter<AccommodationListState> emit,
+  ) async {
+    emit(state.copyWith(deleteStatus: StateStatus.loading));
+
+    final result =
+        await _recommendationsFacade.deleteAccommodation(event.accommodation);
+
+    result.fold(
+      (_) => emit(state.copyWith(deleteStatus: StateStatus.failure)),
+      (_) {
+        emit(
+          state.copyWith(deleteStatus: StateStatus.success, recommendations: [
+            ...state.recommendations.where(
+              (r) => r.id != event.accommodation.id,
+            )
+          ]),
+        );
+      },
     );
   }
 }

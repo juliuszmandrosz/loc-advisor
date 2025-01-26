@@ -17,4 +17,12 @@ abstract class RecommendationsFacade {
     int pageSize = 20,
     ActivityRecommendations? lastRecommendation,
   });
+
+  Future<Either<RecommendationsFailure, Unit>> deleteAccommodation(
+    AccommodationRecommendations accommodation,
+  );
+
+  Future<Either<RecommendationsFailure, Unit>> deleteActivity(
+    ActivityRecommendations activity,
+  );
 }

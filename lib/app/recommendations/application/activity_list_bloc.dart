@@ -26,6 +26,7 @@ class ActivityListBloc extends Bloc<ActivityListEvent, ActivityListState> {
       _onNextPageFetched,
       transformer: throttleDroppable(),
     );
+    on<_Deleted>(_onDeleted);
   }
 
   FutureOr<void> _onFetched(
@@ -111,6 +112,27 @@ class ActivityListBloc extends Bloc<ActivityListEvent, ActivityListState> {
           nextPageStatus: StateStatus.success,
           activities: [...state.activities, ...result],
           hasReachedMax: result.length != _pageSize,
+        ),
+      ),
+    );
+  }
+
+  FutureOr<void> _onDeleted(
+    _Deleted event,
+    Emitter<ActivityListState> emit,
+  ) async {
+    emit(state.copyWith(deleteStatus: StateStatus.loading));
+
+    final result = await _recommendationsFacade.deleteActivity(event.activity);
+
+    result.fold(
+      (_) => emit(
+        state.copyWith(deleteStatus: StateStatus.failure),
+      ),
+      (result) => emit(
+        state.copyWith(
+          deleteStatus: StateStatus.success,
+          activities: [...state.activities.where((a) => a != event.activity)],
         ),
       ),
     );

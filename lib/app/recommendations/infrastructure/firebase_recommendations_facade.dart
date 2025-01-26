@@ -111,4 +111,36 @@ class FirebaseRecommendationsFacade implements RecommendationsFacade {
       return left(RecommendationsFailure.unexpected());
     }
   }
+
+  @override
+  Future<Either<RecommendationsFailure, Unit>> deleteAccommodation(
+    AccommodationRecommendations accommodation,
+  ) async {
+    try {
+      await _firestore
+          .collection('accommodation_recommendations')
+          .doc(accommodation.id)
+          .delete();
+      return right(unit);
+    } on Exception catch (e) {
+      _logger.e(e);
+      return left(RecommendationsFailure.unexpected());
+    }
+  }
+
+  @override
+  Future<Either<RecommendationsFailure, Unit>> deleteActivity(
+    ActivityRecommendations activity,
+  ) async {
+    try {
+      await _firestore
+          .collection('activity_recommendations')
+          .doc(activity.id)
+          .delete();
+      return right(unit);
+    } on Exception catch (e) {
+      _logger.e(e);
+      return left(RecommendationsFailure.unexpected());
+    }
+  }
 }

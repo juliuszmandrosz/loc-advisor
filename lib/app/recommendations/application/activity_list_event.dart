@@ -10,4 +10,7 @@ class ActivityListEvent with _$ActivityListEvent {
       _DestinationChanged;
 
   const factory ActivityListEvent.nextPageFetched() = _NextPageFetched;
+
+  const factory ActivityListEvent.deleted(ActivityRecommendations activity) =
+      _Deleted;
 }
