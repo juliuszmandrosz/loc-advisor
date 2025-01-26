@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:loc_advisor/app/accommodations_core/domain/accommodation_recommendations_entity.dart';
-import 'package:loc_advisor/app/recommendations/widgets/accommodation_expandable_card.dart';
+import 'package:loc_advisor/app/activities_core/domain/activity_recommendations_entity.dart';
+import 'package:loc_advisor/app/recommendations/widgets/activity_expandable_card.dart';
 import 'package:loc_advisor/themes/theme_extensions.dart';
 
-class AccommodationListItem extends StatelessWidget {
-  final AccommodationRecommendations recommendation;
+class ActivityListItem extends StatelessWidget {
+  final ActivityRecommendations recommendation;
 
-  const AccommodationListItem({
+  const ActivityListItem({
     required this.recommendation,
     super.key,
   });
@@ -33,10 +33,10 @@ class AccommodationListItem extends StatelessWidget {
               const SizedBox(height: 8),
             ],
             Column(
-              children: recommendation.locations
+              children: recommendation.activities
                   .map(
-                    (accommodation) => AccommodationExpandableCard(
-                      accommodation: accommodation,
+                    (activity) => ActivityExpandableCard(
+                      activity: activity,
                     ),
                   )
                   .toList(),

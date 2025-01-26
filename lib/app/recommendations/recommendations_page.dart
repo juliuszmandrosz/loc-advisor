@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loc_advisor/app/recommendations/accommodation_list_page.dart';
 import 'package:loc_advisor/app/recommendations/activity_list_page.dart';
 import 'package:loc_advisor/app/recommendations/application/accommodation_list_bloc.dart';
+import 'package:loc_advisor/app/recommendations/application/activity_list_bloc.dart';
 import 'package:loc_advisor/app/recommendations/application/recommendations_cubit.dart';
 import 'package:loc_advisor/app/recommendations/widgets/recommendations_sliver_app_bar.dart';
 import 'package:loc_advisor/injection_container/injectable.dart';
@@ -19,6 +20,9 @@ class RecommendationsPage extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => getIt<RecommendationsCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<ActivityListBloc>(),
         ),
         BlocProvider(
           create: (context) => getIt<AccommodationListBloc>(),

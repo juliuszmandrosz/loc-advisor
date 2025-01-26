@@ -73,6 +73,6 @@ class FirebaseRecommendationsFacade implements RecommendationsFacade {
     int pageSize = 20,
     ActivityRecommendations? lastRecommendation,
   }) {
-    throw UnimplementedError();
+    return Future.value(right([]));
   }
 }

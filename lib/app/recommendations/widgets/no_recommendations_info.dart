@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:loc_advisor/themes/theme_extensions.dart';
 
 class NoRecommendationsInfo extends StatelessWidget {
-  final Function(BuildContext context) onEventsRefreshed;
+  final Function(BuildContext context) onRefreshed;
 
   const NoRecommendationsInfo({
-    required this.onEventsRefreshed,
+    required this.onRefreshed,
     super.key,
   });
 
@@ -21,7 +21,7 @@ class NoRecommendationsInfo extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           OutlinedButton(
-            onPressed: () => onEventsRefreshed(context),
+            onPressed: () => onRefreshed(context),
             child: Text('Odśwież'),
           ),
         ],

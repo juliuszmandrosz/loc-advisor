@@ -49,7 +49,7 @@ class AccommodationListPage extends HookWidget {
                 return state.recommendations.isEmpty
                     ? Expanded(
                         child: NoRecommendationsInfo(
-                          onEventsRefreshed: _refresh,
+                          onRefreshed: _refresh,
                         ),
                       )
                     : Expanded(
