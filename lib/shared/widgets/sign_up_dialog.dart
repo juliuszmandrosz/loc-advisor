@@ -67,12 +67,12 @@ class SignUpDialog extends StatelessWidget {
           child: const Text('Anuluj'),
         ),
         TextButton(
-          onPressed: () async => await context.replaceRoute(
+          onPressed: () async => await AutoRouter.of(context).replaceAll([
             SignUpRoute(
               recommendationId: recommendationId,
               recommendationType: recommendationType,
             ),
-          ),
+          ]),
           child: const Text('Zarejestruj się'),
         ),
       ],

@@ -33,7 +33,7 @@ class ActivityRecommendationsPage extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             onPressed: () async {
               if (isAuthenticated) {
-                await context.replaceRoute(const HomeRoute());
+                await AutoRouter.of(context).replaceAll([const HomeRoute()]);
               } else {
                 await showDialog(
                   context: context,

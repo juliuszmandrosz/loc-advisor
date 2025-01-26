@@ -34,7 +34,7 @@ class ProfilePage extends StatelessWidget {
         }
 
         state.user.fold(
-          () => context.replaceRoute(SignInRoute()),
+          () async => await AutoRouter.of(context).replaceAll([SignInRoute()]),
           (_) => {},
         );
       },

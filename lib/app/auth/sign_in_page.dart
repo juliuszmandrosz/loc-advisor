@@ -46,7 +46,7 @@ class SignInPage extends StatelessWidget {
                 );
               case StateStatus.success:
                 context.loaderOverlay.hide();
-                await context.replaceRoute(const HomeRoute());
+                await AutoRouter.of(context).replaceAll([const HomeRoute()]);
             }
           },
           builder: (context, state) {
