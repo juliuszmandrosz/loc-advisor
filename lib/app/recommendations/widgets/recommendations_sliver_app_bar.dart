@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loc_advisor/app/recommendations/application/accommodation_list_bloc.dart';
+import 'package:loc_advisor/app/recommendations/application/activity_list_bloc.dart';
 import 'package:loc_advisor/app/recommendations/application/recommendation_tab.dart';
 import 'package:loc_advisor/app/recommendations/application/recommendations_cubit.dart';
 import 'package:loc_advisor/app/recommendations/widgets/recommendations_search_field.dart';
@@ -44,9 +45,11 @@ class RecommendationsSliverAppBar extends StatelessWidget {
                             .applyDestination(destination);
                         switch (selectedTab) {
                           case RecommendationTab.activities:
-                            // context
-                            // .read<EventsBloc>()
-                            // .add(EventsEvent.queryChanged(query));
+                            context
+                                .read<ActivityListBloc>()
+                                .add(ActivityListEvent.destinationChanged(
+                                  destination,
+                                ));
                             break;
                           case RecommendationTab.accommodations:
                             context
