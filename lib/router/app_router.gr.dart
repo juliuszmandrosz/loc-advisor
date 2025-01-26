@@ -10,13 +10,14 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i13;
 import 'package:flutter/material.dart' as _i15;
-import 'package:loc_advisor/app/accommodations/accommodation_recommendations_page.dart'
-    as _i1;
-import 'package:loc_advisor/app/accommodations/accommodations_search_page.dart'
-    as _i2;
-import 'package:loc_advisor/app/accommodations/domain/entities/accommodation_recommendations_entity.dart'
+import 'package:loc_advisor/app/accommodations_core/domain/accommodation_recommendations_entity.dart'
     as _i14;
-import 'package:loc_advisor/app/activities/activities_page.dart' as _i3;
+import 'package:loc_advisor/app/accommodations_search/accommodation_recommendations_page.dart'
+    as _i1;
+import 'package:loc_advisor/app/accommodations_search/accommodations_search_page.dart'
+    as _i2;
+import 'package:loc_advisor/app/activities_search/activities_search_page.dart'
+    as _i3;
 import 'package:loc_advisor/app/auth/forgot_password_page.dart' as _i5;
 import 'package:loc_advisor/app/auth/sign_in_page.dart' as _i10;
 import 'package:loc_advisor/app/auth/sign_up_page.dart' as _i11;
@@ -96,20 +97,20 @@ class AccommodationsSearchRoute extends _i13.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.ActivitiesPage]
-class ActivitiesRoute extends _i13.PageRouteInfo<void> {
-  const ActivitiesRoute({List<_i13.PageRouteInfo>? children})
+/// [_i3.ActivitiesSearchPage]
+class ActivitiesSearchRoute extends _i13.PageRouteInfo<void> {
+  const ActivitiesSearchRoute({List<_i13.PageRouteInfo>? children})
       : super(
-          ActivitiesRoute.name,
+          ActivitiesSearchRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'ActivitiesRoute';
+  static const String name = 'ActivitiesSearchRoute';
 
   static _i13.PageInfo page = _i13.PageInfo(
     name,
     builder: (data) {
-      return const _i3.ActivitiesPage();
+      return const _i3.ActivitiesSearchPage();
     },
   );
 }

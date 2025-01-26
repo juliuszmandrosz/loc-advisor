@@ -13,18 +13,18 @@ import 'package:cloud_functions/cloud_functions.dart' as _i809;
 import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
-import 'package:loc_advisor/app/accommodations/application/accommodations_search_cubit.dart'
-    as _i727;
-import 'package:loc_advisor/app/accommodations/domain/accommodations_facade.dart'
-    as _i662;
-import 'package:loc_advisor/app/accommodations/infrastructure/firebase_accommodations_facade.dart'
-    as _i833;
-import 'package:loc_advisor/app/activities/application/activities_cubit.dart'
-    as _i1014;
-import 'package:loc_advisor/app/activities/domain/activities_facade.dart'
-    as _i311;
-import 'package:loc_advisor/app/activities/infrastructure/firebase_activities_facade.dart'
-    as _i379;
+import 'package:loc_advisor/app/accommodations_search/application/accommodations_search_cubit.dart'
+    as _i494;
+import 'package:loc_advisor/app/accommodations_search/domain/accommodations_search_facade.dart'
+    as _i203;
+import 'package:loc_advisor/app/accommodations_search/infrastructure/firebase_accommodations_search_facade.dart'
+    as _i835;
+import 'package:loc_advisor/app/activities_search/application/activities_search_cubit.dart'
+    as _i927;
+import 'package:loc_advisor/app/activities_search/domain/activities_search_facade.dart'
+    as _i279;
+import 'package:loc_advisor/app/activities_search/infrastructure/firebase_activities_search_facade.dart'
+    as _i403;
 import 'package:loc_advisor/app/auth/application/auth_bloc.dart' as _i185;
 import 'package:loc_advisor/app/auth/application/forgot_password_cubit.dart'
     as _i86;
@@ -72,23 +72,24 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i533.SignUpCubit(gh<_i433.AuthFacade>()));
     gh.factory<_i86.ForgotPasswordCubit>(
         () => _i86.ForgotPasswordCubit(gh<_i433.AuthFacade>()));
-    gh.lazySingleton<_i311.ActivitiesFacade>(
-        () => _i379.FirebaseActivitiesFacade());
-    gh.factory<_i1014.ActivitiesCubit>(
-        () => _i1014.ActivitiesCubit(gh<_i311.ActivitiesFacade>()));
+    gh.lazySingleton<_i279.ActivitiesSearchFacade>(
+        () => _i403.FirebaseActivitiesSearchFacade());
     gh.factory<_i185.AuthBloc>(
         () => _i185.AuthBloc(authFacade: gh<_i433.AuthFacade>()));
-    gh.lazySingleton<_i662.AccommodationsFacade>(
-        () => _i833.FirebaseAccommodationsFacade(
+    gh.factory<_i927.ActivitiesSearchCubit>(
+        () => _i927.ActivitiesSearchCubit(gh<_i279.ActivitiesSearchFacade>()));
+    gh.lazySingleton<_i203.AccommodationsSearchFacade>(
+        () => _i835.FirebaseAccommodationsSearchFacade(
               gh<_i809.FirebaseFunctions>(),
               gh<_i974.Logger>(),
               gh<_i59.FirebaseAuth>(),
               gh<_i974.FirebaseFirestore>(),
             ));
-    gh.factory<_i727.AccommodationsSearchCubit>(() =>
-        _i727.AccommodationsSearchCubit(gh<_i662.AccommodationsFacade>()));
-    gh.factory<_i789.AccommodationListBloc>(
-        () => _i789.AccommodationListBloc(gh<_i662.AccommodationsFacade>()));
+    gh.factory<_i789.AccommodationListBloc>(() =>
+        _i789.AccommodationListBloc(gh<_i203.AccommodationsSearchFacade>()));
+    gh.factory<_i494.AccommodationsSearchCubit>(() =>
+        _i494.AccommodationsSearchCubit(
+            gh<_i203.AccommodationsSearchFacade>()));
     return this;
   }
 }

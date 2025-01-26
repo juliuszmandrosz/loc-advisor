@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:loc_advisor/app/accommodations/domain/accommodations_facade.dart';
-import 'package:loc_advisor/app/accommodations/domain/entities/accommodation_recommendations_entity.dart';
+import 'package:loc_advisor/app/accommodations_core/domain/accommodation_recommendations_entity.dart';
+import 'package:loc_advisor/app/accommodations_search/domain/accommodations_search_facade.dart';
 import 'package:loc_advisor/app/transformers/throttle_droppable.dart';
 import 'package:loc_advisor/enums/state_status.dart';
 
@@ -17,7 +17,7 @@ const _pageSize = 15;
 @injectable
 class AccommodationListBloc
     extends Bloc<AccommodationListEvent, AccommodationListState> {
-  final AccommodationsFacade _accommodationsFacade;
+  final AccommodationsSearchFacade _accommodationsFacade;
 
   AccommodationListBloc(this._accommodationsFacade)
       : super(AccommodationListState.initial()) {

@@ -48,7 +48,7 @@ class DiscoverPage extends StatelessWidget {
                   DiscoverSquareTile(
                     icon: FontAwesomeIcons.locationDot,
                     label: 'Znajdź aktywności',
-                    onTap: () => context.pushRoute(ActivitiesRoute()),
+                    onTap: () => context.pushRoute(ActivitiesSearchRoute()),
                   ),
                   DiscoverSquareTile(
                     icon: FontAwesomeIcons.house,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loc_advisor/app/accommodations/domain/entities/accommodation_entity.dart';
+import 'package:loc_advisor/app/accommodations_core/domain/accommodation_entity.dart';
 
 class AccommodationExpandableCard extends StatelessWidget {
   final Accommodation accommodation;
