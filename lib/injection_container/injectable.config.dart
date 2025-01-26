@@ -67,6 +67,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i809.FirebaseFunctions>(
         () => firebaseModule.firebaseFunctions);
     gh.lazySingleton<_i974.Logger>(() => loggerModule.logger);
+    gh.lazySingleton<_i279.ActivitiesSearchFacade>(
+        () => _i403.FirebaseActivitiesSearchFacade(
+              gh<_i809.FirebaseFunctions>(),
+              gh<_i974.Logger>(),
+            ));
     gh.lazySingleton<_i433.AuthFacade>(() => _i792.FirebaseAuthFacade(
           firebaseAuth: gh<_i59.FirebaseAuth>(),
           logger: gh<_i974.Logger>(),
@@ -78,8 +83,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i533.SignUpCubit(gh<_i433.AuthFacade>()));
     gh.factory<_i86.ForgotPasswordCubit>(
         () => _i86.ForgotPasswordCubit(gh<_i433.AuthFacade>()));
-    gh.lazySingleton<_i279.ActivitiesSearchFacade>(
-        () => _i403.FirebaseActivitiesSearchFacade());
     gh.factory<_i185.AuthBloc>(
         () => _i185.AuthBloc(authFacade: gh<_i433.AuthFacade>()));
     gh.lazySingleton<_i203.AccommodationsSearchFacade>(
