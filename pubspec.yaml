@@ -44,7 +44,6 @@ dependencies:
   google_fonts: ^6.2.1
   json_serializable: ^6.9.0
   json_annotation: ^4.9.0
-  equatable: ^2.0.7
   font_awesome_flutter: ^10.8.0
   freezed_annotation: ^2.4.4
   dartz: ^0.10.1
@@ -53,7 +52,6 @@ dependencies:
   get_it: ^8.0.3
   rxdart: ^0.28.0
   bloc_concurrency: ^0.3.0
-  hive: ^2.2.3
   formz: ^0.8.0
   flutter_hooks: ^0.20.5
   loader_overlay: ^5.0.0
