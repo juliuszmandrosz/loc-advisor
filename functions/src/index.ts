@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 import {HttpsError, onCall} from "firebase-functions/https";
 import {AccommodationRecommendationsResponse, AccommodationRequest} from "./models/accommodation_recommendations.model";
-import {ActivityRecommendationsResponse} from "./models/activity_recommendations.model";
+import {ActivityRecommendationsResponse, ActivityRequest} from "./models/activity_recommendations.model";
 import {getFirestore} from "firebase-admin/firestore";
 import * as admin from 'firebase-admin'
 
@@ -167,60 +167,90 @@ export const getActivityRecommendations = onCall(
     },
     async (request) => {
         const openai = new OpenAI({apiKey: process.env.OPEN_AI_KEY});
-        const {
-            destination,
-            dateOption,
-            activityPreferences,
-            budgetOption,
-            atmosphereOption,
-            additionalNotes
-        } = request.data;
-        if (!destination) {
+        const activityRequest = request.data as ActivityRequest;
+
+        if (!activityRequest.destination) {
             throw new HttpsError("invalid-argument", "Destination is required.");
         }
+
         const systemPrompt = `
             Jesteś inteligentnym asystentem „LocAdvisor”, którego zadaniem jest sugerowanie lokalnych aktywności i atrakcji z uwzględnieniem priorytetów użytkownika. 
             Twoje rekomendacje powinny być maksymalnie dopasowane do podanych preferencji i unikać typowych pułapek turystycznych.
 
             Podczas generowania rekomendacji przestrzegaj następujących zasad:
-                1. Główne preferencje aktywności: np. jedzenie, życie nocne, relaks, ukryte perełki, natura, sport
-                2. Termin: „Na dzisiaj” (jeśli aktywności mają być realizowane w ciągu najbliższych kilku–kilkunastu godzin) lub „Na później”
-                3. Łączenie aktywności: jeśli użytkownik wybiera kilka jednocześnie (np. „Jedzenie” i „Życie nocne”), 
-                   połącz je w spójny plan (np. wizyta w pobliskiej restauracji, a następnie wyjście do klubu w okolicy)
-                4. Lokalna perspektywa: unikaj komercyjnych pułapek turystycznych, stawiaj na lokalny klimat
-                5. Bezpieczeństwo: zawsze wskaż potencjalne zagrożenia, porady dot. zachowań i godziny funkcjonowania miejsc
-                6. Dodatkowe wskazówki: jeśli użytkownik wybiera „Na dzisiaj”, rekomendacje powinny obejmować miejsca aktualnie czynne, 
-                   z uwzględnieniem typowych godzin szczytu i zwyczajów lokalnych (np. kluby zaczynają tętnić życiem po północy)
-                   
                 1. **Główne preferencje aktywności**: Uwzględnij priorytety użytkownika, takie jak jedzenie, życie nocne, relaks, ukryte perełki, natura czy sport.
                 2. **Termin**: 
                    - Jeśli użytkownik wybiera „Na dzisiaj”, rekomenduj miejsca aktualnie otwarte, uwzględniając godziny szczytu i lokalne zwyczaje (np. kluby zaczynają tętnić życiem po północy).
                    - Jeśli wybiera „Na później”, wskaż miejsca, które warto zarezerwować lub odwiedzić w konkretnych porach.
                 3. **Łączenie aktywności**: Jeśli użytkownik wybiera kilka preferencji jednocześnie (np. „Jedzenie” i „Życie nocne”), połącz je w spójny plan (np. restauracja, potem pub, a na końcu klub w tej samej okolicy).
-                4. **Lokalna perspektywa**: Unikaj komercyjnych pułapek turystycznych. Stawiaj na lokalny klimat i rekomendacje popularne wśród mieszkańców.
+                4. **Autentyczny vibe**: Unikaj komercyjnych pułapek turystycznych. Stawiaj na lokalny klimat i rekomendacje popularne wśród mieszkańców.
                 5. **Bezpieczeństwo**: Zawsze wskaż potencjalne zagrożenia i praktyczne porady dotyczące zachowania (np. unikaj samotnych spacerów w nocy w określonych dzielnicach).
                 6. **Budżet**: Uwzględnij zakres finansowy użytkownika, rekomendując miejsca zgodne z jego budżetem.
-                7. **Dodatkowe wskazówki**: Jeśli użytkownik wybiera „Na dzisiaj”, rekomendacje powinny obejmować miejsca aktualnie czynne oraz uwzględniać typowe godziny funkcjonowania i zwyczaje (np. kolacje w restauracjach w danej kulturze zaczynają się później).
             
             Twoje rekomendacje powinny być szczegółowe, a jednocześnie zwięzłe, zawierać:
             - Dokładną nazwę miejsc lub atrakcji,
             - Informację o najlepszej porze na odwiedzenie danego miejsca (np. w przypadku klubów często po północy),
             - Przybliżone lokalizacje/okolicę i wskazówki dotyczące łączenia atrakcji w jeden plan,
-            - Porady odnośnie bezpieczeństwa i rozsądnych zachowań (np. w niektórych dzielnicach lepiej nie chodzić samemu w nocy / nie robić tam zdjęć),
-            - Pomocne tipy: np. co zamówić w danej knajpie, czy trzeba robić rezerwacje z wyprzedzeniem itp.
+            - Porady odnośnie bezpieczeństwa i rozsądnych zachowań (np. w niektórych dzielnicach lepiej nie chodzić samemu w nocy / nie robić tam zdjęć);
             
-            Każda rekomendacja musi również zawierać link do zdjęcia, które można użyć do wizualizacji
+            ### Przykład zapytania i odpowiedzi:
+
+            **Zapytanie:**
+            Użytkownik szuka aktywności w Miami.
+            Preferencje użytkownika:
+            - Aktywności: Jedzenie, nocne życie.
+            - Atmosfera: tętniące życiem.
+            - Budżet: Średnie.
+            - Kiedy: Na dzisiaj.
+          
+            **Idealna odpowiedź:**
+            
+            {
+              "destination": "Miami",
+              "activities": [
+                {
+                  "placeName": "Batch Gastropub",
+                  "description": "Lokalny pub/restauracja w Brickell z luźną atmosferą i pysznym jedzeniem, idealnym na kolację przed imprezą. Serwują klasyczne amerykańskie dania z twistem oraz szeroki wybór piw kraftowych.",
+                  "bestTimeToVisit": "Najlepiej między 19:00 a 21:00, aby złapać dobrą atmosferę i uniknąć tłumów.",
+                  "safetyTips": "Unikaj zostawiania rzeczy bez opieki, szczególnie w weekendowe wieczory.",
+                  "combinationTips": "Po kolacji warto udać się do Rosa Sky na before party i podziwiać widok na Miami.",
+                  "budgetTips": "Średni – dania główne od $18, drinki od $12."
+                },
+                {
+                  "placeName": "Rosa Sky Rooftop",
+                  "description": "Stylowy rooftop bar na Brickell z panoramicznym widokiem na centrum Miami, serwujący kreatywne koktajle i lekkie przekąski.",
+                  "bestTimeToVisit": "Najlepiej między 21:00 a 23:00, aby cieszyć się pięknymi widokami przed nocną zabawą.",
+                  "safetyTips": "Zarezerwuj miejsce z wyprzedzeniem, aby mieć gwarancję wejścia, szczególnie w weekendy.",
+                  "combinationTips": "Po Rosa Sky najlepiej złapać Ubera do Space Club, gdzie impreza trwa do rana.",
+                  "budgetTips": "Średni – koktajle od $16, przekąski od $14."
+                },
+                {
+                  "placeName": "Space Club",
+                  "description": "Legendarny klub w Miami z całonocnymi imprezami, występami topowych DJ-ów i niepowtarzalnym klimatem.",
+                  "bestTimeToVisit": "Najlepiej po godzinie 1:00, kiedy klub jest pełen energii.",
+                  "safetyTips": "Korzystaj z Ubera lub Lyft po zakończeniu imprezy.",
+                  "combinationTips": "Po klubie warto odwiedzić food trucki w pobliżu na późnonocną przekąskę.",
+                  "budgetTips": "Średni – wejście od $40, drinki od $15. Możesz pobrać aplikację Dice i sprawdzić dostępne imprezy oraz cene biletów."
+                }
+              ],
+              "additionalNotes": "Zacznij wieczór od kolacji w Batch Gastropub, następnie wybierz się na Rosa Sky na before, a potem baw się w Space Club."
+            }
+            
+            
+            Twoje odpowiedzi mają być zgodne z powyższymi wagami i preferencjami, a jednocześnie przedstawiać lokalny vibe, 
+            autentyczne miejscówki i minimalizować ryzyko „przereklamowanych” atrakcji turystycznych.
         `;
 
         const userPrompt = `
-            Użytkownik jest w: ${destination}
-            Termin: ${dateOption}
-            Preferowane aktywności: ${activityPreferences.join(", ")}
-            Budżet: ${budgetOption}
-            Atmosfera: ${atmosphereOption}
-            Dodatkowe informacje: ${additionalNotes}
+            Użytkownik szuka aktywności w: ${activityRequest.destination}
+            Preferencje użytkownika:
+                - Aktywności: ${activityRequest.activityPreferences.join(", ")}
+                - Kiedy: ${activityRequest.dateOption}
+                - Budżet: ${activityRequest.budgetOption}
+                - Atmosfera: ${activityRequest.atmosphereOption}
+                - Dodatkowe informacje: ${activityRequest.additionalNotes}
             
-            Przygotuj rekomendacje ciekawych miejsc i atrakcji w ${destination}, które można połączyć w jeden wypad, uwzględniając:
+            Przygotuj rekomendacje ciekawych miejsc i atrakcji w ${activityRequest.destination}, które można połączyć w jeden wypad, uwzględniając:
             - Lokalne wskazówki i autentyczny klimat,
             - Bezpieczeństwo i godziny otwarcia,
             - Możliwość odwiedzenia kilku miejsc w trakcie jednego wyjścia (np. restauracja, potem pub, a na końcu klub),
@@ -229,15 +259,14 @@ export const getActivityRecommendations = onCall(
             Na koniec zwróć odpowiedź WYŁĄCZNIE w formacie JSON o strukturze:
               {
                 "destination": "string",
-                "recommendations": [
+                "activities": [
                   {
                     "placeName": "string",
                     "description": "string",
                     "bestTimeToVisit": "string",
-                    "imageUrl": "string",
                     "safetyTips": "string",
                     "combinationTips": "string",
-                    "priceRange": "string"
+                    "budgetTips": "string"
                   }
                 ],
                 "additionalNotes": "string"
@@ -259,14 +288,30 @@ export const getActivityRecommendations = onCall(
             throw new HttpsError("internal", "Failed to generate response.");
         }
 
-        const parsedResponse: ActivityRecommendationsResponse = JSON.parse(response.content);
+        const recommendations: ActivityRecommendationsResponse = JSON.parse(response.content);
+        const userId = request.auth ? request.auth.uid : null;
+        const now = admin.firestore.Timestamp.now();
 
-        // for (const recommendation of parsedResponse.recommendations) {
-        //     const fileName = `${destination}_${recommendation.placeName.replace(/\s+/g, "_").toLowerCase()}.jpg`;
-        //     recommendation.imageUrl = await downloadAndUploadImage(recommendation.imageUrl, fileName);
-        // }
+        activityRequest.userId = userId;
+        activityRequest.createdAt = now;
 
-        return {recommendations: parsedResponse};
+        recommendations.userId = userId;
+        recommendations.createdAt = now;
+        recommendations.destinationLowerCase = activityRequest.destination.toLowerCase();
+
+        const requestDoc = await db
+            .collection("activity_requests")
+            .add({...activityRequest});
+
+        recommendations.requestId = requestDoc.id;
+
+        const recommendationDoc = await db
+            .collection("activity_recommendations")
+            .add({...recommendations});
+
+        recommendations.id = recommendationDoc.id;
+
+        return recommendations;
     }
 );
 

@@ -18,7 +18,7 @@ export interface ActivityRecommendationsResponse {
     requestId: string;
     destination: string;
     destinationLowerCase: string;
-    recommendations: ActivityRecommendation[];
+    activities: ActivityRecommendation[];
     additionalNotes: string;
     createdAt: Timestamp;
 }
@@ -27,7 +27,6 @@ export interface ActivityRecommendation {
     placeName: string;
     description: string;
     bestTimeToVisit: string;
-    imageUrl: string;
     safetyTips: string;
     combinationTips: string;
     priceRange: string;
