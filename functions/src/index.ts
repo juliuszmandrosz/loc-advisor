@@ -220,7 +220,7 @@ export const getActivityRecommendations = onCall(
                   "placeName": "Rosa Sky Rooftop",
                   "description": "Stylowy rooftop bar na Brickell z panoramicznym widokiem na centrum Miami, serwujący kreatywne koktajle i lekkie przekąski.",
                   "bestTimeToVisit": "Najlepiej między 21:00 a 23:00, aby cieszyć się pięknymi widokami przed nocną zabawą.",
-                  "safetyTips": "Zarezerwuj miejsce z wyprzedzeniem, aby mieć gwarancję wejścia, szczególnie w weekendy.",
+                  "safetyTips": "Upewnij się, że jesteś w dobrze oświetlonym miejscu podczas powrotu.",
                   "combinationTips": "Po Rosa Sky najlepiej złapać Ubera do Space Club, gdzie impreza trwa do rana.",
                   "budgetTips": "Średni – koktajle od $16, przekąski od $14."
                 },
