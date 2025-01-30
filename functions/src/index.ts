@@ -5,7 +5,6 @@ import {ActivityRecommendationsResponse, ActivityRequest} from "./models/activit
 import {getFirestore} from "firebase-admin/firestore";
 import * as admin from 'firebase-admin'
 
-
 admin.initializeApp();
 const db = getFirestore();
 
@@ -41,7 +40,7 @@ export const getAccommodationRecommendations = onCall(
             Kładź duży nacisk na bezpieczeństwo – wskaż, jakie zagrożenia mogą wystąpić w danej okolicy oraz zachowania, których lepiej unikać.
             
             Twoje odpowiedzi MUSZĄ:
-            - Uwzględniać preferencję „blisko plaży”, jeśli została zaznaczona.
+            - Uwzględniać preferencję „blisko plaży lub natury”, jeśli została zaznaczona.
             - Łączyć preferencje „tętniące życiem” z lokalnymi miejscówkami znanymi z życia nocnego.
             - Być zgodne z budżetem i priorytetami użytkownika.
             
@@ -100,6 +99,8 @@ export const getAccommodationRecommendations = onCall(
                 3. Wszystkie rekomendacje muszą być zgodne z wybranym budżetem.
                 4. Podaj szczegółowe wskazówki bezpieczeństwa oraz informacje o lokalnym klimacie każdej lokalizacji.
                 5. Uwzględnij wyłącznie miejsca, które reprezentują autentyczny lokalny vibe.
+                6. Nie dodawaj ogólnych opisów o mieście. Podawaj tylko konkretne informacje o miejscach rekomendowanych do zakwaterowania.
+                7. Nie informuj o oczywistych faktach, np. że Madryt nie ma dostępu do plaży.
             
             Na koniec zwróć odpowiedź WYŁĄCZNIE w formacie JSON o strukturze:
               {
@@ -116,6 +117,8 @@ export const getAccommodationRecommendations = onCall(
                 ],
                 "additionalNotes": "string"
               }
+              Nie dodawaj bloków kodowych (\`\`\`), odpowiedź musi być czystym JSON-em.
+              Odpowiedź ma zaczynać się od { i kończyć }. Nie dodawaj żadnego dodatkowego tekstu."
         `;
 
         const completion = await openai.chat.completions.create({
@@ -271,6 +274,8 @@ export const getActivityRecommendations = onCall(
                 ],
                 "additionalNotes": "string"
               }
+              Nie dodawaj bloków kodowych (\`\`\`), odpowiedź musi być czystym JSON-em.
+              Odpowiedź ma zaczynać się od { i kończyć }. Nie dodawaj żadnego dodatkowego tekstu."
         `;
 
         const completion = await openai.chat.completions.create({
