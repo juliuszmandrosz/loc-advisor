@@ -48,23 +48,6 @@ class AccommodationListPage extends HookWidget {
           },
           builder: (context, state) {
             switch (state.getAccommodationsStatus) {
-              case StateStatus.initial:
-                return const SizedBox.shrink();
-
-              case StateStatus.loading:
-                return Expanded(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
-
-              case StateStatus.failure:
-                return Expanded(
-                  child: RecommendationsFailureInfo(
-                    retryCallback: () => _refresh(context),
-                  ),
-                );
-
               case StateStatus.success:
                 return state.recommendations.isEmpty
                     ? Expanded(
@@ -92,6 +75,20 @@ class AccommodationListPage extends HookWidget {
                           ),
                         ),
                       );
+              case StateStatus.loading:
+                return Expanded(
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              case StateStatus.initial:
+                return const SizedBox.shrink();
+              case StateStatus.failure:
+                return Expanded(
+                  child: RecommendationsFailureInfo(
+                    retryCallback: () => _refresh(context),
+                  ),
+                );
             }
           },
         ),

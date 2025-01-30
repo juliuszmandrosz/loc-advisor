@@ -45,18 +45,18 @@ class RecommendationsSliverAppBar extends StatelessWidget {
                             .applyDestination(destination);
                         switch (selectedTab) {
                           case RecommendationTab.activities:
-                            context
-                                .read<ActivityListBloc>()
-                                .add(ActivityListEvent.destinationChanged(
-                                  destination,
-                                ));
+                            context.read<ActivityListBloc>().add(
+                                  ActivityListEvent.destinationChanged(
+                                    destination,
+                                  ),
+                                );
                             break;
                           case RecommendationTab.accommodations:
-                            context
-                                .read<AccommodationListBloc>()
-                                .add(AccommodationListEvent.destinationChanged(
-                                  destination,
-                                ));
+                            context.read<AccommodationListBloc>().add(
+                                  AccommodationListEvent.destinationChanged(
+                                    destination,
+                                  ),
+                                );
                             break;
                         }
                       },
