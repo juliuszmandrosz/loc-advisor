@@ -1,16 +1,37 @@
-# loc_advisor
+# LocAdvisor
 
-A new Flutter project.
+LocAdvisor is a mobile application designed to help travelers discover unique and authentic local
+experiences.
+The app is built using Flutter and leverages Firebase for backend services.
+It integrates AI-powered recommendations to provide personalized activity suggestions based on user
+preferences.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Personalized Recommendations** – AI-driven suggestions tailored to user preferences.
+- **Local Experience Focus** – Prioritizes non-touristy, local spots over mainstream attractions.
+- **Spontaneous Activity Discovery** – Find things to do instantly without extensive planning.
+- **Trip Planning Assistance** – Helps users plan activities for upcoming trips.
+- **Accommodation Neighborhood Suggestions** – Recommends residential areas for accommodations based
+  on user preferences, ensuring an authentic local experience.
+- **Demo Mode for Non-Logged Users** – Users can explore features without creating an account.
 
-A few resources to get you started if this is your first Flutter project:
+## Technologies Used
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Frontend:** Flutter (Dart)
+- **Backend:** Firebase (Firestore, Authentication, Cloud Functions)
+- **AI Integration:** OpenAI API for intelligent recommendations
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Run LocAdvisor Locally
+
+### Navigate to the project directory:
+
+```sh
+cd locadvisor
+```
+
+### Install dependencies:
+
+```sh
+flutter pub get
+```
