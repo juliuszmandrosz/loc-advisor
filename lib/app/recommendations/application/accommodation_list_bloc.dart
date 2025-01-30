@@ -5,8 +5,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:loc_advisor/app/accommodations_core/domain/accommodation_recommendations_entity.dart';
 import 'package:loc_advisor/app/recommendations/domain/recommendations_facade.dart';
-import 'package:loc_advisor/app/transformers/throttle_droppable.dart';
 import 'package:loc_advisor/enums/state_status.dart';
+import 'package:loc_advisor/transformers/throttle_droppable.dart';
 
 part 'accommodation_list_bloc.freezed.dart';
 part 'accommodation_list_event.dart';
