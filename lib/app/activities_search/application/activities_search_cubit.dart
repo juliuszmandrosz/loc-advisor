@@ -8,7 +8,7 @@ import 'package:loc_advisor/app/activities_core/domain/activity_recommendations_
 import 'package:loc_advisor/app/activities_search/application/activities_request_mapper.dart';
 import 'package:loc_advisor/app/activities_search/domain/activities_search_facade.dart';
 import 'package:loc_advisor/enums/state_status.dart';
-import 'package:loc_advisor/shared/form_input_models/additional_notes.dart';
+import 'package:loc_advisor/shared/form_input_models/additional_notes_input.dart';
 import 'package:loc_advisor/shared/form_input_models/destination_input.dart';
 import 'package:loc_advisor/shared/form_input_models/preferences_input.dart';
 import 'package:loc_advisor/shared/models/preferences_model.dart';
