@@ -13,6 +13,7 @@ _$ActivityRecommendationsDtoImpl _$$ActivityRecommendationsDtoImplFromJson(
           .map((e) => ActivityDto.fromJson(e as Map<String, dynamic>))
           .toList(),
       destination: json['destination'] as String,
+      destinationLowerCase: json['destinationLowerCase'] as String,
       additionalNotes: json['additionalNotes'] as String,
       requestId: json['requestId'] as String,
       userId: json['userId'] as String?,
@@ -25,6 +26,7 @@ Map<String, dynamic> _$$ActivityRecommendationsDtoImplToJson(
     <String, dynamic>{
       'activities': instance.activities.map((e) => e.toJson()).toList(),
       'destination': instance.destination,
+      'destinationLowerCase': instance.destinationLowerCase,
       'additionalNotes': instance.additionalNotes,
       'requestId': instance.requestId,
       'userId': instance.userId,

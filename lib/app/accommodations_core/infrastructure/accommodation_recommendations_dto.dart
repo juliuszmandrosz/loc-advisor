@@ -6,6 +6,7 @@ import 'package:loc_advisor/converters/firebase_timestamp_json_converter.dart';
 import 'package:loc_advisor/utils/convert_dynamic_to_map_string_dynamic.dart';
 
 part 'accommodation_recommendations_dto.freezed.dart';
+
 part 'accommodation_recommendations_dto.g.dart';
 
 @freezed
@@ -17,6 +18,7 @@ class AccommodationRecommendationsDto with _$AccommodationRecommendationsDto {
     @JsonKey(includeFromJson: false, includeToJson: false) String? id,
     required List<AccommodationDto> locations,
     required String destination,
+    required String destinationLowerCase,
     required String additionalNotes,
     required String requestId,
     String? userId,

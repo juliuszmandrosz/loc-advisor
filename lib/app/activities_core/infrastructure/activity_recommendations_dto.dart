@@ -17,6 +17,7 @@ class ActivityRecommendationsDto with _$ActivityRecommendationsDto {
     @JsonKey(includeFromJson: false, includeToJson: false) String? id,
     required List<ActivityDto> activities,
     required String destination,
+    required String destinationLowerCase,
     required String additionalNotes,
     required String requestId,
     String? userId,

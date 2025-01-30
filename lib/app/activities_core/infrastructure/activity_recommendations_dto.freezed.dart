@@ -25,6 +25,7 @@ mixin _$ActivityRecommendationsDto {
   String? get id => throw _privateConstructorUsedError;
   List<ActivityDto> get activities => throw _privateConstructorUsedError;
   String get destination => throw _privateConstructorUsedError;
+  String get destinationLowerCase => throw _privateConstructorUsedError;
   String get additionalNotes => throw _privateConstructorUsedError;
   String get requestId => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
@@ -52,6 +53,7 @@ abstract class $ActivityRecommendationsDtoCopyWith<$Res> {
       {@JsonKey(includeFromJson: false, includeToJson: false) String? id,
       List<ActivityDto> activities,
       String destination,
+      String destinationLowerCase,
       String additionalNotes,
       String requestId,
       String? userId,
@@ -77,6 +79,7 @@ class _$ActivityRecommendationsDtoCopyWithImpl<$Res,
     Object? id = freezed,
     Object? activities = null,
     Object? destination = null,
+    Object? destinationLowerCase = null,
     Object? additionalNotes = null,
     Object? requestId = null,
     Object? userId = freezed,
@@ -94,6 +97,10 @@ class _$ActivityRecommendationsDtoCopyWithImpl<$Res,
       destination: null == destination
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
+              as String,
+      destinationLowerCase: null == destinationLowerCase
+          ? _value.destinationLowerCase
+          : destinationLowerCase // ignore: cast_nullable_to_non_nullable
               as String,
       additionalNotes: null == additionalNotes
           ? _value.additionalNotes
@@ -128,6 +135,7 @@ abstract class _$$ActivityRecommendationsDtoImplCopyWith<$Res>
       {@JsonKey(includeFromJson: false, includeToJson: false) String? id,
       List<ActivityDto> activities,
       String destination,
+      String destinationLowerCase,
       String additionalNotes,
       String requestId,
       String? userId,
@@ -152,6 +160,7 @@ class __$$ActivityRecommendationsDtoImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? activities = null,
     Object? destination = null,
+    Object? destinationLowerCase = null,
     Object? additionalNotes = null,
     Object? requestId = null,
     Object? userId = freezed,
@@ -169,6 +178,10 @@ class __$$ActivityRecommendationsDtoImplCopyWithImpl<$Res>
       destination: null == destination
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
+              as String,
+      destinationLowerCase: null == destinationLowerCase
+          ? _value.destinationLowerCase
+          : destinationLowerCase // ignore: cast_nullable_to_non_nullable
               as String,
       additionalNotes: null == additionalNotes
           ? _value.additionalNotes
@@ -198,6 +211,7 @@ class _$ActivityRecommendationsDtoImpl extends _ActivityRecommendationsDto {
       {@JsonKey(includeFromJson: false, includeToJson: false) this.id,
       required final List<ActivityDto> activities,
       required this.destination,
+      required this.destinationLowerCase,
       required this.additionalNotes,
       required this.requestId,
       this.userId,
@@ -223,6 +237,8 @@ class _$ActivityRecommendationsDtoImpl extends _ActivityRecommendationsDto {
   @override
   final String destination;
   @override
+  final String destinationLowerCase;
+  @override
   final String additionalNotes;
   @override
   final String requestId;
@@ -234,7 +250,7 @@ class _$ActivityRecommendationsDtoImpl extends _ActivityRecommendationsDto {
 
   @override
   String toString() {
-    return 'ActivityRecommendationsDto(id: $id, activities: $activities, destination: $destination, additionalNotes: $additionalNotes, requestId: $requestId, userId: $userId, createdAt: $createdAt)';
+    return 'ActivityRecommendationsDto(id: $id, activities: $activities, destination: $destination, destinationLowerCase: $destinationLowerCase, additionalNotes: $additionalNotes, requestId: $requestId, userId: $userId, createdAt: $createdAt)';
   }
 
   @override
@@ -247,6 +263,8 @@ class _$ActivityRecommendationsDtoImpl extends _ActivityRecommendationsDto {
                 .equals(other._activities, _activities) &&
             (identical(other.destination, destination) ||
                 other.destination == destination) &&
+            (identical(other.destinationLowerCase, destinationLowerCase) ||
+                other.destinationLowerCase == destinationLowerCase) &&
             (identical(other.additionalNotes, additionalNotes) ||
                 other.additionalNotes == additionalNotes) &&
             (identical(other.requestId, requestId) ||
@@ -263,6 +281,7 @@ class _$ActivityRecommendationsDtoImpl extends _ActivityRecommendationsDto {
       id,
       const DeepCollectionEquality().hash(_activities),
       destination,
+      destinationLowerCase,
       additionalNotes,
       requestId,
       userId,
@@ -290,6 +309,7 @@ abstract class _ActivityRecommendationsDto extends ActivityRecommendationsDto {
       {@JsonKey(includeFromJson: false, includeToJson: false) final String? id,
       required final List<ActivityDto> activities,
       required final String destination,
+      required final String destinationLowerCase,
       required final String additionalNotes,
       required final String requestId,
       final String? userId,
@@ -307,6 +327,8 @@ abstract class _ActivityRecommendationsDto extends ActivityRecommendationsDto {
   List<ActivityDto> get activities;
   @override
   String get destination;
+  @override
+  String get destinationLowerCase;
   @override
   String get additionalNotes;
   @override

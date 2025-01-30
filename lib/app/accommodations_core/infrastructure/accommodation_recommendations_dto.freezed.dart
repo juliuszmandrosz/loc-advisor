@@ -25,6 +25,7 @@ mixin _$AccommodationRecommendationsDto {
   String? get id => throw _privateConstructorUsedError;
   List<AccommodationDto> get locations => throw _privateConstructorUsedError;
   String get destination => throw _privateConstructorUsedError;
+  String get destinationLowerCase => throw _privateConstructorUsedError;
   String get additionalNotes => throw _privateConstructorUsedError;
   String get requestId => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
@@ -53,6 +54,7 @@ abstract class $AccommodationRecommendationsDtoCopyWith<$Res> {
       {@JsonKey(includeFromJson: false, includeToJson: false) String? id,
       List<AccommodationDto> locations,
       String destination,
+      String destinationLowerCase,
       String additionalNotes,
       String requestId,
       String? userId,
@@ -78,6 +80,7 @@ class _$AccommodationRecommendationsDtoCopyWithImpl<$Res,
     Object? id = freezed,
     Object? locations = null,
     Object? destination = null,
+    Object? destinationLowerCase = null,
     Object? additionalNotes = null,
     Object? requestId = null,
     Object? userId = freezed,
@@ -95,6 +98,10 @@ class _$AccommodationRecommendationsDtoCopyWithImpl<$Res,
       destination: null == destination
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
+              as String,
+      destinationLowerCase: null == destinationLowerCase
+          ? _value.destinationLowerCase
+          : destinationLowerCase // ignore: cast_nullable_to_non_nullable
               as String,
       additionalNotes: null == additionalNotes
           ? _value.additionalNotes
@@ -129,6 +136,7 @@ abstract class _$$AccommodationRecommendationsDtoImplCopyWith<$Res>
       {@JsonKey(includeFromJson: false, includeToJson: false) String? id,
       List<AccommodationDto> locations,
       String destination,
+      String destinationLowerCase,
       String additionalNotes,
       String requestId,
       String? userId,
@@ -153,6 +161,7 @@ class __$$AccommodationRecommendationsDtoImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? locations = null,
     Object? destination = null,
+    Object? destinationLowerCase = null,
     Object? additionalNotes = null,
     Object? requestId = null,
     Object? userId = freezed,
@@ -170,6 +179,10 @@ class __$$AccommodationRecommendationsDtoImplCopyWithImpl<$Res>
       destination: null == destination
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
+              as String,
+      destinationLowerCase: null == destinationLowerCase
+          ? _value.destinationLowerCase
+          : destinationLowerCase // ignore: cast_nullable_to_non_nullable
               as String,
       additionalNotes: null == additionalNotes
           ? _value.additionalNotes
@@ -200,6 +213,7 @@ class _$AccommodationRecommendationsDtoImpl
       {@JsonKey(includeFromJson: false, includeToJson: false) this.id,
       required final List<AccommodationDto> locations,
       required this.destination,
+      required this.destinationLowerCase,
       required this.additionalNotes,
       required this.requestId,
       this.userId,
@@ -225,6 +239,8 @@ class _$AccommodationRecommendationsDtoImpl
   @override
   final String destination;
   @override
+  final String destinationLowerCase;
+  @override
   final String additionalNotes;
   @override
   final String requestId;
@@ -236,7 +252,7 @@ class _$AccommodationRecommendationsDtoImpl
 
   @override
   String toString() {
-    return 'AccommodationRecommendationsDto(id: $id, locations: $locations, destination: $destination, additionalNotes: $additionalNotes, requestId: $requestId, userId: $userId, createdAt: $createdAt)';
+    return 'AccommodationRecommendationsDto(id: $id, locations: $locations, destination: $destination, destinationLowerCase: $destinationLowerCase, additionalNotes: $additionalNotes, requestId: $requestId, userId: $userId, createdAt: $createdAt)';
   }
 
   @override
@@ -249,6 +265,8 @@ class _$AccommodationRecommendationsDtoImpl
                 .equals(other._locations, _locations) &&
             (identical(other.destination, destination) ||
                 other.destination == destination) &&
+            (identical(other.destinationLowerCase, destinationLowerCase) ||
+                other.destinationLowerCase == destinationLowerCase) &&
             (identical(other.additionalNotes, additionalNotes) ||
                 other.additionalNotes == additionalNotes) &&
             (identical(other.requestId, requestId) ||
@@ -265,6 +283,7 @@ class _$AccommodationRecommendationsDtoImpl
       id,
       const DeepCollectionEquality().hash(_locations),
       destination,
+      destinationLowerCase,
       additionalNotes,
       requestId,
       userId,
@@ -294,6 +313,7 @@ abstract class _AccommodationRecommendationsDto
       {@JsonKey(includeFromJson: false, includeToJson: false) final String? id,
       required final List<AccommodationDto> locations,
       required final String destination,
+      required final String destinationLowerCase,
       required final String additionalNotes,
       required final String requestId,
       final String? userId,
@@ -312,6 +332,8 @@ abstract class _AccommodationRecommendationsDto
   List<AccommodationDto> get locations;
   @override
   String get destination;
+  @override
+  String get destinationLowerCase;
   @override
   String get additionalNotes;
   @override
