@@ -61,7 +61,7 @@ class FirebaseRecommendationsFacade implements RecommendationsFacade {
       );
 
       return right(result.toList());
-    } on Exception catch (e) {
+    } on FirebaseException catch (e) {
       _logger.e(e);
       return left(RecommendationsFailure.unexpected());
     }
@@ -76,7 +76,6 @@ class FirebaseRecommendationsFacade implements RecommendationsFacade {
   }) async {
     try {
       final userId = _auth.currentUser!.uid;
-
       var query = _firestore
           .collection('activity_recommendations')
           .where('userId', isEqualTo: userId);
@@ -100,13 +99,11 @@ class FirebaseRecommendationsFacade implements RecommendationsFacade {
       }
 
       final querySnapshot = await query.get();
-
       final result = querySnapshot.docs.map(
         (doc) => ActivityRecommendationsDto.fromFirebase(doc).toDomain(),
       );
-
       return right(result.toList());
-    } on Exception catch (e) {
+    } on FirebaseException catch (e) {
       _logger.e(e);
       return left(RecommendationsFailure.unexpected());
     }
