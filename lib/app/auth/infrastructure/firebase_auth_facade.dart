@@ -39,9 +39,6 @@ class FirebaseAuthFacade implements AuthFacade {
       } on FirebaseAuthException catch (e) {
         _logger.e('FirebaseAuthException ${e.message}');
         yield none();
-      } on FirebaseException catch (e) {
-        _logger.e('FirebaseException ${e.message}');
-        yield none();
       }
     });
   }
@@ -61,9 +58,6 @@ class FirebaseAuthFacade implements AuthFacade {
       _logger.e(e.message);
       final failure = firebaseAuthErrors[e.code];
       return left(failure ?? const AuthFailure.unexpected());
-    } on Exception catch (e) {
-      _logger.e(e);
-      return left(const AuthFailure.unexpected());
     }
   }
 
@@ -91,8 +85,8 @@ class FirebaseAuthFacade implements AuthFacade {
       _logger.e(e.message);
       final failure = firebaseAuthErrors[e.code];
       return left(failure ?? const AuthFailure.unexpected());
-    } on Exception catch (e) {
-      _logger.e(e);
+    } on FirebaseException catch (e) {
+      _logger.e(e.message);
       return left(const AuthFailure.unexpected());
     }
   }
@@ -106,9 +100,6 @@ class FirebaseAuthFacade implements AuthFacade {
       _logger.e(e.message);
       final failure = firebaseAuthErrors[e.code];
       return left(failure ?? const AuthFailure.unexpected());
-    } on Exception catch (e) {
-      _logger.e(e);
-      return left(const AuthFailure.unexpected());
     }
   }
 
@@ -117,7 +108,7 @@ class FirebaseAuthFacade implements AuthFacade {
     try {
       await _auth.signOut();
       return right(unit);
-    } on Exception catch (e) {
+    } on FirebaseAuthException catch (e) {
       _logger.e(e);
       return left(const AuthFailure.unexpected());
     }
